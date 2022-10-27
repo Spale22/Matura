@@ -52,6 +52,9 @@
             this.tbBrCK = new System.Windows.Forms.TextBox();
             this.lblBrojCK = new System.Windows.Forms.Label();
             this.tabPagePregled = new System.Windows.Forms.TabPage();
+            this.btnIzadjiTab2 = new System.Windows.Forms.Button();
+            this.btnPrikazi = new System.Windows.Forms.Button();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.numericUpDownDO = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownOD = new System.Windows.Forms.NumericUpDown();
@@ -61,14 +64,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxCitalac = new System.Windows.Forms.ComboBox();
             this.tabPageAbout = new System.Windows.Forms.TabPage();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl.SuspendLayout();
             this.tabPageCitaoci.SuspendLayout();
             this.tabPagePregled.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDO)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -79,7 +81,7 @@
             this.tabControl.Location = new System.Drawing.Point(-2, -3);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(636, 433);
+            this.tabControl.Size = new System.Drawing.Size(660, 433);
             this.tabControl.TabIndex = 0;
             this.tabControl.Tag = "";
             // 
@@ -101,7 +103,7 @@
             this.tabPageCitaoci.Location = new System.Drawing.Point(4, 22);
             this.tabPageCitaoci.Name = "tabPageCitaoci";
             this.tabPageCitaoci.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCitaoci.Size = new System.Drawing.Size(628, 407);
+            this.tabPageCitaoci.Size = new System.Drawing.Size(652, 407);
             this.tabPageCitaoci.TabIndex = 0;
             this.tabPageCitaoci.Text = "Citaoci";
             this.tabPageCitaoci.UseVisualStyleBackColor = true;
@@ -264,6 +266,8 @@
             // 
             // tabPagePregled
             // 
+            this.tabPagePregled.Controls.Add(this.btnIzadjiTab2);
+            this.tabPagePregled.Controls.Add(this.btnPrikazi);
             this.tabPagePregled.Controls.Add(this.chart1);
             this.tabPagePregled.Controls.Add(this.dataGridView1);
             this.tabPagePregled.Controls.Add(this.numericUpDownDO);
@@ -276,37 +280,71 @@
             this.tabPagePregled.Location = new System.Drawing.Point(4, 22);
             this.tabPagePregled.Name = "tabPagePregled";
             this.tabPagePregled.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePregled.Size = new System.Drawing.Size(628, 407);
+            this.tabPagePregled.Size = new System.Drawing.Size(652, 407);
             this.tabPagePregled.TabIndex = 1;
             this.tabPagePregled.Text = "Pregled iznajmljivanja";
             this.tabPagePregled.UseVisualStyleBackColor = true;
+            // 
+            // btnIzadjiTab2
+            // 
+            this.btnIzadjiTab2.Location = new System.Drawing.Point(249, 284);
+            this.btnIzadjiTab2.Name = "btnIzadjiTab2";
+            this.btnIzadjiTab2.Size = new System.Drawing.Size(75, 23);
+            this.btnIzadjiTab2.TabIndex = 10;
+            this.btnIzadjiTab2.Text = "Izadji";
+            this.btnIzadjiTab2.UseVisualStyleBackColor = true;
+            // 
+            // btnPrikazi
+            // 
+            this.btnPrikazi.Location = new System.Drawing.Point(47, 284);
+            this.btnPrikazi.Name = "btnPrikazi";
+            this.btnPrikazi.Size = new System.Drawing.Size(75, 23);
+            this.btnPrikazi.TabIndex = 9;
+            this.btnPrikazi.Text = "Prikazi";
+            this.btnPrikazi.UseVisualStyleBackColor = true;
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(332, 40);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(300, 237);
+            this.chart1.TabIndex = 8;
+            this.chart1.Text = "chart1";
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(47, 127);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(277, 150);
             this.dataGridView1.TabIndex = 7;
             // 
             // numericUpDownDO
             // 
-            this.numericUpDownDO.Location = new System.Drawing.Point(258, 42);
+            this.numericUpDownDO.Location = new System.Drawing.Point(269, 42);
             this.numericUpDownDO.Name = "numericUpDownDO";
-            this.numericUpDownDO.Size = new System.Drawing.Size(35, 20);
+            this.numericUpDownDO.Size = new System.Drawing.Size(55, 20);
             this.numericUpDownDO.TabIndex = 6;
             // 
             // numericUpDownOD
             // 
             this.numericUpDownOD.Location = new System.Drawing.Point(182, 40);
             this.numericUpDownOD.Name = "numericUpDownOD";
-            this.numericUpDownOD.Size = new System.Drawing.Size(43, 20);
+            this.numericUpDownOD.Size = new System.Drawing.Size(56, 20);
             this.numericUpDownOD.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(232, 42);
+            this.label4.Location = new System.Drawing.Point(244, 44);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(19, 13);
             this.label4.TabIndex = 4;
@@ -344,39 +382,23 @@
             this.comboBoxCitalac.FormattingEnabled = true;
             this.comboBoxCitalac.Location = new System.Drawing.Point(95, 89);
             this.comboBoxCitalac.Name = "comboBoxCitalac";
-            this.comboBoxCitalac.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCitalac.Size = new System.Drawing.Size(229, 21);
             this.comboBoxCitalac.TabIndex = 0;
             // 
             // tabPageAbout
             // 
             this.tabPageAbout.Location = new System.Drawing.Point(4, 22);
             this.tabPageAbout.Name = "tabPageAbout";
-            this.tabPageAbout.Size = new System.Drawing.Size(628, 407);
+            this.tabPageAbout.Size = new System.Drawing.Size(652, 407);
             this.tabPageAbout.TabIndex = 2;
             this.tabPageAbout.Text = "O aplikaciji";
             this.tabPageAbout.UseVisualStyleBackColor = true;
-            // 
-            // chart1
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(319, 40);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(300, 237);
-            this.chart1.TabIndex = 8;
-            this.chart1.Text = "chart1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 431);
+            this.ClientSize = new System.Drawing.Size(656, 431);
             this.Controls.Add(this.tabControl);
             this.Name = "Form1";
             this.Text = "Biblioteka \"Stevan Sremac\"";
@@ -385,10 +407,10 @@
             this.tabPageCitaoci.PerformLayout();
             this.tabPagePregled.ResumeLayout(false);
             this.tabPagePregled.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDO)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -426,6 +448,8 @@
         private System.Windows.Forms.ComboBox comboBoxCitalac;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button btnIzadjiTab2;
+        private System.Windows.Forms.Button btnPrikazi;
 
     }
 }

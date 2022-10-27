@@ -15,10 +15,40 @@ namespace Matura_zadatak_A1
         public Form1()
         {
             InitializeComponent();
+            /*tab 1*/
             try
             {
                 conn.Open();
                 updateList();
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+            /*tab 2*/
+            numericUpDownOD.Maximum = DateTime.Today.Year;
+            numericUpDownDO.Maximum = DateTime.Today.Year;
+            numericUpDownDO.Value = DateTime.Today.Year;
+            numericUpDownOD.Value = DateTime.Today.Year - 10;
+            try 
+            {
+                conn.Open();
+                DataTable citaoci = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT CitalacID,Ime,Prezime FROM Citalac", conn);
+                adapter.Fill(citaoci);
+                int i = 0;
+                foreach (DataRow row in citaoci.Rows) 
+                {
+                    comboBoxCitalac.Items.Add(citaoci.Rows[i][0].ToString() + "-" + citaoci.Rows[i][1].ToString() + " " + citaoci.Rows[i][2].ToString());
+                    i++;
+                }
+                
             }
 
             catch (Exception error)
