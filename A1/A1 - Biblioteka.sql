@@ -56,6 +56,8 @@ CREATE TABLE Primerak(
 	PrimerakID int not null
 );
 
+
+
 /*Primary keys*/
 ALTER TABLE Citalac ADD CONSTRAINT PK_Citalac PRIMARY KEY (CitalacID);
 ALTER TABLE Knjiga ADD CONSTRAINT PK_Knjiga PRIMARY KEY (KnjigaID);

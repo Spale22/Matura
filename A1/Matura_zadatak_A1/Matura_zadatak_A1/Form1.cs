@@ -166,7 +166,7 @@ namespace Matura_zadatak_A1
                     string comboBoxValue = comboBoxCitalac.SelectedItem.ToString();
                     string[] split = comboBoxValue.Split('-');
                     int CitalacID = Convert.ToInt32(split[0]);
-                    SqlDataAdapter GV_adapter = new SqlDataAdapter("SELECT Ime + ' ' + Prezime AS Citalac,(SELECT COUNT(KnjigaID) FROM Na_Citanju WHERE CitalacID=" + CitalacID + " AND DatumVracanja IS NOT NULL) AS Broj_iznajmljivanja,(SELECT COUNT(KnjigaID) FROM Na_Citanju WHERE CitalacID=" + CitalacID + " AND DatumVracanja IS NULL) AS Nije_Vracen FROM Na_Citanju JOIN Citalac ON Na_citanju.CitalacID = Citalac.CitalacID WHERE Na_citanju.CitalacID=" + CitalacID + "; ", conn);
+                    SqlDataAdapter GV_adapter = new SqlDataAdapter("SELECT Ime + ' ' + Prezime AS Citalac, YEAR(DatumUzimanja) AS Godina, (SELECT COUNT(KnjigaID) FROM Na_Citanju WHERE CitalacID=" + CitalacID + ") AS 'Broj\niznajmljivanja',(SELECT COUNT(KnjigaID) FROM Na_Citanju WHERE CitalacID=" + CitalacID + " AND DatumVracanja IS NULL) AS 'Nije\nVracen' FROM Na_Citanju JOIN Citalac ON Na_citanju.CitalacID = Citalac.CitalacID WHERE Na_citanju.CitalacID=" + CitalacID + "; ", conn);
                     DataTable GV_tabela = new DataTable();
                     if (GV_adapter != null)
                     {
@@ -175,14 +175,14 @@ namespace Matura_zadatak_A1
                         GV.Refresh();
                     }
                     //Chart
-                    /*foreach(DataRow r in GV_tabela.Rows)
+                    for (int i = 0; i < GV_tabela.Rows.Count;i++ )
                     {
-                        int br_vracene =0;
-                        int br_nevracene =0;
-                        int godina = 0;
-                        chart.Series[0].Points.AddXY();
-                    }*/
-                   
+                        int br_vracene = Convert.ToInt32(GV_tabela.Rows[i][2].ToString());
+                        int br_nevracene = Convert.ToInt32(GV_tabela.Rows[i][3].ToString());
+                        int godina = Convert.ToInt32(GV_tabela.Rows[i][1].ToString()); ;
+                        chart.Series[0].Points.AddXY(godina,br_vracene);
+                        chart.Series[1].Points.AddXY(godina, br_nevracene);
+                    }
                 }
 
                 else
