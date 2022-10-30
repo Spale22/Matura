@@ -48,7 +48,7 @@ CREATE TABLE Na_Citanju(
 	KnjigaID int not null,
 	CitalacID int not null,
 	DatumUzimanja date not null,
-	DatunVracanja date
+	DatumVracanja date
 );
 
 CREATE TABLE Primerak(
@@ -251,3 +251,4 @@ INSERT INTO Primerak VALUES
 
 USE master;
 DROP DATABASE A1;
+

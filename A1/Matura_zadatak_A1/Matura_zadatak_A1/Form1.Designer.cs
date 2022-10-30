@@ -31,6 +31,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageCitaoci = new System.Windows.Forms.TabPage();
             this.listViewCitaoci = new System.Windows.Forms.ListView();
@@ -54,8 +55,8 @@
             this.tabPagePregled = new System.Windows.Forms.TabPage();
             this.btnIzadjiTab2 = new System.Windows.Forms.Button();
             this.btnPrikazi = new System.Windows.Forms.Button();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.GV = new System.Windows.Forms.DataGridView();
             this.numericUpDownDO = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownOD = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
@@ -67,8 +68,8 @@
             this.tabControl.SuspendLayout();
             this.tabPageCitaoci.SuspendLayout();
             this.tabPagePregled.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDO)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOD)).BeginInit();
             this.SuspendLayout();
@@ -268,8 +269,8 @@
             // 
             this.tabPagePregled.Controls.Add(this.btnIzadjiTab2);
             this.tabPagePregled.Controls.Add(this.btnPrikazi);
-            this.tabPagePregled.Controls.Add(this.chart1);
-            this.tabPagePregled.Controls.Add(this.dataGridView1);
+            this.tabPagePregled.Controls.Add(this.chart);
+            this.tabPagePregled.Controls.Add(this.GV);
             this.tabPagePregled.Controls.Add(this.numericUpDownDO);
             this.tabPagePregled.Controls.Add(this.numericUpDownOD);
             this.tabPagePregled.Controls.Add(this.label4);
@@ -293,6 +294,7 @@
             this.btnIzadjiTab2.TabIndex = 10;
             this.btnIzadjiTab2.Text = "Izadji";
             this.btnIzadjiTab2.UseVisualStyleBackColor = true;
+            this.btnIzadjiTab2.Click += new System.EventHandler(this.btnIzadji_Click);
             // 
             // btnPrikazi
             // 
@@ -302,30 +304,37 @@
             this.btnPrikazi.TabIndex = 9;
             this.btnPrikazi.Text = "Prikazi";
             this.btnPrikazi.UseVisualStyleBackColor = true;
+            this.btnPrikazi.Click += new System.EventHandler(this.btnPrikazi_Click);
             // 
-            // chart1
+            // chart
             // 
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(332, 40);
-            this.chart1.Name = "chart1";
+            this.chart.Legends.Add(legend1);
+            this.chart.Location = new System.Drawing.Point(332, 40);
+            this.chart.Name = "chart";
             series1.ChartArea = "ChartArea1";
+            series1.IsVisibleInLegend = false;
             series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(300, 237);
-            this.chart1.TabIndex = 8;
-            this.chart1.Text = "chart1";
+            series1.Name = "Br_iznajmljene";
+            series2.ChartArea = "ChartArea1";
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Br_vracene";
+            this.chart.Series.Add(series1);
+            this.chart.Series.Add(series2);
+            this.chart.Size = new System.Drawing.Size(300, 237);
+            this.chart.TabIndex = 8;
+            this.chart.Text = "chart1";
             // 
-            // dataGridView1
+            // GV
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(47, 127);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(277, 150);
-            this.dataGridView1.TabIndex = 7;
+            this.GV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GV.Location = new System.Drawing.Point(47, 127);
+            this.GV.Name = "GV";
+            this.GV.Size = new System.Drawing.Size(277, 150);
+            this.GV.TabIndex = 7;
             // 
             // numericUpDownDO
             // 
@@ -407,8 +416,8 @@
             this.tabPageCitaoci.PerformLayout();
             this.tabPagePregled.ResumeLayout(false);
             this.tabPagePregled.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDO)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOD)).EndInit();
             this.ResumeLayout(false);
@@ -446,8 +455,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxCitalac;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataGridView GV;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.Button btnIzadjiTab2;
         private System.Windows.Forms.Button btnPrikazi;
 

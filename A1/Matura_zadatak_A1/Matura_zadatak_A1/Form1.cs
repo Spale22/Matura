@@ -11,7 +11,7 @@ namespace Matura_zadatak_A1
 {
     public partial class Form1 : Form
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=192.168.0.20;Initial Catalog=Biblioteka;User ID=SA;Password=sp@sic123.");
+        SqlConnection conn = new SqlConnection(@"Data Source=192.168.0.20;Initial Catalog=A1;User ID=SA;Password=sp@sic123.");
         public Form1()
         {
             InitializeComponent();
@@ -153,5 +153,46 @@ namespace Matura_zadatak_A1
                 tbAdresa.Text = listViewCitaoci.SelectedItems[0].SubItems[4].Text;
             }   
         }
+
+        private void btnPrikazi_Click(object sender, EventArgs e)
+        {
+           try 
+            {
+                conn.Open();
+                if (!string.IsNullOrEmpty(comboBoxCitalac.SelectedItem.ToString()))
+                {
+                    string comboBoxValue = comboBoxCitalac.SelectedItem.ToString();
+                    string[] split = comboBoxValue.Split('-');
+                    int CitalacID = Convert.ToInt32(split[0]);
+                    SqlDataAdapter GV_adapter = new SqlDataAdapter("SELECT Ime + ' ' + Prezime AS Citalac,(SELECT COUNT(KnjigaID) FROM Na_Citanju WHERE CitalacID=" + CitalacID + " AND DatumVracanja IS NOT NULL) AS Broj_iznajmljivanja,(SELECT COUNT(KnjigaID) FROM Na_Citanju WHERE CitalacID=" + CitalacID + " AND DatumVracanja IS NULL) AS Nije_Vracen FROM Na_Citanju JOIN Citalac ON Na_citanju.CitalacID = Citalac.CitalacID WHERE Na_citanju.CitalacID=" + CitalacID + "; ", conn);
+                    DataTable GV_tabela = new DataTable();
+                    if (GV_adapter != null)
+                    {
+                        GV_adapter.Fill(GV_tabela);
+                        GV.DataSource = GV_tabela;
+                        GV.Refresh();
+                    }
+                }
+                else
+                    MessageBox.Show("Odaberite Citaoca!","",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                conn.Close();
+                
+                
+                /*SqlDataAdapter Chart_adapter = new SqlDataAdapter("", conn);
+                DataTable Chart_tabela = new DataTable();*/
+
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+        }
+
     }
 }
