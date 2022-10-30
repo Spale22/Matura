@@ -159,8 +159,10 @@ namespace Matura_zadatak_A1
            try 
             {
                 conn.Open();
+
                 if (!string.IsNullOrEmpty(comboBoxCitalac.SelectedItem.ToString()))
                 {
+                    //GridView
                     string comboBoxValue = comboBoxCitalac.SelectedItem.ToString();
                     string[] split = comboBoxValue.Split('-');
                     int CitalacID = Convert.ToInt32(split[0]);
@@ -172,15 +174,19 @@ namespace Matura_zadatak_A1
                         GV.DataSource = GV_tabela;
                         GV.Refresh();
                     }
+                    //Chart
+                    /*foreach(DataRow r in GV_tabela.Rows)
+                    {
+                        int br_vracene =0;
+                        int br_nevracene =0;
+                        int godina = 0;
+                        chart.Series[0].Points.AddXY();
+                    }*/
+                   
                 }
+
                 else
                     MessageBox.Show("Odaberite Citaoca!","",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                conn.Close();
-                
-                
-                /*SqlDataAdapter Chart_adapter = new SqlDataAdapter("", conn);
-                DataTable Chart_tabela = new DataTable();*/
-
             }
 
             catch (Exception error)

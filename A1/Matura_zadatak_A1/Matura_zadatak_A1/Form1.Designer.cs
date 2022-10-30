@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageCitaoci = new System.Windows.Forms.TabPage();
             this.listViewCitaoci = new System.Windows.Forms.ListView();
@@ -82,7 +82,7 @@
             this.tabControl.Location = new System.Drawing.Point(-2, -3);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(660, 433);
+            this.tabControl.Size = new System.Drawing.Size(926, 502);
             this.tabControl.TabIndex = 0;
             this.tabControl.Tag = "";
             // 
@@ -281,14 +281,14 @@
             this.tabPagePregled.Location = new System.Drawing.Point(4, 22);
             this.tabPagePregled.Name = "tabPagePregled";
             this.tabPagePregled.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPagePregled.Size = new System.Drawing.Size(652, 407);
+            this.tabPagePregled.Size = new System.Drawing.Size(918, 476);
             this.tabPagePregled.TabIndex = 1;
             this.tabPagePregled.Text = "Pregled iznajmljivanja";
             this.tabPagePregled.UseVisualStyleBackColor = true;
             // 
             // btnIzadjiTab2
             // 
-            this.btnIzadjiTab2.Location = new System.Drawing.Point(249, 284);
+            this.btnIzadjiTab2.Location = new System.Drawing.Point(317, 353);
             this.btnIzadjiTab2.Name = "btnIzadjiTab2";
             this.btnIzadjiTab2.Size = new System.Drawing.Size(75, 23);
             this.btnIzadjiTab2.TabIndex = 10;
@@ -298,7 +298,7 @@
             // 
             // btnPrikazi
             // 
-            this.btnPrikazi.Location = new System.Drawing.Point(47, 284);
+            this.btnPrikazi.Location = new System.Drawing.Point(47, 353);
             this.btnPrikazi.Name = "btnPrikazi";
             this.btnPrikazi.Size = new System.Drawing.Size(75, 23);
             this.btnPrikazi.TabIndex = 9;
@@ -308,23 +308,23 @@
             // 
             // chart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
-            this.chart.Location = new System.Drawing.Point(332, 40);
+            chartArea2.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart.Legends.Add(legend2);
+            this.chart.Location = new System.Drawing.Point(423, 40);
             this.chart.Name = "chart";
-            series1.ChartArea = "ChartArea1";
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Br_iznajmljene";
-            series2.ChartArea = "ChartArea1";
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Br_vracene";
-            this.chart.Series.Add(series1);
-            this.chart.Series.Add(series2);
-            this.chart.Size = new System.Drawing.Size(300, 237);
+            series3.ChartArea = "ChartArea1";
+            series3.IsVisibleInLegend = false;
+            series3.Legend = "Legend1";
+            series3.Name = "Br_iznajmljene";
+            series4.ChartArea = "ChartArea1";
+            series4.IsVisibleInLegend = false;
+            series4.Legend = "Legend1";
+            series4.Name = "Br_vracene";
+            this.chart.Series.Add(series3);
+            this.chart.Series.Add(series4);
+            this.chart.Size = new System.Drawing.Size(329, 307);
             this.chart.TabIndex = 8;
             this.chart.Text = "chart1";
             // 
@@ -333,7 +333,7 @@
             this.GV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GV.Location = new System.Drawing.Point(47, 127);
             this.GV.Name = "GV";
-            this.GV.Size = new System.Drawing.Size(277, 150);
+            this.GV.Size = new System.Drawing.Size(345, 220);
             this.GV.TabIndex = 7;
             // 
             // numericUpDownDO
@@ -407,7 +407,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 431);
+            this.ClientSize = new System.Drawing.Size(923, 497);
             this.Controls.Add(this.tabControl);
             this.Name = "Form1";
             this.Text = "Biblioteka \"Stevan Sremac\"";
