@@ -54,15 +54,15 @@ CREATE TABLE Na_Citanju(
 CREATE TABLE Primerak(
 	KnjigaID int not null,
 	PrimerakID int not null,
-	skolaID int not null,
-	datum_nabavke date CHECK(datum_nabavke>= '2000.01.01')
+	SkolaID int not null,
+	Datum_nabavke date CHECK(Datum_nabavke>= '2000.01.01')
 );
 
 CREATE TABLE Skola(
-	skolaID int not null,
-	naziv varchar(70),
-	adresa varchar(40),
-	datum_osnivanja_grane date CHECK (datum_osnivanja_grane>='2000.01.01')
+	SkolaID int not null,
+	Naziv varchar(70),
+	Adresa varchar(40),
+	Datum_osnivanja_grane date CHECK (Datum_osnivanja_grane>='2000.01.01')
 );
 
 
@@ -76,7 +76,7 @@ ALTER TABLE Izdali ADD CONSTRAINT PK_Izdali PRIMARY KEY (IzdavacID, KnjigaID);
 ALTER TABLE Primerak ADD CONSTRAINT PK_Primerak PRIMARY KEY (KnjigaID, PrimerakID);
 ALTER TABLE Na_Citanju ADD CONSTRAINT PK_Na_Citanju PRIMARY KEY (KnjigaID, CitalacID, DatumUzimanja);
 ALTER TABLE Napisali ADD CONSTRAINT PK_Napisali PRIMARY KEY (AutorID, KnjigaID);
-ALTER TABLE Skola ADD CONSTRAINT PK_Skola PRIMARY KEY (skolaID);
+ALTER TABLE Skola ADD CONSTRAINT PK_Skola PRIMARY KEY (SkolaID);
 
 /*Foreign keys*/
 ALTER TABLE Na_Citanju ADD CONSTRAINT FK_CitalacID_Na_Citanju FOREIGN KEY (CitalacID) REFERENCES Citalac(CitalacID);
@@ -86,7 +86,7 @@ ALTER TABLE Napisali ADD CONSTRAINT FK_AutorID_Napisali FOREIGN KEY (AutorID) RE
 ALTER TABLE Napisali ADD CONSTRAINT FK_KnjigaID_Napisali FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
 ALTER TABLE Izdali ADD CONSTRAINT FK_IzdavacID_Izdali FOREIGN KEY (IzdavacID) REFERENCES Izdavac(IzdavacID);
 ALTER TABLE Izdali ADD CONSTRAINT FK_KnjigaID_Izdali FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
-ALTER TABLE Primerak ADD CONSTRAINT FK_Primerak_Skola FOREIGN KEY (skolaID) REFERENCES Skola(skolaiD);
+ALTER TABLE Primerak ADD CONSTRAINT FK_Primerak_Skola FOREIGN KEY (SkolaID) REFERENCES Skola(SkolaiD);
 
 INSERT INTO Citalac VALUES
 	(1,'1605997740011','Citalac1','Citalac1','Adresa1'),
