@@ -299,6 +299,7 @@ INSERT INTO Primerak VALUES
 	(63,8,'format7'),
 	(64,8,'format8');
 
+
 USE master;
 DROP DATABASE A2;
 

@@ -153,5 +153,6 @@ namespace Matura_zadatak_A1
                 tbAdresa.Text = listViewCitaoci.SelectedItems[0].SubItems[4].Text;
             }   
         }
+
     }
 }
