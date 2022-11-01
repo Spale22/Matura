@@ -10,7 +10,8 @@ CREATE TABLE Citalac(
 	prezime varchar(35),
 	mesto varchar(30),
 	adresa varchar(40),
-	telefon varchar(15)
+	telefon varchar(15),
+	datum_uplate_clanarine date CHECK(datum_uplate_clanarine<= GETDATE())
 );
 
 CREATE TABLE Knjiga(
@@ -51,6 +52,11 @@ CREATE TABLE Na_Citanju(
 	datum_vracanja date
 );
 
+CREATE TABLE Primerak(
+	primerakID int not null,
+	knjigaID int not null,
+	format_primerka varchar(50)
+);
 
 
 /*Primary keys*/
@@ -61,6 +67,7 @@ ALTER TABLE Autor ADD CONSTRAINT PK_Autor PRIMARY KEY (autorID);
 ALTER TABLE Izdali ADD CONSTRAINT PK_Izdali PRIMARY KEY (izdavacID, knjigaID);
 ALTER TABLE Na_Citanju ADD CONSTRAINT PK_Na_Citanju PRIMARY KEY (knjigaID, citalacID, datum_uzimanja);
 ALTER TABLE Napisali ADD CONSTRAINT PK_Napisali PRIMARY KEY (autorID, knjigaID);
+ALTER TABLE Primerak ADD CONSTRAINT PK_Primerak PRIMARY KEY (primerakID,knjigaID);
 
 /*Foreign keys*/
 ALTER TABLE Na_Citanju ADD CONSTRAINT FK_CitalacID_Na_Citanju FOREIGN KEY (citalacID) REFERENCES Citalac(citalacID);
@@ -69,20 +76,21 @@ ALTER TABLE Napisali ADD CONSTRAINT FK_AutorID_Napisali FOREIGN KEY (autorID) RE
 ALTER TABLE Napisali ADD CONSTRAINT FK_KnjigaID_Napisali FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID);
 ALTER TABLE Izdali ADD CONSTRAINT FK_IzdavacID_Izdali FOREIGN KEY (izdavacID) REFERENCES Izdavac(izdavacID);
 ALTER TABLE Izdali ADD CONSTRAINT FK_KnjigaID_Izdali FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID);
+ALTER TABLE Primerak ADD CONSTRAINT FK_KnjigaID_Primerak FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID); 
 
 INSERT INTO Citalac VALUES
-	(1,'1605997740011','Citalac1','Citalac1','Mesto1','Adresa1','0691234561'),
-	(2,'1605997740012','Citalac2','Citalac2','Mesto2','Adresa2','0691234562'),
-	(3,'1605997740013','Citalac3','Citalac3','Mesto3','Adresa3','0691234563'),
-	(4,'1605997740014','Citalac4','Citalac4','Mesto4','Adresa4','0691234564'),
-	(5,'1605997740015','Citalac5','Citalac5','Mesto5','Adresa5','0691234565'),
-	(6,'1605997740016','Citalac6','Citalac6','Mesto6','Adresa6','0691234566'),
-	(7,'1605997740017','Citalac7','Citalac7','Mesto7','Adresa7','0691234567'),
-	(8,'1605997740018','Citalac8','Citalac8','Mesto8','Adresa8','0691234568'),
-	(9,'1605997740019','Citalac9','Citalac9','Mesto9','Adresa9','0691234569'),
-	(10,'1605997740010','Citalac10','Citalac10','Mesto10','Adresa10','0691234510'),
-	(11,'1605997740011','Citalac11','Citalac11','Mesto11','Adresa11','0691234511'),
-	(12,'1605997740012','Citalac12','Citalac12','Mesto12','Adresa12','0691234512');
+	(1,'1605997740011','Citalac1','Citalac1','Mesto1','Adresa1','0691234561','2015.05.01'),
+	(2,'1605997740012','Citalac2','Citalac2','Mesto2','Adresa2','0691234562','2015.05.02'),
+	(3,'1605997740013','Citalac3','Citalac3','Mesto3','Adresa3','0691234563','2015.05.03'),
+	(4,'1605997740014','Citalac4','Citalac4','Mesto4','Adresa4','0691234564','2015.05.04'),
+	(5,'1605997740015','Citalac5','Citalac5','Mesto5','Adresa5','0691234565','2015.05.05'),
+	(6,'1605997740016','Citalac6','Citalac6','Mesto6','Adresa6','0691234566','2015.05.06'),
+	(7,'1605997740017','Citalac7','Citalac7','Mesto7','Adresa7','0691234567','2015.05.07'),
+	(8,'1605997740018','Citalac8','Citalac8','Mesto8','Adresa8','0691234568','2015.05.08'),
+	(9,'1605997740019','Citalac9','Citalac9','Mesto9','Adresa9','0691234569','2015.05.09'),
+	(10,'1605997740010','Citalac10','Citalac10','Mesto10','Adresa10','0691234510','2015.05.10'),
+	(11,'1605997740011','Citalac11','Citalac11','Mesto11','Adresa11','0691234511','2015.05.11'),
+	(12,'1605997740012','Citalac12','Citalac12','Mesto12','Adresa12','0691234512','2015.05.12');
 
 INSERT INTO Autor VALUES
 	(1,'Autor1','Autor1','1991.11.01'),
@@ -225,6 +233,71 @@ INSERT INTO Izdali VALUES
 	(5,7,2007),
 	(2,8,2008);
 
+INSERT INTO Primerak VALUES
+	(1,1,'format1'),
+	(2,1,'format2'),
+	(3,1,'format3'),
+	(4,1,'format4'),
+	(5,1,'format5'),
+	(6,1,'format6'),
+	(7,1,'format7'),
+	(8,1,'format8'),
+	(9,2,'format1'),
+	(10,2,'format2'),
+	(11,2,'format3'),
+	(12,2,'format4'),
+	(13,2,'format5'),
+	(14,2,'format6'),
+	(15,2,'format7'),
+	(16,2,'format8'),
+	(17,3,'format1'),
+	(18,3,'format2'),
+	(19,3,'format3'),
+	(20,3,'format4'),
+	(21,3,'format5'),
+	(22,3,'format6'),
+	(23,3,'format7'),
+	(24,3,'format8'),
+	(25,4,'format1'),
+	(26,4,'format2'),
+	(27,4,'format3'),
+	(28,4,'format4'),
+	(29,4,'format5'),
+	(30,4,'format6'),
+	(31,4,'format7'),
+	(32,4,'format8'),
+	(33,5,'format1'),
+	(34,5,'format2'),
+	(35,5,'format3'),
+	(36,5,'format4'),
+	(37,5,'format5'),
+	(38,5,'format6'),
+	(39,5,'format7'),
+	(40,5,'format8'),
+	(41,6,'format1'),
+	(42,6,'format2'),
+	(43,6,'format3'),
+	(44,6,'format4'),
+	(45,6,'format5'),
+	(46,6,'format6'),
+	(47,6,'format7'),
+	(48,6,'format8'),
+	(49,7,'format1'),
+	(50,7,'format2'),
+	(51,7,'format3'),
+	(52,7,'format4'),
+	(53,7,'format5'),
+	(54,7,'format6'),
+	(55,7,'format7'),
+	(56,7,'format8'),
+	(57,8,'format1'),
+	(58,8,'format2'),
+	(59,8,'format3'),
+	(60,8,'format4'),
+	(61,8,'format5'),
+	(62,8,'format6'),
+	(63,8,'format7'),
+	(64,8,'format8');
 
 USE master;
 DROP DATABASE A2;
