@@ -33,11 +33,24 @@ namespace Matura_Zadatak_A2
 
         private void toolStripButtonBrisanje_Click(object sender, EventArgs e)
         {
+            try 
+            {
                 conn.Open();
                 SqlCommand comm = new SqlCommand("DELETE FROM AUTOR WHERE autorID = " + tbSifra.Text, conn);
-                comm.ExecuteNonQuery();
+                comm.ExecuteNonQuery();  
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+
+            finally
+            {
                 conn.Close();
                 updateListView();
+            }
+                
         }
 
         public void updateListView() 
@@ -56,7 +69,7 @@ namespace Matura_Zadatak_A2
                     row.SubItems.Add(reader[3].ToString());
                     listView.Items.Add(row);
                 }
-                reader.Close();
+                reader.Dispose();
             }
 
             catch(Exception e)

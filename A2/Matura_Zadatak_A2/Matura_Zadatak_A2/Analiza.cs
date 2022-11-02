@@ -76,17 +76,41 @@ namespace Matura_Zadatak_A2
                     autor_prezime += " " + a[i];
                 i++;
             }
-            int godina = Convert.ToInt32(numericUpDownGodine.Value);
-            SqlDataAdapter adapter = new SqlDataAdapter("", conn);
+            int godina = DateTime.Now.Year - Convert.ToInt32(numericUpDownGodine.Value);
             DataTable tabela = new DataTable();
-            if (adapter != null) 
+            tabela.Columns.Add("Godina", Type.GetType("System.Int32"));
+            tabela.Columns.Add("Broj", Type.GetType("System.Int32"));
+            for (i = godina; i <= DateTime.Now.Year; i++) 
             {
-                adapter.Fill(tabela);
+                conn.Open();
+                SqlCommand comm = new SqlCommand(@"SELECT @godina AS Godina, COUNT(autorID) AS Broj
+                                               FROM (SELECT Na_Citanju.knjigaID, autorID 
+                                               FROM Na_Citanju 
+                                               JOIN Napisali ON Na_Citanju.knjigaID = Napisali.knjigaID
+                                               WHERE YEAR(datum_uzimanja) = @godina) AS A
+                                               WHERE autorID = (SELECT autorID FROM Autor WHERE Autor.ime = @ime AND Autor.prezime = @prezime);", conn);
+                comm.Parameters.AddWithValue("@godina", i);
+                comm.Parameters.AddWithValue("@ime", autor_ime);
+                comm.Parameters.AddWithValue("@prezime", autor_prezime);
+                SqlDataReader reader = comm.ExecuteReader();
+                while (reader.Read()) 
+                {
+                    DataRow row = tabela.NewRow();
+                    row["Godina"] = reader[0];
+                    row["Broj"] = reader[1];
+                    tabela.Rows.Add(row);
+                }
+                reader.Dispose();
+                conn.Close();
+            }
+
+            if (tabela != null) 
+            {
                 GV.DataSource = tabela;
                 GV.Refresh();
-                for (i = 0; i < tabela.Rows.Count; i++)
+                for (i = 0; i < GV.Rows.Count - 1; i++) 
                 {
-                    chart.Series[0].Points.AddXY(Convert.ToInt32(tabela.Rows[0].ToString()), Convert.ToInt32(tabela.Rows[1].ToString()));
+                    chart.Series[0].Points.AddXY(GV.Rows[i].Cells[0].Value.ToString(), GV.Rows[i].Cells[1].Value.ToString());
                 }
             }
         }
