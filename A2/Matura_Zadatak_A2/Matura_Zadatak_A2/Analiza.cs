@@ -23,14 +23,17 @@ namespace Matura_Zadatak_A2
             try 
             {
                 conn.Open();
-                SqlDataAdapter adapter = new SqlDataAdapter("SELCET ime,prezime FROM Autor", conn);
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT ime,prezime FROM Autor", conn);
                 DataTable autori = new DataTable();
-                adapter.Fill(autori);
-                int i=0;
-                foreach (DataRow row in autori.Rows) 
+                if (adapter != null) 
                 {
-                    comboBoxAutor.Items.Add(autori.Rows[i][0].ToString() + " " + autori.Rows[i][1].ToString());
-                    i++;
+                    adapter.Fill(autori);
+                    int i = 0;
+                    foreach (DataRow row in autori.Rows)
+                    {
+                        comboBoxAutor.Items.Add(autori.Rows[i][0].ToString() + " " + autori.Rows[i][1].ToString());
+                        i++;
+                    }
                 }
             }
 
@@ -74,24 +77,18 @@ namespace Matura_Zadatak_A2
                 i++;
             }
             int godina = Convert.ToInt32(numericUpDownGodine.Value);
-            SqlDataAdapter adapter = new SqlDataAdapter(@"
-                SELECT YEAR(Na_Citanju.datum_uzimanja) AS Godina,
-                (SELECT COUNT(*) FROM 
-                Na_Citanju JOIN Napisali ON Na_Citanju.knjigaID = Napisali.knjigaID 
-                JOIN Autor ON Napisali.autorID = Autor.autorID WHERE Autor.ime = 'Autor5' AND Autor.prezime = 'Autor5') AS Broj
-                FROM Na_Citanju JOIN Napisali ON Na_Citanju.knjigaID = Napisali.knjigaID 
-                JOIN Autor ON Napisali.autorID = Autor.autorID
-                WHERE YEAR(Na_Citanju.datum_uzimanja) BETWEEN 2012 AND YEAR(GETDATE()) AND Autor.ime = 'Autor5' AND Autor.prezime = 'Autor5' 
-                GROUP BY YEAR(Na_Citanju.datum_uzimanja);", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter("", conn);
             DataTable tabela = new DataTable();
-            adapter.Fill(tabela);
-            GV.DataSource = tabela;
-            GV.Refresh();
-            for (i = 0; i < tabela.Rows.Count; i++) 
+            if (adapter != null) 
             {
-                chart.Series[0].Points.AddXY(Convert.ToInt32(tabela.Rows[0].ToString()), Convert.ToInt32(tabela.Rows[1].ToString()));
+                adapter.Fill(tabela);
+                GV.DataSource = tabela;
+                GV.Refresh();
+                for (i = 0; i < tabela.Rows.Count; i++)
+                {
+                    chart.Series[0].Points.AddXY(Convert.ToInt32(tabela.Rows[0].ToString()), Convert.ToInt32(tabela.Rows[1].ToString()));
+                }
             }
-                
         }
     }
 }
