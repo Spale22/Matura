@@ -77,7 +77,7 @@ namespace Matura_zadatak_A1
                     row.SubItems.Add(reader[4].ToString());
                     listViewCitaoci.Items.Add(row);
                 }
-                reader.Close(); 
+                reader.Dispose(); 
             }
 
             catch (Exception error)
