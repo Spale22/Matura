@@ -119,7 +119,12 @@ namespace Matura_zadatak_A1
             {
                 conn.Open();
                 int CitalacID = int.Parse(tbBrCK.Text);
-                SqlCommand comm = new SqlCommand("INSERT INTO Citalac VALUES (" + CitalacID + ",'" + tbJMBG.Text + "','" + tbIme.Text + "','" + tbPrezime.Text + "','" + tbAdresa.Text + "');", conn);
+                SqlCommand comm = new SqlCommand("INSERT INTO Citalac VALUES (@citalacID, @JMBG, @ime, @prezime, @adresa);", conn);
+                comm.Parameters.AddWithValue("@citalacID", CitalacID);
+                comm.Parameters.AddWithValue("@JMBG", tbJMBG.Text);
+                comm.Parameters.AddWithValue("@ime", tbIme.Text);
+                comm.Parameters.AddWithValue("@prezime", tbPrezime.Text);
+                comm.Parameters.AddWithValue("@adresa", tbAdresa.Text);
                 comm.ExecuteNonQuery();
                 updateList();
                 tbBrCK.Text = "";
@@ -166,7 +171,15 @@ namespace Matura_zadatak_A1
                     string comboBoxValue = comboBoxCitalac.SelectedItem.ToString();
                     string[] split = comboBoxValue.Split('-');
                     int CitalacID = Convert.ToInt32(split[0]);
-                    SqlDataAdapter GV_adapter = new SqlDataAdapter("SELECT Ime + ' ' + Prezime AS Citalac, YEAR(DatumUzimanja) AS Godina, (SELECT COUNT(KnjigaID) FROM Na_Citanju WHERE CitalacID=" + CitalacID + ") AS 'Broj\niznajmljivanja',(SELECT COUNT(KnjigaID) FROM Na_Citanju WHERE CitalacID=" + CitalacID + " AND DatumVracanja IS NULL) AS 'Nije\nVracen' FROM Na_Citanju JOIN Citalac ON Na_citanju.CitalacID = Citalac.CitalacID WHERE Na_citanju.CitalacID=" + CitalacID + "; ", conn);
+                    SqlCommand comm = new SqlCommand(@"SELECT Ime + ' ' + Prezime AS Citalac,
+                                                    YEAR(DatumUzimanja) AS Godina, 
+                                                    (SELECT COUNT(KnjigaID) 
+                                                    FROM Na_Citanju WHERE CitalacID=@citalacID) AS 'Broj iznajmljivanja',
+                                                    (SELECT COUNT(KnjigaID) FROM Na_Citanju WHERE CitalacID=@citalacID AND DatumVracanja IS NULL) AS 'Nije Vracen' 
+                                                    FROM Na_Citanju JOIN Citalac ON Na_citanju.CitalacID = Citalac.CitalacID 
+                                                    WHERE Na_citanju.CitalacID=@citalacID; ", conn);
+                    comm.Parameters.AddWithValue("@citalacID", CitalacID);
+                    SqlDataAdapter GV_adapter = new SqlDataAdapter(comm);
                     DataTable GV_tabela = new DataTable();
                     if (GV_adapter != null)
                     {
