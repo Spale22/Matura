@@ -56,7 +56,7 @@ ALTER TABLE Projekat ADD CONSTRAINT PK_Projekat PRIMARY KEY (projekatID);
 ALTER TABLE Istorija_rm_radnika ADD CONSTRAINT PK_Istorija_rm_radnika PRIMARY KEY (radnikID, radno_mestoID, datum_pocetka);
 ALTER TABLE Radno_mesto ADD CONSTRAINT PK_Radno_mesto PRIMARY KEY (radno_mestoID);
 
-ALTER TABLE Kvalifikacija ADD CONSTRAINT FK_Kvalifikacija_kvalifikacijaID FOREIGN KEY (kvalifikacijaID) REFERENCES Radnik(kvalifikacijaID);
+ALTER TABLE Radnik ADD CONSTRAINT FK_Radnik_kvalifikacijaID FOREIGN KEY (kvalifikacijaID) REFERENCES Kvalifikacija(kvalifikacijaID);
 ALTER TABLE Angazman ADD CONSTRAINT FK_Angazman_radnikID FOREIGN KEY (radnikID) REFERENCES Radnik(radnikID);
 ALTER TABLE Istorija_rm_radnika ADD CONSTRAINT FK_Istorija_rm_radnika_radnikID FOREIGN KEY (radnikID) REFERENCES Radnik(radnikID);
 ALTER TABLE Angazman ADD CONSTRAINT FK_Angazman_projekaID FOREIGN KEY (projekatID) REFERENCES Projekat(projekatID);
