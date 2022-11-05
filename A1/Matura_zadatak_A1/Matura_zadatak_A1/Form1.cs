@@ -171,14 +171,18 @@ namespace Matura_zadatak_A1
                     string comboBoxValue = comboBoxCitalac.SelectedItem.ToString();
                     string[] split = comboBoxValue.Split('-');
                     int CitalacID = Convert.ToInt32(split[0]);
+                    int godina_od = Convert.ToInt32(numericUpDownOD.Value);
+                    int goidna_do = Convert.ToInt32(numericUpDownDO.Value);
                     SqlCommand comm = new SqlCommand(@"SELECT Ime + ' ' + Prezime AS Citalac,
                                                     YEAR(DatumUzimanja) AS Godina, 
                                                     (SELECT COUNT(KnjigaID) 
                                                     FROM Na_Citanju WHERE CitalacID=@citalacID) AS 'Broj iznajmljivanja',
                                                     (SELECT COUNT(KnjigaID) FROM Na_Citanju WHERE CitalacID=@citalacID AND DatumVracanja IS NULL) AS 'Nije Vracen' 
                                                     FROM Na_Citanju JOIN Citalac ON Na_citanju.CitalacID = Citalac.CitalacID 
-                                                    WHERE Na_citanju.CitalacID=@citalacID; ", conn);
+                                                    WHERE Na_citanju.CitalacID=@citalacID AND YEAR(DatumUzimanja) BETWEEN @godine_od AND @godine_do; ", conn);
                     comm.Parameters.AddWithValue("@citalacID", CitalacID);
+                    comm.Parameters.AddWithValue("@godine_od", godina_od);
+                    comm.Parameters.AddWithValue("@godine_do", goidna_do);
                     SqlDataAdapter GV_adapter = new SqlDataAdapter(comm);
                     DataTable GV_tabela = new DataTable();
                     if (GV_adapter != null)
