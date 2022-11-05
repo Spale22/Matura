@@ -11,7 +11,7 @@ CREATE TABLE Citalac(
 	mesto varchar(30),
 	adresa varchar(40),
 	telefon varchar(15),
-	datum_uplate_clanarine date CHECK(datum_uplate_clanarine<= GETDATE())
+	datum_uplate_clanarine date 
 );
 
 CREATE TABLE Knjiga(
@@ -68,6 +68,9 @@ ALTER TABLE Izdali ADD CONSTRAINT PK_Izdali PRIMARY KEY (izdavacID, knjigaID);
 ALTER TABLE Na_Citanju ADD CONSTRAINT PK_Na_Citanju PRIMARY KEY (knjigaID, citalacID, datum_uzimanja);
 ALTER TABLE Napisali ADD CONSTRAINT PK_Napisali PRIMARY KEY (autorID, knjigaID);
 ALTER TABLE Primerak ADD CONSTRAINT PK_Primerak PRIMARY KEY (primerakID,knjigaID);
+
+/*Constraints*/
+ALTER TABLE Citalac ADD CONSTRAINT Citalac_datum_uplate_clanarine CHECK(datum_uplate_clanarine<= GETDATE());
 
 /*Foreign keys*/
 ALTER TABLE Na_Citanju ADD CONSTRAINT FK_CitalacID_Na_Citanju FOREIGN KEY (citalacID) REFERENCES Citalac(citalacID);
