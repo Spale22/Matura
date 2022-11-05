@@ -72,14 +72,6 @@ ALTER TABLE Primerak ADD CONSTRAINT PK_Primerak PRIMARY KEY (primerakID,knjigaID
 /*Constraints*/
 ALTER TABLE Citalac ADD CONSTRAINT Citalac_datum_uplate_clanarine CHECK(datum_uplate_clanarine<= GETDATE());
 
-/*Foreign keys*/
-ALTER TABLE Na_Citanju ADD CONSTRAINT FK_CitalacID_Na_Citanju FOREIGN KEY (citalacID) REFERENCES Citalac(citalacID);
-ALTER TABLE Na_Citanju ADD CONSTRAINT FK_KnjigaID_Na_Citanju FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID);
-ALTER TABLE Napisali ADD CONSTRAINT FK_AutorID_Napisali FOREIGN KEY (autorID) REFERENCES Autor(autorID);
-ALTER TABLE Napisali ADD CONSTRAINT FK_KnjigaID_Napisali FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID);
-ALTER TABLE Izdali ADD CONSTRAINT FK_IzdavacID_Izdali FOREIGN KEY (izdavacID) REFERENCES Izdavac(izdavacID);
-ALTER TABLE Izdali ADD CONSTRAINT FK_KnjigaID_Izdali FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID);
-ALTER TABLE Primerak ADD CONSTRAINT FK_KnjigaID_Primerak FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID); 
 
 INSERT INTO Citalac VALUES
 	(1,'1605997740011','Citalac1','Citalac1','Mesto1','Adresa1','0691234561','2015.05.01'),
@@ -319,10 +311,6 @@ INSERT INTO Na_Citanju VALUES
 	(2,1,'2021.05.05','2021.06.05'),
 	(2,2,'2021.05.05','2021.06.05'),
 	(2,3,'2021.05.05','2021.06.05');
-
-
-	
-
 	
 INSERT INTO Napisali VALUES
 	(1,1),
@@ -410,6 +398,15 @@ INSERT INTO Primerak VALUES
 	(63,8,'format7'),
 	(64,8,'format8');
 
+
+/*Foreign keys*/
+ALTER TABLE Na_Citanju ADD CONSTRAINT FK_CitalacID_Na_Citanju FOREIGN KEY (citalacID) REFERENCES Citalac(citalacID);
+ALTER TABLE Na_Citanju ADD CONSTRAINT FK_KnjigaID_Na_Citanju FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID);
+ALTER TABLE Napisali ADD CONSTRAINT FK_AutorID_Napisali FOREIGN KEY (autorID) REFERENCES Autor(autorID);
+ALTER TABLE Napisali ADD CONSTRAINT FK_KnjigaID_Napisali FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID);
+ALTER TABLE Izdali ADD CONSTRAINT FK_IzdavacID_Izdali FOREIGN KEY (izdavacID) REFERENCES Izdavac(izdavacID);
+ALTER TABLE Izdali ADD CONSTRAINT FK_KnjigaID_Izdali FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID);
+ALTER TABLE Primerak ADD CONSTRAINT FK_KnjigaID_Primerak FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID); 
 
 USE master;
 DROP DATABASE A2;
