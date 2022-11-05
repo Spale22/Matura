@@ -55,14 +55,14 @@ CREATE TABLE Primerak(
 	KnjigaID int not null,
 	PrimerakID int not null,
 	SkolaID int not null,
-	Datum_nabavke date CHECK(Datum_nabavke>= '2000.01.01')
+	Datum_nabavke date 
 );
 
 CREATE TABLE Skola(
 	SkolaID int not null,
 	Naziv varchar(70),
 	Adresa varchar(40),
-	Datum_osnivanja_grane date CHECK (Datum_osnivanja_grane>='2000.01.01')
+	Datum_osnivanja_grane date
 );
 
 
@@ -77,6 +77,10 @@ ALTER TABLE Primerak ADD CONSTRAINT PK_Primerak PRIMARY KEY (KnjigaID, PrimerakI
 ALTER TABLE Na_Citanju ADD CONSTRAINT PK_Na_Citanju PRIMARY KEY (KnjigaID, CitalacID, DatumUzimanja);
 ALTER TABLE Napisali ADD CONSTRAINT PK_Napisali PRIMARY KEY (AutorID, KnjigaID);
 ALTER TABLE Skola ADD CONSTRAINT PK_Skola PRIMARY KEY (SkolaID);
+
+/*Constraints*/
+ALTER TABLE Primerak ADD CONSTRAINT Primerak_datum_nabavke CHECK(Datum_nabavke>= '2000.01.01');
+ALTER TABLE Skola ADD CONSTRAINT Skola_datum_osnivanja_grane CHECK (Datum_osnivanja_grane>='2000.01.01');
 
 /*Foreign keys*/
 ALTER TABLE Na_Citanju ADD CONSTRAINT FK_CitalacID_Na_Citanju FOREIGN KEY (CitalacID) REFERENCES Citalac(CitalacID);
