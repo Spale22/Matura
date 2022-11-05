@@ -82,15 +82,6 @@ ALTER TABLE Skola ADD CONSTRAINT PK_Skola PRIMARY KEY (SkolaID);
 ALTER TABLE Primerak ADD CONSTRAINT Primerak_datum_nabavke CHECK(Datum_nabavke>= '2000.01.01');
 ALTER TABLE Skola ADD CONSTRAINT Skola_datum_osnivanja_grane CHECK (Datum_osnivanja_grane>='2000.01.01');
 
-/*Foreign keys*/
-ALTER TABLE Na_Citanju ADD CONSTRAINT FK_CitalacID_Na_Citanju FOREIGN KEY (CitalacID) REFERENCES Citalac(CitalacID);
-ALTER TABLE Na_Citanju ADD CONSTRAINT FK_KnjigaID_Na_Citanju FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
-ALTER TABLE Primerak ADD CONSTRAINT FK_KnjigaID_Primerak FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
-ALTER TABLE Napisali ADD CONSTRAINT FK_AutorID_Napisali FOREIGN KEY (AutorID) REFERENCES Autor(AutorID);
-ALTER TABLE Napisali ADD CONSTRAINT FK_KnjigaID_Napisali FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
-ALTER TABLE Izdali ADD CONSTRAINT FK_IzdavacID_Izdali FOREIGN KEY (IzdavacID) REFERENCES Izdavac(IzdavacID);
-ALTER TABLE Izdali ADD CONSTRAINT FK_KnjigaID_Izdali FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
-ALTER TABLE Primerak ADD CONSTRAINT FK_Primerak_Skola FOREIGN KEY (SkolaID) REFERENCES Skola(SkolaiD);
 
 INSERT INTO Citalac VALUES
 	(1,'1605997740011','Citalac1','Citalac1','Adresa1'),
@@ -295,6 +286,16 @@ INSERT INTO Primerak VALUES
 	(6,48,5,'2005.01.15'),
 	(7,49,5,'2005.01.15'),
 	(8,50,5,'2005.01.15');
+
+/*Foreign keys*/
+ALTER TABLE Na_Citanju ADD CONSTRAINT FK_CitalacID_Na_Citanju FOREIGN KEY (CitalacID) REFERENCES Citalac(CitalacID);
+ALTER TABLE Na_Citanju ADD CONSTRAINT FK_KnjigaID_Na_Citanju FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
+ALTER TABLE Primerak ADD CONSTRAINT FK_KnjigaID_Primerak FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
+ALTER TABLE Napisali ADD CONSTRAINT FK_AutorID_Napisali FOREIGN KEY (AutorID) REFERENCES Autor(AutorID);
+ALTER TABLE Napisali ADD CONSTRAINT FK_KnjigaID_Napisali FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
+ALTER TABLE Izdali ADD CONSTRAINT FK_IzdavacID_Izdali FOREIGN KEY (IzdavacID) REFERENCES Izdavac(IzdavacID);
+ALTER TABLE Izdali ADD CONSTRAINT FK_KnjigaID_Izdali FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
+ALTER TABLE Primerak ADD CONSTRAINT FK_Primerak_Skola FOREIGN KEY (SkolaID) REFERENCES Skola(SkolaiD);
 
 
 USE master;
