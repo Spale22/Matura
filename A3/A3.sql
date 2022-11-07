@@ -1,5 +1,5 @@
-CREATE DATABASE A3;
-USE A3;
+/*CREATE DATABASE A3;
+USE A3;*/
 
 CREATE TABLE Kvalifikacija(
 	kvalifikacijaID int not null,
@@ -345,16 +345,16 @@ INSERT INTO Istorija_rm_radnika VALUES
 	(5,2,'2013.04.14',NULL);
 
 /*Foreign keys*/
-ALTER TABLE Radnik ADD CONSTRAINT FK_Radnik_kvalifikacijaID FOREIGN KEY (kvalifikacijaID) REFERENCES Kvalifikacija(kvalifikacijaID);
-ALTER TABLE Angazman ADD CONSTRAINT FK_Angazman_radnikID FOREIGN KEY (radnikID) REFERENCES Radnik(radnikID);
-ALTER TABLE Istorija_rm_radnika ADD CONSTRAINT FK_Istorija_rm_radnika_radnikID FOREIGN KEY (radnikID) REFERENCES Radnik(radnikID);
-ALTER TABLE Angazman ADD CONSTRAINT FK_Angazman_projekaID FOREIGN KEY (projekatID) REFERENCES Projekat(projekatID);
-ALTER TABLE Istorija_rm_radnika ADD CONSTRAINT FK_Istorija_rm_radnika_radno_mestoID FOREIGN KEY (radno_mestoID) REFERENCES Radno_mesto(radno_mestoID);
-ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT FK_Angazman_podizvodjaca_projekatID FOREIGN KEY (projekatID) REFERENCES Projekat(projekatID);
-ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT FK_Angazman_podizvodjaca_podizvodjacID FOREIGN KEY (podizvodjacID) REFERENCES Podizvodjac(podizvodjacID);
+ALTER TABLE Radnik ADD CONSTRAINT FK_Radnik_kvalifikacijaID FOREIGN KEY (kvalifikacijaID) REFERENCES Kvalifikacija(kvalifikacijaID) ON DELETE CASCADE;
+ALTER TABLE Angazman ADD CONSTRAINT FK_Angazman_radnikID FOREIGN KEY (radnikID) REFERENCES Radnik(radnikID) ON DELETE CASCADE;
+ALTER TABLE Istorija_rm_radnika ADD CONSTRAINT FK_Istorija_rm_radnika_radnikID FOREIGN KEY (radnikID) REFERENCES Radnik(radnikID) ON DELETE CASCADE;
+ALTER TABLE Angazman ADD CONSTRAINT FK_Angazman_projekaID FOREIGN KEY (projekatID) REFERENCES Projekat(projekatID) ON DELETE CASCADE;
+ALTER TABLE Istorija_rm_radnika ADD CONSTRAINT FK_Istorija_rm_radnika_radno_mestoID FOREIGN KEY (radno_mestoID) REFERENCES Radno_mesto(radno_mestoID) ON DELETE CASCADE;
+ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT FK_Angazman_podizvodjaca_projekatID FOREIGN KEY (projekatID) REFERENCES Projekat(projekatID) ON DELETE CASCADE;
+ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT FK_Angazman_podizvodjaca_podizvodjacID FOREIGN KEY (podizvodjacID) REFERENCES Podizvodjac(podizvodjacID) ON DELETE CASCADE;
 
 
 
+/*USE master;
+DROP DATABASE A3;*/
 
-USE master;
-DROP DATABASE A3;

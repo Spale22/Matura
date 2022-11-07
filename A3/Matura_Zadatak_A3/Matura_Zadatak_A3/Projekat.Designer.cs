@@ -144,8 +144,10 @@
             // 
             // tbSifra
             // 
+            this.tbSifra.BackColor = System.Drawing.Color.White;
             this.tbSifra.Location = new System.Drawing.Point(96, 84);
             this.tbSifra.Name = "tbSifra";
+            this.tbSifra.ReadOnly = true;
             this.tbSifra.Size = new System.Drawing.Size(115, 20);
             this.tbSifra.TabIndex = 4;
             // 
@@ -169,8 +171,10 @@
             // 
             // tbNaziv
             // 
+            this.tbNaziv.BackColor = System.Drawing.Color.White;
             this.tbNaziv.Location = new System.Drawing.Point(96, 124);
             this.tbNaziv.Name = "tbNaziv";
+            this.tbNaziv.ReadOnly = true;
             this.tbNaziv.Size = new System.Drawing.Size(115, 20);
             this.tbNaziv.TabIndex = 6;
             // 
@@ -185,8 +189,10 @@
             // 
             // tbDatumPocetka
             // 
+            this.tbDatumPocetka.BackColor = System.Drawing.Color.White;
             this.tbDatumPocetka.Location = new System.Drawing.Point(96, 160);
             this.tbDatumPocetka.Name = "tbDatumPocetka";
+            this.tbDatumPocetka.ReadOnly = true;
             this.tbDatumPocetka.Size = new System.Drawing.Size(115, 20);
             this.tbDatumPocetka.TabIndex = 8;
             // 
@@ -201,8 +207,10 @@
             // 
             // tbBudzet
             // 
+            this.tbBudzet.BackColor = System.Drawing.Color.White;
             this.tbBudzet.Location = new System.Drawing.Point(96, 192);
             this.tbBudzet.Name = "tbBudzet";
+            this.tbBudzet.ReadOnly = true;
             this.tbBudzet.Size = new System.Drawing.Size(115, 20);
             this.tbBudzet.TabIndex = 10;
             // 
@@ -217,15 +225,19 @@
             // 
             // tbOpis
             // 
+            this.tbOpis.BackColor = System.Drawing.Color.White;
             this.tbOpis.Location = new System.Drawing.Point(96, 275);
             this.tbOpis.Multiline = true;
             this.tbOpis.Name = "tbOpis";
+            this.tbOpis.ReadOnly = true;
             this.tbOpis.Size = new System.Drawing.Size(115, 79);
             this.tbOpis.TabIndex = 12;
             // 
             // cbZavrsen
             // 
+            this.cbZavrsen.AutoCheck = false;
             this.cbZavrsen.AutoSize = true;
+            this.cbZavrsen.Cursor = System.Windows.Forms.Cursors.No;
             this.cbZavrsen.Location = new System.Drawing.Point(43, 234);
             this.cbZavrsen.Name = "cbZavrsen";
             this.cbZavrsen.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

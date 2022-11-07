@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -86,22 +87,21 @@ namespace Matura_Zadatak_A3
                         gotovi_projekti.Add(reader[0].ToString());
                     }
                     reader.Dispose();
-                    if (gotovi_projekti.Count !=0)
+                    if (gotovi_projekti.Count != 0)
                     {
-                        if (gotovi_projekti.Contains(tbSifra.Text)) 
+                        if (gotovi_projekti.Contains(tbSifra.Text))
                         {
                             SqlCommand delete = new SqlCommand(@"DELETE FROM Projekat WHERE projekatID=@projekatID;", conn);
                             delete.Parameters.AddWithValue("@projekatID", tbSifra.Text);
                             delete.ExecuteNonQuery();
                         }
-                       
-                    }
 
-                    else
-                    {
+                        else
+                        {
 
-                        MessageBox.Show("Kako bi obrisali projekat projekat mora biti zavrsen i straiji od 5 godina!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }    
+                            MessageBox.Show("Kako bi obrisali projekat projekat mora biti zavrsen i straiji od 5 godina!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    } 
                 }
 
                 catch (Exception error)
@@ -112,6 +112,19 @@ namespace Matura_Zadatak_A3
                 finally
                 {
                     conn.Close();
+                    Refresh_form();
+                }
+
+                string location = @"C:\Users\Velja\Desktop\A3\Matura\A3\Log doks";
+                string path = Path.Combine(location, "log_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".txt");
+                if (!File.Exists(path))
+                {
+                    File.Create(path);
+                    File.WriteAllText(path, "Sifra: " + tbSifra.Text + "; Naziv:  " + tbNaziv.Text);
+                }
+                else
+                {
+                    File.AppendAllText(path, "\nSifra: " + tbSifra.Text + "; Naziv:  " + tbNaziv.Text);
                 }
             }
         }
@@ -148,9 +161,6 @@ namespace Matura_Zadatak_A3
             f.Show();
             this.Hide();
         }
-
-        
-
 
 
     }

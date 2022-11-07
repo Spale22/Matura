@@ -73,10 +73,8 @@ namespace Matura_Zadatak_A3
                 ChartProjekat.Series["projekti"].IsValueShownAsLabel = true;
 
                 for (int i = 0; i < GV_tabela.Rows.Count; i++) 
-                {
-                    
                     ChartProjekat.Series["projekti"].Points.AddXY(GV_tabela.Rows[i][0].ToString(),GV_tabela.Rows[i][2].ToString());
-                }
+
 
             }
 
