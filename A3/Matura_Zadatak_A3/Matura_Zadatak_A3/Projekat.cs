@@ -78,22 +78,30 @@ namespace Matura_Zadatak_A3
                 try 
                 {
                     conn.Open();
-                    SqlCommand comm = new SqlCommand(@"SELECT YEAR(datum_pocetka), projekat_zavrsen FROM Projekat WHERE  projekatID=@projekatID;",conn);
-                    comm.Parameters.AddWithValue("@projekatID",tbSifra.Text);
+                    SqlCommand comm = new SqlCommand(@"SELECT projekatID FROM Projekat WHERE  YEAR(datum_pocetka)<YEAR(GETDATE())-5 AND projekat_zavrsen = 'TRUE';", conn);
+                    List<string> gotovi_projekti = new List<string>();
                     SqlDataReader reader = comm.ExecuteReader();
-                    reader.Read();
-                    if (Convert.ToInt32(reader[0]) <= DateTime.Now.Year - 5 && reader[1].ToString() == "TRUE")
+                    while(reader.Read())
                     {
-                        SqlCommand delete = new SqlCommand(@"DELETE FROM Projekat WHERE projekatID=@projekatID;", conn);
-                        delete.Parameters.AddWithValue("@projekatID", tbSifra.Text);
-                        delete.ExecuteNonQuery();
+                        gotovi_projekti.Add(reader[0].ToString());
+                    }
+                    reader.Dispose();
+                    if (gotovi_projekti.Count !=0)
+                    {
+                        if (gotovi_projekti.Contains(tbSifra.Text)) 
+                        {
+                            SqlCommand delete = new SqlCommand(@"DELETE FROM Projekat WHERE projekatID=@projekatID;", conn);
+                            delete.Parameters.AddWithValue("@projekatID", tbSifra.Text);
+                            delete.ExecuteNonQuery();
+                        }
+                       
                     }
 
                     else
                     {
+
                         MessageBox.Show("Kako bi obrisali projekat projekat mora biti zavrsen i straiji od 5 godina!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }    
-                    reader.Dispose();
                 }
 
                 catch (Exception error)

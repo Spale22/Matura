@@ -41,12 +41,11 @@ namespace Matura_Zadatak_A3
             try
             {
                 conn.Open();
-                int godine_starosti = 5;//Convert.ToInt32(numericUpDownGodineStarostiProjekta.Value);
+                int godine_starosti = Convert.ToInt32(numericUpDownGodineStarostiProjekta.Value);
                 DataTable GV_tabela = new DataTable();
                 GV_tabela.Columns.Add("Godina", typeof(int));
                 GV_tabela.Columns.Add("Broj Projekata", typeof(int));
                 GV_tabela.Columns.Add("Broj Radnika", typeof(int));
-                int procenat = 0;
                 for (int i = DateTime.Now.Year - godine_starosti; i < DateTime.Now.Year; i++) 
                 {
                     DataRow row = GV_tabela.NewRow();
@@ -63,24 +62,20 @@ namespace Matura_Zadatak_A3
                     br_radnika.Parameters.AddWithValue("@godina", i);
                     row[2] = br_radnika.ExecuteScalar();
                     GV_tabela.Rows.Add(row);
-                    procenat +=Convert.ToInt32(GV_tabela.Rows[GV_tabela.Rows.Count-1][2].ToString());
                 }
 
                 GV.DataSource = GV_tabela;
                 GV.Refresh();
 
-                godine_starosti = DateTime.Now.Year - godine_starosti;
                 ChartProjekat.Series.Clear();
+                ChartProjekat.Series.Add("projekti");
+                ChartProjekat.Series["projekti"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                ChartProjekat.Series["projekti"].IsValueShownAsLabel = true;
 
                 for (int i = 0; i < GV_tabela.Rows.Count; i++) 
                 {
-                    ChartProjekat.Series.Add(godine_starosti.ToString());
-                    ChartProjekat.Series[i].Color = Color.FromArgb(250+i,25+i,20+i);
-                    ChartProjekat.Series[i].IsValueShownAsLabel = true;
-                    ChartProjekat.Series[i].LegendText = godine_starosti.ToString();
-                    ChartProjekat.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-                    ChartProjekat.Series[i].Points.AddXY((Convert.ToInt32(GV_tabela.Rows[i][2].ToString())*100/procenat).ToString(),GV_tabela.Rows[i][2].ToString());
-                    godine_starosti++;
+                    
+                    ChartProjekat.Series["projekti"].Points.AddXY(GV_tabela.Rows[i][0].ToString(),GV_tabela.Rows[i][2].ToString());
                 }
 
             }
