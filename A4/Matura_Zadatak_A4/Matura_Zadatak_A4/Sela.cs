@@ -13,12 +13,12 @@ using System.IO;
 
 namespace Matura_Zadatak_A4
 {
-    public partial class Form1 : Form
+    public partial class Sela : Form
     {
 
         SqlConnection conn = new SqlConnection(@"Data Source=192.168.0.20;Initial Catalog=A4;User ID=SA;Password=sp@sic123.");
 
-        public Form1()
+        public Sela()
         {
             InitializeComponent();
         }
@@ -130,11 +130,9 @@ namespace Matura_Zadatak_A4
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            Form2 f = new Form2();
+            Statistika f = new Statistika();
             if(f == null)
-            {
                 f.Parent = this;  
-            }
             f.Show();
             this.Hide();
         }
