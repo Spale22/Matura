@@ -44,11 +44,15 @@ CREATE TABLE Registar_Aktivnosti(
 
 CREATE TABLE Aktivnosti(
 	aktivnostID int not null,
-	koordinatorID int,
 	naziv_aktivnosti varchar(50),
 	dan varchar(15),
 	pocetak time,
 	zavrsetak time
+);
+
+CREATE TABLE Koordinira(
+	aktivnostID int not null,
+	koordinatorID int not null
 );
 
 CREATE TABLE Koordinator(
@@ -68,9 +72,12 @@ ALTER TABLE Dete ADD CONSTRAINT PK_Dete PRIMARY KEY (deteID);
 ALTER TABLE Registar_Aktivnosti ADD CONSTRAINT PK_Registar_Aktivnosti PRIMARY KEY (aktivnostID,deteID,datum);
 ALTER TABLE Aktivnosti ADD CONSTRAINT PK_Aktivnosti PRIMARY KEY (aktivnostID);
 ALTER TABLE Koordinator ADD CONSTRAINT PK_Koordinator PRIMARY KEY (koordinatorID );
+ALTER TABLE Koordinira ADD CONSTRAINT PK_Koordinira PRIMARY KEY (aktivnostID,koordinatorID);
 
 /*Constraints*/
 ALTER TABLE Registar_Aktivnosti ADD CONSTRAINT prisustvo CHECK (prisustvo IN ('TRUE','FALSE'));
+ALTER TABLE Aktivnosti ADD CONSTRAINT vreme_p_default  DEFAULT '00:00' FOR pocetak;
+ALTER TABLE Aktivnosti ADD CONSTRAINT vreme_z_default  DEFAULT '00:01' FOR zavrsetak;
 ALTER TABLE Aktivnosti ADD CONSTRAINT vreme CHECK (pocetak<zavrsetak);
 ALTER TABLE Dete ADD CONSTRAINT prijem CHECK (datum_prijema>datum_rodjenja);
 
@@ -615,56 +622,156 @@ INSERT INTO Koordinator VALUES
 	(25,'Koordinator25','Koordinator25','Zvanje','Adresa','0621231237');
 
 INSERT INTO Aktivnosti VALUES
-	(1,2,'Naziv','Utorak','12:00','13:30'),
-	(2,1,'Naziv','Sreda','11:00','12:30'),
-	(3,7,'Naziv','Utorak','14:00','15:30'),
-	(4,7,'Naziv','Utorak','16:00','17:30'),
-	(5,7,'Naziv','Cetvrtak','11:00','12:30'),
-	(6,10,'Naziv','Petak','14:00','15:30'),
-	(7,1,'Naziv','Cetvrtak','12:00','13:30'),
-	(8,6,'Naziv','Ponedeljak','13:00','14:30'),
-	(9,11,'Naziv','Utorak','10:00','11:30'),
-	(10,4,'Naziv','Ponedeljak','15:00','16:30'),
-	(11,22,'Naziv','Petak','12:00','13:30'),
-	(12,19,'Naziv','Ponedeljak','14:00','15:30'),
-	(13,24,'Naziv','Utorak','13:00','14:30'),
-	(14,12,'Naziv','Petak','8:00','9:30'),
-	(15,7,'Naziv','Petak','9:00','10:30'),
-	(16,21,'Naziv','Sreda','9:00','10:30'),
-	(17,3,'Naziv','Cetvrtak','9:00','10:30'),
-	(18,5,'Naziv','Cetvrtak','13:00','14:30'),
-	(19,8,'Naziv','Utorak','15:00','16:30'),
-	(20,6,'Naziv','Petak','13:00','14:30'),
-	(21,6,'Naziv','Ponedeljak','8:00','9:30'),
-	(22,12,'Naziv','Petak','11:00','12:30'),
-	(23,15,'Naziv','Sreda','12:00','13:30'),
-	(24,12,'Naziv','Cetvrtak','11:00','12:30'),
-	(25,22,'Naziv','Ponedeljak','13:00','14:30'),
-	(26,1,'Naziv','Sreda','16:00','17:30'),
-	(27,21,'Naziv','Sreda','13:00','14:30'),
-	(28,10,'Naziv','Ponedeljak','8:00','9:30'),
-	(29,6,'Naziv','Cetvrtak','13:00','14:30'),
-	(30,21,'Naziv','Petak','12:00','13:30'),
-	(31,13,'Naziv','Petak','14:00','15:30'),
-	(32,20,'Naziv','Petak','10:00','11:30'),
-	(33,5,'Naziv','Petak','15:00','16:30'),
-	(34,24,'Naziv','Cetvrtak','10:00','11:30'),
-	(35,25,'Naziv','Cetvrtak','13:00','14:30'),
-	(36,15,'Naziv','Cetvrtak','11:00','12:30'),
-	(37,21,'Naziv','Petak','10:00','11:30'),
-	(38,11,'Naziv','Petak','11:00','12:30'),
-	(39,25,'Naziv','Petak','15:00','16:30'),
-	(40,2,'Naziv','Ponedeljak','10:00','11:30'),
-	(41,14,'Naziv','Cetvrtak','14:00','15:30'),
-	(42,21,'Naziv','Ponedeljak','16:00','17:30'),
-	(43,5,'Naziv','Cetvrtak','8:00','9:30'),
-	(44,13,'Naziv','Utorak','15:00','16:30'),
-	(45,17,'Naziv','Ponedeljak','15:00','16:30'),
-	(46,13,'Naziv','Utorak','11:00','12:30'),
-	(47,1,'Naziv','Utorak','13:00','14:30'),
-	(48,24,'Naziv','Utorak','8:00','9:30'),
-	(49,24,'Naziv','Ponedeljak','8:00','9:30'),
-	(50,25,'Naziv','Utorak','15:00','16:30');
+	(1,'Naziv','Petak','12:00','13:30'),
+	(2,'Naziv','Utorak','13:00','14:30'),
+	(3,'Naziv','Cetvrtak','10:00','11:30'),
+	(4,'Naziv','Cetvrtak','11:00','12:30'),
+	(5,'Naziv','Sreda','15:00','16:30'),
+	(6,'Naziv','Petak','12:00','13:30'),
+	(7,'Naziv','Utorak','16:00','17:30'),
+	(8,'Naziv','Petak','11:00','12:30'),
+	(9,'Naziv','Utorak','15:00','16:30'),
+	(10,'Naziv','Cetvrtak','15:00','16:30'),
+	(11,'Naziv','Petak','14:00','15:30'),
+	(12,'Naziv','Sreda','16:00','17:30'),
+	(13,'Naziv','Utorak','16:00','17:30'),
+	(14,'Naziv','Ponedeljak','10:00','11:30'),
+	(15,'Naziv','Utorak','12:00','13:30'),
+	(16,'Naziv','Utorak','10:00','11:30'),
+	(17,'Naziv','Utorak','16:00','17:30'),
+	(18,'Naziv','Utorak','12:00','13:30'),
+	(19,'Naziv','Petak','13:00','14:30'),
+	(20,'Naziv','Sreda','15:00','16:30'),
+	(21,'Naziv','Petak','13:00','14:30'),
+	(22,'Naziv','Utorak','10:00','11:30'),
+	(23,'Naziv','Cetvrtak','13:00','14:30'),
+	(24,'Naziv','Cetvrtak','10:00','11:30'),
+	(25,'Naziv','Utorak','16:00','17:30'),
+	(26,'Naziv','Sreda','13:00','14:30'),
+	(27,'Naziv','Cetvrtak','14:00','15:30'),
+	(28,'Naziv','Sreda','11:00','12:30'),
+	(29,'Naziv','Cetvrtak','13:00','14:30'),
+	(30,'Naziv','Ponedeljak','14:00','15:30'),
+	(31,'Naziv','Petak','13:00','14:30'),
+	(32,'Naziv','Petak','10:00','11:30'),
+	(33,'Naziv','Sreda','15:00','16:30'),
+	(34,'Naziv','Petak','12:00','13:30'),
+	(35,'Naziv','Sreda','13:00','14:30'),
+	(36,'Naziv','Utorak','16:00','17:30'),
+	(37,'Naziv','Utorak','16:00','17:30'),
+	(38,'Naziv','Petak','12:00','13:30'),
+	(39,'Naziv','Sreda','12:00','13:30'),
+	(40,'Naziv','Ponedeljak','15:00','16:30'),
+	(41,'Naziv','Utorak','10:00','11:30'),
+	(42,'Naziv','Cetvrtak','12:00','13:30'),
+	(43,'Naziv','Petak','15:00','16:30'),
+	(44,'Naziv','Utorak','15:00','16:30'),
+	(45,'Naziv','Sreda','11:00','12:30'),
+	(46,'Naziv','Cetvrtak','12:00','13:30'),
+	(47,'Naziv','Utorak','15:00','16:30'),
+	(48,'Naziv','Petak','11:00','12:30'),
+	(49,'Naziv','Cetvrtak','11:00','12:30'),
+	(50,'Naziv','Cetvrtak','16:00','17:30');
+
+INSERT INTO Koordinira VALUES
+	(34,16),
+	(33,2),
+	(3,7),
+	(31,19),
+	(21,22),
+	(15,11),
+	(30,18),
+	(26,3),
+	(23,1),
+	(44,16),
+	(47,12),
+	(40,13),
+	(1,15),
+	(22,4),
+	(38,22),
+	(22,19),
+	(49,22),
+	(21,12),
+	(41,4),
+	(8,18),
+	(26,24),
+	(34,13),
+	(13,18),
+	(29,2),
+	(15,24),
+	(38,12),
+	(15,20),
+	(23,5),
+	(42,4),
+	(3,12),
+	(41,13),
+	(50,15),
+	(21,15),
+	(23,19),
+	(14,2),
+	(14,8),
+	(44,5),
+	(7,25),
+	(40,8),
+	(13,8),
+	(2,10),
+	(42,21),
+	(5,25),
+	(22,5),
+	(21,6),
+	(31,17),
+	(5,18),
+	(45,1),
+	(48,3),
+	(4,18),
+	(13,21),
+	(39,6),
+	(34,11),
+	(31,4),
+	(34,12),
+	(21,14),
+	(45,19),
+	(22,11),
+	(34,5),
+	(24,12),
+	(7,7),
+	(18,2),
+	(23,16),
+	(12,5),
+	(14,4),
+	(3,18),
+	(11,15),
+	(4,6),
+	(32,15),
+	(7,17),
+	(19,8),
+	(40,9),
+	(14,12),
+	(18,20),
+	(32,16),
+	(28,25),
+	(24,18),
+	(40,2),
+	(11,11),
+	(43,14),
+	(20,18),
+	(17,9),
+	(34,6),
+	(3,21),
+	(5,21),
+	(38,10),
+	(14,10),
+	(42,22),
+	(46,21),
+	(39,8),
+	(4,15),
+	(1,3),
+	(38,24),
+	(41,2),
+	(23,24),
+	(23,25),
+	(29,3);
+
 
 INSERT INTO Registar_Aktivnosti VALUES
 	(34,125,'2015.7.8','TRUE','beleska'),
@@ -1170,13 +1277,13 @@ INSERT INTO Registar_Aktivnosti VALUES
 
 
 /*Foregin keys*/
-ALTER TABLE Registar_Aktivnosti ADD CONSTRAINT FK_Registar_Aktivnosti_aktivnostID FOREIGN KEY (aktivnostID) REFERENCES Aktivnosti(aktivnostID);
-ALTER TABLE Registar_Aktivnosti ADD CONSTRAINT FK_Registar_Aktivnosti_deteID FOREIGN KEY (deteID) REFERENCES Dete(deteID);
-ALTER TABLE Dete ADD CONSTRAINT FK_Dete_polID FOREIGN KEY (polID) REFERENCES Pol(polID);
-ALTER TABLE Dete ADD CONSTRAINT FK_Dete_roditeljID FOREIGN KEY (roditeljID) REFERENCES Roditelj(roditeljID);
-ALTER TABLE Roditelj ADD CONSTRAINT FK_Roditelj_svojstvoID FOREIGN KEY (svojstvoID) REFERENCES Svojstvo_Roditelja(svojstvoID);
-ALTER TABLE Aktivnosti ADD CONSTRAINT FK_Aktivnosti_koordinatorID FOREIGN KEY (koordinatorID) REFERENCES Koordinator(koordinatorID);
-
+ALTER TABLE Registar_Aktivnosti ADD CONSTRAINT FK_Registar_Aktivnosti_aktivnostID FOREIGN KEY (aktivnostID) REFERENCES Aktivnosti(aktivnostID) ON DELETE CASCADE;
+ALTER TABLE Registar_Aktivnosti ADD CONSTRAINT FK_Registar_Aktivnosti_deteID FOREIGN KEY (deteID) REFERENCES Dete(deteID) ON DELETE CASCADE;
+ALTER TABLE Dete ADD CONSTRAINT FK_Dete_polID FOREIGN KEY (polID) REFERENCES Pol(polID) ON DELETE CASCADE; 
+ALTER TABLE Dete ADD CONSTRAINT FK_Dete_roditeljID FOREIGN KEY (roditeljID) REFERENCES Roditelj(roditeljID) ON DELETE CASCADE;
+ALTER TABLE Roditelj ADD CONSTRAINT FK_Roditelj_svojstvoID FOREIGN KEY (svojstvoID) REFERENCES Svojstvo_Roditelja(svojstvoID) ON DELETE CASCADE;
+ALTER TABLE Koordinira ADD CONSTRAINT FK_Koordinira_koordinatorID FOREIGN KEY (koordinatorID) REFERENCES Koordinator(koordinatorID) ON DELETE CASCADE;
+ALTER TABLE Koordinira ADD CONSTRAINT FK_Koordinira_aktivnostID FOREIGN KEY (aktivnostID) REFERENCES Aktivnosti(aktivnostID) ON DELETE CASCADE;
 
 
 

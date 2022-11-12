@@ -40,15 +40,15 @@ namespace Matura_Zadatak_A5
             {
                 conn.Open();
                 listViewAktivnosti.Items.Clear();
-                SqlCommand comm = new SqlCommand(@" SELECT aktivnostID,naziv_aktivnosti,dan,pocetak,zavrsetak FROM Aktivnosti;", conn);
+                SqlCommand comm = new SqlCommand(@" SELECT * FROM Aktivnosti;", conn);
                 SqlDataReader reader = comm.ExecuteReader();
                 while (reader.Read()) 
                 {
-                    ListViewItem row = new ListViewItem(reader[0].ToString());
+                    ListViewItem row = new ListViewItem(reader[0].ToString()); 
                     row.SubItems.Add(reader[1].ToString());
                     row.SubItems.Add(reader[2].ToString());
-                    row.SubItems.Add(reader[3].ToString());
-                    row.SubItems.Add(reader[4].ToString());
+                    row.SubItems.Add(Convert.ToDateTime(reader[3].ToString()).ToString("HH:mm"));
+                    row.SubItems.Add(Convert.ToDateTime(reader[4].ToString()).ToString("HH:mm"));
                     listViewAktivnosti.Items.Add(row);
                 }
                 reader.Dispose();
@@ -88,18 +88,12 @@ namespace Matura_Zadatak_A5
                     conn.Open();
                     int id = listViewAktivnosti.Items.Count;
                     SqlCommand comm = new SqlCommand(@"INSERT INTO Aktivnosti VALUES
-                                                (@aktivnostID,1,@naziv,@dan,@vreme_p,@vreme_z);", conn);
+                                                (@aktivnostID,@naziv,@dan,@vreme_p,@vreme_z);", conn);
                     comm.Parameters.AddWithValue("@aktivnostID", tbSifra.Text);
                     comm.Parameters.AddWithValue("@naziv", tbNaziv.Text);
                     comm.Parameters.AddWithValue("@dan", cbDanUNedelji.Text);
-                    if (string.IsNullOrEmpty(tbVremePocetka.Text))
-                        comm.Parameters.AddWithValue("@vreme_p", "00:00");
-                    else
-                        comm.Parameters.AddWithValue("@vreme_p", tbVremePocetka.Text);
-                    if (string.IsNullOrEmpty(tbVremeZavrsetka.Text))
-                        comm.Parameters.AddWithValue("@vreme_z", "00:01");
-                    else
-                        comm.Parameters.AddWithValue("@vreme_z", tbVremeZavrsetka.Text);
+                    comm.Parameters.AddWithValue("@vreme_p", tbVremePocetka.Text);
+                    comm.Parameters.AddWithValue("@vreme_z", tbVremeZavrsetka.Text);
                     comm.ExecuteNonQuery();
                 }
 

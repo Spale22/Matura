@@ -100,7 +100,6 @@
             this.Controls.Add(this.GV);
             this.Name = "Statistika";
             this.Text = "Statistika";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Statistika_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.GV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GV_chart)).EndInit();
             this.ResumeLayout(false);

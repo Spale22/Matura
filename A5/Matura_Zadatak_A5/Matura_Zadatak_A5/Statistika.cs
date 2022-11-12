@@ -22,15 +22,6 @@ namespace Matura_Zadatak_A5
             InitializeComponent();
         }
 
-        private void Statistika_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Aktivnost f = new Aktivnost();
-            if (f == null)
-                f.Parent = this;
-            f.Show();
-            this.Hide();
-        }
-
         private void btnIzadji1_Click(object sender, EventArgs e)
         {
             Aktivnost f = new Aktivnost();
