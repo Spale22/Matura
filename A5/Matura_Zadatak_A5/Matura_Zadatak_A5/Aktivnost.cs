@@ -47,8 +47,8 @@ namespace Matura_Zadatak_A5
                     ListViewItem row = new ListViewItem(reader[0].ToString()); 
                     row.SubItems.Add(reader[1].ToString());
                     row.SubItems.Add(reader[2].ToString());
-                    row.SubItems.Add(Convert.ToDateTime(reader[3].ToString()).ToString("HH:mm"));
-                    row.SubItems.Add(Convert.ToDateTime(reader[4].ToString()).ToString("HH:mm"));
+                    row.SubItems.Add(reader[3].ToString().Substring(0,5));
+                    row.SubItems.Add(reader[4].ToString().Substring(0,5));
                     listViewAktivnosti.Items.Add(row);
                 }
                 reader.Dispose();
@@ -87,19 +87,29 @@ namespace Matura_Zadatak_A5
                 {
                     conn.Open();
                     int id = listViewAktivnosti.Items.Count;
-                    SqlCommand comm = new SqlCommand(@"INSERT INTO Aktivnosti VALUES
+                    SqlCommand comm = new SqlCommand(@"INSERT INTO Aktivnosti (aktivnostID,naziv_aktivnosti,dan,pocetak,zavrsetak) VALUES
                                                 (@aktivnostID,@naziv,@dan,@vreme_p,@vreme_z);", conn);
+                    if (string.IsNullOrEmpty(tbVremePocetka.Text)) 
+                    {
+                        comm.Parameters.AddWithValue("@vreme_p", "00:00");
+                    }
+                    else
+                        comm.Parameters.AddWithValue("@vreme_p", tbVremePocetka.Text);
+                    if (string.IsNullOrEmpty(tbVremeZavrsetka.Text))
+                    {
+                        comm.Parameters.AddWithValue("@vreme_z","00:01");
+                    }
+                    else
+                        comm.Parameters.AddWithValue("@vreme_z", tbVremeZavrsetka.Text);
                     comm.Parameters.AddWithValue("@aktivnostID", tbSifra.Text);
                     comm.Parameters.AddWithValue("@naziv", tbNaziv.Text);
                     comm.Parameters.AddWithValue("@dan", cbDanUNedelji.Text);
-                    comm.Parameters.AddWithValue("@vreme_p", tbVremePocetka.Text);
-                    comm.Parameters.AddWithValue("@vreme_z", tbVremeZavrsetka.Text);
                     comm.ExecuteNonQuery();
                 }
 
                 catch (Exception error)
                 {
-                    MessageBox.Show(error.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ovde" + error.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 finally

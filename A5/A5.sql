@@ -76,8 +76,6 @@ ALTER TABLE Koordinira ADD CONSTRAINT PK_Koordinira PRIMARY KEY (aktivnostID,koo
 
 /*Constraints*/
 ALTER TABLE Registar_Aktivnosti ADD CONSTRAINT prisustvo CHECK (prisustvo IN ('TRUE','FALSE'));
-ALTER TABLE Aktivnosti ADD CONSTRAINT vreme_p_default  DEFAULT '00:00' FOR pocetak;
-ALTER TABLE Aktivnosti ADD CONSTRAINT vreme_z_default  DEFAULT '00:01' FOR zavrsetak;
 ALTER TABLE Aktivnosti ADD CONSTRAINT vreme CHECK (pocetak<zavrsetak);
 ALTER TABLE Dete ADD CONSTRAINT prijem CHECK (datum_prijema>datum_rodjenja);
 

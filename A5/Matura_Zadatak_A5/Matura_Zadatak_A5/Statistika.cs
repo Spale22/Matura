@@ -120,9 +120,9 @@ namespace Matura_Zadatak_A5
                 {
                     GV.DataSource = GV_tabela;
                     GV.Refresh();
-                    for (int i = 0; i < GV_tabela.Rows.Count; i++) 
+                    foreach (DataRow row in  GV_tabela.Rows) 
                     {
-                        GV_chart.Series["S"].Points.AddXY(GV_tabela.Rows[i][0].ToString(), GV_tabela.Rows[i][1].ToString());
+                        GV_chart.Series["S"].Points.AddXY(row[0].ToString(), row[1].ToString());
                     }
                 }
             }
