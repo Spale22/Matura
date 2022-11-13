@@ -29,10 +29,13 @@ namespace Matura_Zadatak_A4
             List_Update();
             SqlDataAdapter adapter = new SqlDataAdapter(@"SELECT Grad FROM Grad;", conn);
             DataTable grad = new DataTable();
-            adapter.Fill(grad);
-            for (int i = 0; i < grad.Rows.Count; i++)
+            if (adapter != null)
             {
-                cbGrad.Items.Add(grad.Rows[i][0].ToString());
+                adapter.Fill(grad);
+                foreach (DataRow row in grad.Rows)
+                {
+                    cbGrad.Items.Add(row[0].ToString());
+                }
             }
         }
 
@@ -71,15 +74,25 @@ namespace Matura_Zadatak_A4
             try 
             {
                 conn.Open();
-                SqlCommand comm = new SqlCommand(@"UPDATE Selo
+                if (!string.IsNullOrEmpty(tbSifra.Text) && !string.IsNullOrEmpty(tbNaziv.Text) && !string.IsNullOrEmpty(cbGrad.Text))
+                {
+                    SqlCommand comm = new SqlCommand(@"UPDATE Selo
                                                  SET naziv=@naziv,
                                                  gradID=(SELECT gradID FROM Grad WHERE grad = @grad)
                                                  WHERE seloID = @id;", conn);
-                comm.Parameters.AddWithValue("@id", tbSifra.Text);
-                comm.Parameters.AddWithValue("@naziv", tbNaziv.Text);
-                comm.Parameters.AddWithValue("@grad", cbGrad.Text);
-                comm.ExecuteNonQuery();
-                MessageBox.Show("Uspesno izvrsene izmene", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    comm.Parameters.AddWithValue("@id", tbSifra.Text);
+                    comm.Parameters.AddWithValue("@naziv", tbNaziv.Text);
+                    comm.Parameters.AddWithValue("@grad", cbGrad.Text);
+                    comm.ExecuteNonQuery();
+                    MessageBox.Show("Uspesno izvrsene izmene", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                else 
+                {
+                    string location = @"C:\Users\Velja\Desktop\A4\Matura\A4\Log doks";
+                    string path = Path.Combine(location, "error.txt");
+                    File.AppendAllText(path, DateTime.Now.ToShortDateString() + " Error : morate popuniti sva polja radi uspesne izmene \n");
+                }
             }
 
             catch (Exception error)
