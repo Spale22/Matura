@@ -89,17 +89,28 @@ namespace Matura_Zadatak_A3
                     reader.Dispose();
                     if (gotovi_projekti.Count != 0)
                     {
-                        if (gotovi_projekti.Contains(tbSifra.Text))
+                        if (!string.IsNullOrEmpty(tbSifra.Text))
                         {
-                            SqlCommand delete = new SqlCommand(@"DELETE FROM Projekat WHERE projekatID=@projekatID;", conn);
-                            delete.Parameters.AddWithValue("@projekatID", tbSifra.Text);
-                            delete.ExecuteNonQuery();
+                            if (gotovi_projekti.Contains(tbSifra.Text))
+                            {
+                                SqlCommand delete = new SqlCommand(@"DELETE FROM Projekat WHERE projekatID=@projekatID;", conn);
+                                delete.Parameters.AddWithValue("@projekatID", tbSifra.Text);
+                                delete.ExecuteNonQuery();
+                                string location = @"C:\Users\Velja\Desktop\Matura\A3\Matura\A3\Matura_Zadatak_A3\Matura_Zadatak_A3\bin\Debug\Log doks";
+                                string path = Path.Combine(location, "log_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".txt");
+                                File.AppendAllText(path, "Sifra: " + tbSifra.Text + "; Naziv: " + tbNaziv.Text + "\n");
+                            }
+
+                            else
+                            {
+
+                                MessageBox.Show("Kako bi obrisali projekat projekat mora biti zavrsen i straiji od 5 godina!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
 
-                        else
+                        else 
                         {
-
-                            MessageBox.Show("Kako bi obrisali projekat projekat mora biti zavrsen i straiji od 5 godina!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Kako bi obrisali projekat morate uneti njegovu sifru!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     } 
                 }
@@ -113,18 +124,6 @@ namespace Matura_Zadatak_A3
                 {
                     conn.Close();
                     Refresh_form();
-                }
-
-                string location = @"C:\Users\Velja\Desktop\A3\Matura\A3\Log doks";
-                string path = Path.Combine(location, "log_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".txt");
-                if (!File.Exists(path))
-                {
-                    File.Create(path);
-                    File.WriteAllText(path, "Sifra: " + tbSifra.Text + "; Naziv:  " + tbNaziv.Text);
-                }
-                else
-                {
-                    File.AppendAllText(path, "\nSifra: " + tbSifra.Text + "; Naziv:  " + tbNaziv.Text);
                 }
             }
         }

@@ -63,19 +63,20 @@ namespace Matura_Zadatak_A3
                     row[2] = br_radnika.ExecuteScalar();
                     GV_tabela.Rows.Add(row);
                 }
+                if (GV_tabela != null)
+                {
+                    GV.DataSource = GV_tabela;
+                    GV.Refresh();
 
-                GV.DataSource = GV_tabela;
-                GV.Refresh();
+                    ChartProjekat.Series.Clear();
+                    ChartProjekat.Series.Add("projekti");
+                    ChartProjekat.Series["projekti"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                    ChartProjekat.Series["projekti"].IsValueShownAsLabel = true;
 
-                ChartProjekat.Series.Clear();
-                ChartProjekat.Series.Add("projekti");
-                ChartProjekat.Series["projekti"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-                ChartProjekat.Series["projekti"].IsValueShownAsLabel = true;
+                    for (int i = 0; i < GV_tabela.Rows.Count; i++)
+                        ChartProjekat.Series["projekti"].Points.AddXY(GV_tabela.Rows[i][0].ToString(), GV_tabela.Rows[i][2].ToString());
 
-                for (int i = 0; i < GV_tabela.Rows.Count; i++) 
-                    ChartProjekat.Series["projekti"].Points.AddXY(GV_tabela.Rows[i][0].ToString(),GV_tabela.Rows[i][2].ToString());
-
-
+                }
             }
 
             catch (Exception error)
