@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Autor));
             this.listView = new System.Windows.Forms.ListView();
+            this.Sifra = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Ime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Prezime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Datum_rodjenja = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.tbSifra = new System.Windows.Forms.TextBox();
             this.tbIme = new System.Windows.Forms.TextBox();
@@ -43,10 +47,6 @@
             this.toolStripButtonAnaliza = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonExit = new System.Windows.Forms.ToolStripButton();
-            this.Sifra = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Ime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Prezime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Datum_rodjenja = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +67,22 @@
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
+            // 
+            // Sifra
+            // 
+            this.Sifra.Text = "Sifra";
+            // 
+            // Ime
+            // 
+            this.Ime.Text = "Ime";
+            // 
+            // Prezime
+            // 
+            this.Prezime.Text = "Prezime";
+            // 
+            // Datum_rodjenja
+            // 
+            this.Datum_rodjenja.Text = "Datum rodjenja";
             // 
             // label1
             // 
@@ -199,22 +215,6 @@
             this.toolStripButtonExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.toolStripButtonExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonExit.Click += new System.EventHandler(this.toolStripButtonExit_Click);
-            // 
-            // Sifra
-            // 
-            this.Sifra.Text = "Sifra";
-            // 
-            // Ime
-            // 
-            this.Ime.Text = "Ime";
-            // 
-            // Prezime
-            // 
-            this.Prezime.Text = "Prezime";
-            // 
-            // Datum_rodjenja
-            // 
-            this.Datum_rodjenja.Text = "Datum rodjenja";
             // 
             // Autor
             // 

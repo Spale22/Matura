@@ -59,7 +59,7 @@ namespace Matura_Zadatak_A2
             {
                 conn.Open();
                 listView.Items.Clear();
-                SqlCommand comm = new SqlCommand("SELECT autorID AS Sifra,ime AS Ime, prezime AS Prezime,datum_rodjenja AS 'Datum Rrodjenja' FROM Autor", conn);
+                SqlCommand comm = new SqlCommand("SELECT autorID,ime,prezime,datum_rodjenja FROM Autor", conn);
                 SqlDataReader reader = comm.ExecuteReader();
                 while (reader.Read()) 
                 {
@@ -115,5 +115,7 @@ namespace Matura_Zadatak_A2
                 tbRodjen.Text = datum_rodjenja.ToShortDateString();
             }
         }
+
+
     }
 }
