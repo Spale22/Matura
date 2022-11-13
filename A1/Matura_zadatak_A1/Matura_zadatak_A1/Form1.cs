@@ -45,7 +45,7 @@ namespace Matura_zadatak_A1
                 int i = 0;
                 foreach (DataRow row in citaoci.Rows) 
                 {
-                    comboBoxCitalac.Items.Add(citaoci.Rows[i][0].ToString() + "-" + citaoci.Rows[i][1].ToString() + " " + citaoci.Rows[i][2].ToString());
+                    comboBoxCitalac.Items.Add(row[0].ToString() + "-" + row[1].ToString() + " " + row[2].ToString());
                     i++;
                 }
                 
@@ -66,7 +66,7 @@ namespace Matura_zadatak_A1
             try
             {
                 listViewCitaoci.Items.Clear();
-                SqlCommand select_citaoci = new SqlCommand("SELECT * FROM Citalac", conn);
+                SqlCommand select_citaoci = new SqlCommand("SELECT CitalacID,MaticniBroj,Ime,Prezime,Adresa FROM Citalac;", conn);
                 SqlDataReader reader = select_citaoci.ExecuteReader();
                 while (reader.Read())
                 {
@@ -93,23 +93,34 @@ namespace Matura_zadatak_A1
         
         private void tbBrCK_TextChanged(object sender, EventArgs e)
         {
-            ListViewItem exist = listViewCitaoci.FindItemWithText(tbBrCK.Text);
-            if (exist != null && !string.IsNullOrEmpty(tbBrCK.Text) )
+            if (!string.IsNullOrEmpty(tbBrCK.Text))
             {
-                tbJMBG.Text = exist.SubItems[1].Text;
-                tbIme.Text = exist.SubItems[2].Text;
-                tbPrezime.Text = exist.SubItems[3].Text;
-                tbAdresa.Text = exist.SubItems[4].Text;
-                btnUpisiCitaoca.Enabled = false;
+                ListViewItem exist = listViewCitaoci.FindItemWithText(tbBrCK.Text);
+                if (exist != null)
+                {
+                    tbJMBG.Text = exist.SubItems[1].Text;
+                    tbIme.Text = exist.SubItems[2].Text;
+                    tbPrezime.Text = exist.SubItems[3].Text;
+                    tbAdresa.Text = exist.SubItems[4].Text;
+                    btnUpisiCitaoca.Enabled = false;
+                }
+
+                else
+                {
+                    btnUpisiCitaoca.Enabled = true;
+                    tbJMBG.Text = "";
+                    tbIme.Text = "";
+                    tbPrezime.Text = "";
+                    tbAdresa.Text = "";
+                }
             }
 
             else 
             {
-                btnUpisiCitaoca.Enabled = true;
                 tbJMBG.Text = "";
                 tbIme.Text = "";
                 tbPrezime.Text = "";
-                tbAdresa.Text = ""; 
+                tbAdresa.Text = "";
             }
         }
 
@@ -118,22 +129,29 @@ namespace Matura_zadatak_A1
             try
             {
                 conn.Open();
-                int CitalacID = int.Parse(tbBrCK.Text);
-                SqlCommand comm = new SqlCommand("INSERT INTO Citalac VALUES (@citalacID, @JMBG, @ime, @prezime, @adresa);", conn);
-                comm.Parameters.AddWithValue("@citalacID", CitalacID);
-                comm.Parameters.AddWithValue("@JMBG", tbJMBG.Text);
-                comm.Parameters.AddWithValue("@ime", tbIme.Text);
-                comm.Parameters.AddWithValue("@prezime", tbPrezime.Text);
-                comm.Parameters.AddWithValue("@adresa", tbAdresa.Text);
-                comm.ExecuteNonQuery();
-                updateList();
-                tbBrCK.Text = "";
-                tbJMBG.Text = "";
-                tbIme.Text = "";
-                tbPrezime.Text = "";
-                tbAdresa.Text = "";
-                MessageBox.Show("Upis uspesan", "", MessageBoxButtons.OK, MessageBoxIcon.None);
-                btnUpisiCitaoca.Enabled = false;
+                if (!string.IsNullOrEmpty(tbBrCK.Text) && !string.IsNullOrEmpty(tbJMBG.Text) && !string.IsNullOrEmpty(tbIme.Text) && !string.IsNullOrEmpty(tbPrezime.Text) && !string.IsNullOrEmpty(tbAdresa.Text))
+                {
+                    int CitalacID = int.Parse(tbBrCK.Text);
+                    SqlCommand comm = new SqlCommand("INSERT INTO Citalac VALUES (@citalacID, @JMBG, @ime, @prezime, @adresa);", conn);
+                    comm.Parameters.AddWithValue("@citalacID", CitalacID);
+                    comm.Parameters.AddWithValue("@JMBG", tbJMBG.Text);
+                    comm.Parameters.AddWithValue("@ime", tbIme.Text);
+                    comm.Parameters.AddWithValue("@prezime", tbPrezime.Text);
+                    comm.Parameters.AddWithValue("@adresa", tbAdresa.Text);
+                    comm.ExecuteNonQuery();
+                    updateList();
+                    tbBrCK.Text = "";
+                    tbJMBG.Text = "";
+                    tbIme.Text = "";
+                    tbPrezime.Text = "";
+                    tbAdresa.Text = "";
+                    MessageBox.Show("Upis uspesan", "", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    btnUpisiCitaoca.Enabled = false;
+                }
+                else 
+                {
+                    MessageBox.Show("Morate da unesete sve podatke potrebne za upis (broj clanske karte, JMBG, ime, prezime i adresa)!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
             catch (Exception error)
@@ -164,8 +182,11 @@ namespace Matura_zadatak_A1
            try 
             {
                 conn.Open();
-
-                if (!string.IsNullOrEmpty(comboBoxCitalac.SelectedItem.ToString()))
+                GV.DataSource = null;
+                GV.Refresh();
+                chart.Series[0].Points.Clear();
+                chart.Series[1].Points.Clear();
+                if (comboBoxCitalac.SelectedItem != null)
                 {
                     //GridView
                     string comboBoxValue = comboBoxCitalac.SelectedItem.ToString();
@@ -190,15 +211,17 @@ namespace Matura_zadatak_A1
                         GV_adapter.Fill(GV_tabela);
                         GV.DataSource = GV_tabela;
                         GV.Refresh();
-                    }
-                    //Chart
-                    for (int i = 0; i < GV_tabela.Rows.Count;i++ )
-                    {
-                        int br_vracene = Convert.ToInt32(GV_tabela.Rows[i][2].ToString());
-                        int br_nevracene = Convert.ToInt32(GV_tabela.Rows[i][3].ToString());
-                        int godina = Convert.ToInt32(GV_tabela.Rows[i][1].ToString()); ;
-                        chart.Series[0].Points.AddXY(godina,br_vracene);
-                        chart.Series[1].Points.AddXY(godina, br_nevracene);
+
+                        //Chart
+
+                        for (int i = 0; i < GV_tabela.Rows.Count; i++)
+                        {
+                            int br_vracene = Convert.ToInt32(GV_tabela.Rows[i][2].ToString());
+                            int br_nevracene = Convert.ToInt32(GV_tabela.Rows[i][3].ToString());
+                            int godina = Convert.ToInt32(GV_tabela.Rows[i][1].ToString()); ;
+                            chart.Series[0].Points.AddXY(godina, br_vracene);
+                            chart.Series[1].Points.AddXY(godina, br_nevracene);
+                        }
                     }
                 }
 
