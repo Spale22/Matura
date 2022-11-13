@@ -60,6 +60,11 @@ namespace Matura_Zadatak_A6
                 numericUpDownOD.Maximum = DateTime.Today.Year - 1;
                 numericUpDownDO.Minimum = min + 1;
                 numericUpDownDO.Maximum = DateTime.Today.Year;
+                listViewProizvodjac.Columns[0].Width = listViewProizvodjac.Width *2/3;
+                listViewProizvodjac.Columns[1].Width = listViewProizvodjac.Width / 3;
+                Graph.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
+                Graph.ChartAreas[0].AxisX.LabelStyle.IsStaggered = true;
+                
             }
 
             catch (Exception error)

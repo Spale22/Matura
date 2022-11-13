@@ -225,6 +225,7 @@
             // 
             // Graph
             // 
+            chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
             chartArea1.Name = "ChartArea1";
             this.Graph.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -233,14 +234,11 @@
             this.Graph.Name = "Graph";
             series1.ChartArea = "ChartArea1";
             series1.IsVisibleInLegend = false;
-            series1.IsXValueIndexed = true;
             series1.Legend = "Legend1";
             series1.Name = "S";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Single;
             this.Graph.Series.Add(series1);
             this.Graph.Size = new System.Drawing.Size(369, 342);
             this.Graph.TabIndex = 10;
-            this.Graph.Text = "chart1";
             // 
             // btnIzadjiTab2
             // 
@@ -354,7 +352,7 @@
             this.tabPageUputsvo.Location = new System.Drawing.Point(4, 22);
             this.tabPageUputsvo.Name = "tabPageUputsvo";
             this.tabPageUputsvo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUputsvo.Size = new System.Drawing.Size(647, 359);
+            this.tabPageUputsvo.Size = new System.Drawing.Size(644, 359);
             this.tabPageUputsvo.TabIndex = 2;
             this.tabPageUputsvo.Text = "tabPage1";
             this.tabPageUputsvo.UseVisualStyleBackColor = true;
