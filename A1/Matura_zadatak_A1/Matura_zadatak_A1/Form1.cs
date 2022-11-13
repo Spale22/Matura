@@ -176,7 +176,7 @@ namespace Matura_zadatak_A1
                 tbAdresa.Text = listViewCitaoci.SelectedItems[0].SubItems[4].Text;
             }   
         }
-
+        
         private void btnPrikazi_Click(object sender, EventArgs e)
         {
            try 
@@ -239,6 +239,5 @@ namespace Matura_zadatak_A1
                 conn.Close();
             }
         }
-
     }
 }
