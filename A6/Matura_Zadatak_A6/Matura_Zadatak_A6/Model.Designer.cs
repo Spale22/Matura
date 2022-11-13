@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Model));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageModeli = new System.Windows.Forms.TabPage();
             this.listBoxModeli = new System.Windows.Forms.ListBox();
@@ -50,6 +50,8 @@
             this.btnIzadjiTab2 = new System.Windows.Forms.Button();
             this.btnPrikaziTab2 = new System.Windows.Forms.Button();
             this.listViewProizvodjac = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbKm = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.numericUpDownDO = new System.Windows.Forms.NumericUpDown();
@@ -59,8 +61,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabPageUputsvo = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPageModeli.SuspendLayout();
             this.tabPageBr_R_Vozila.SuspendLayout();
@@ -97,7 +97,7 @@
             this.tabPageModeli.Location = new System.Drawing.Point(4, 22);
             this.tabPageModeli.Name = "tabPageModeli";
             this.tabPageModeli.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageModeli.Size = new System.Drawing.Size(633, 390);
+            this.tabPageModeli.Size = new System.Drawing.Size(644, 359);
             this.tabPageModeli.TabIndex = 0;
             this.tabPageModeli.Text = "Modeli automobila";
             this.tabPageModeli.UseVisualStyleBackColor = true;
@@ -225,17 +225,19 @@
             // 
             // Graph
             // 
-            chartArea3.Name = "ChartArea1";
-            this.Graph.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.Graph.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.Graph.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.Graph.Legends.Add(legend1);
             this.Graph.Location = new System.Drawing.Point(269, 0);
             this.Graph.Name = "Graph";
-            series3.ChartArea = "ChartArea1";
-            series3.IsVisibleInLegend = false;
-            series3.Legend = "Legend1";
-            series3.Name = "S";
-            this.Graph.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.IsVisibleInLegend = false;
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend1";
+            series1.Name = "S";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Single;
+            this.Graph.Series.Add(series1);
             this.Graph.Size = new System.Drawing.Size(369, 342);
             this.Graph.TabIndex = 10;
             this.Graph.Text = "chart1";
@@ -274,6 +276,15 @@
             this.listViewProizvodjac.TileSize = new System.Drawing.Size(168, 50);
             this.listViewProizvodjac.UseCompatibleStateImageBehavior = false;
             this.listViewProizvodjac.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Tag = "1";
+            this.columnHeader1.Text = "Proizvodjac";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Broj";
             // 
             // tbKm
             // 
@@ -343,7 +354,7 @@
             this.tabPageUputsvo.Location = new System.Drawing.Point(4, 22);
             this.tabPageUputsvo.Name = "tabPageUputsvo";
             this.tabPageUputsvo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUputsvo.Size = new System.Drawing.Size(633, 390);
+            this.tabPageUputsvo.Size = new System.Drawing.Size(647, 359);
             this.tabPageUputsvo.TabIndex = 2;
             this.tabPageUputsvo.Text = "tabPage1";
             this.tabPageUputsvo.UseVisualStyleBackColor = true;
@@ -357,20 +368,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Uputstvo";
             // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Tag = "1";
-            this.columnHeader1.Text = "Proizvodjac";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Broj";
-            // 
             // Model
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 385);
+            this.ClientSize = new System.Drawing.Size(652, 384);
             this.Controls.Add(this.tabControl1);
             this.Name = "Model";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
