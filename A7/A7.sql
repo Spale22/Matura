@@ -1635,15 +1635,15 @@ INSERT INTO Sadrzi_predmet VALUES
 	(10,1);
 
 /*Foreign key*/
-ALTER TABLE Kontakt_Informacije ADD CONSTRAINT FK_Kontakt_Informacije_studentID FOREIGN KEY (studentID) REFERENCES Student(studentID);
-ALTER TABLE Kontakt_Informacije ADD CONSTRAINT FK_Kontakt_Informacije_tipID FOREIGN KEY (tipID) REFERENCES Tip(tipID);
-ALTER TABLE Kontakt_Informacije ADD CONSTRAINT FK_Kontakt_Informacije_profesorID FOREIGN KEY (profesorID) REFERENCES Profesor(profesorID);
-ALTER TABLE Izabrani_Predmet ADD CONSTRAINT FK_Izabrani_Predmet_studentID FOREIGN KEY (studentID) REFERENCES Student(studentID);
-ALTER TABLE Izabrani_Predmet ADD CONSTRAINT FK_Izabrani_Predmet_predmetID FOREIGN KEY (predmetID) REFERENCES Predmet(predmetID);
-ALTER TABLE Studira ADD CONSTRAINT FK_Studira_studentID FOREIGN KEY (studentID) REFERENCES Student(studentID);
-ALTER TABLE Studira ADD CONSTRAINT FK_Studira_smerID FOREIGN KEY (smerID) REFERENCES Smer(smerID);
-ALTER TABLE Sadrzi_predmet ADD CONSTRAINT FK_Sadrzi_predmet_smerID FOREIGN KEY (smerID) REFERENCES Smer(smerID);
-ALTER TABLE Sadrzi_predmet ADD CONSTRAINT FK_Sadrzi_predmet_predmetID FOREIGN KEY (predmetID) REFERENCES Predmet(predmetID);
+ALTER TABLE Kontakt_Informacije ADD CONSTRAINT FK_Kontakt_Informacije_studentID FOREIGN KEY (studentID) REFERENCES Student(studentID) ON DELETE CASCADE;
+ALTER TABLE Kontakt_Informacije ADD CONSTRAINT FK_Kontakt_Informacije_tipID FOREIGN KEY (tipID) REFERENCES Tip(tipID) ON DELETE CASCADE;
+ALTER TABLE Kontakt_Informacije ADD CONSTRAINT FK_Kontakt_Informacije_profesorID FOREIGN KEY (profesorID) REFERENCES Profesor(profesorID) ON DELETE CASCADE;
+ALTER TABLE Izabrani_Predmet ADD CONSTRAINT FK_Izabrani_Predmet_studentID FOREIGN KEY (studentID) REFERENCES Student(studentID) ON DELETE CASCADE;
+ALTER TABLE Izabrani_Predmet ADD CONSTRAINT FK_Izabrani_Predmet_predmetID FOREIGN KEY (predmetID) REFERENCES Predmet(predmetID) ON DELETE CASCADE;
+ALTER TABLE Studira ADD CONSTRAINT FK_Studira_studentID FOREIGN KEY (studentID) REFERENCES Student(studentID) ON DELETE CASCADE;
+ALTER TABLE Studira ADD CONSTRAINT FK_Studira_smerID FOREIGN KEY (smerID) REFERENCES Smer(smerID) ON DELETE CASCADE;
+ALTER TABLE Sadrzi_predmet ADD CONSTRAINT FK_Sadrzi_predmet_smerID FOREIGN KEY (smerID) REFERENCES Smer(smerID) ON DELETE CASCADE;
+ALTER TABLE Sadrzi_predmet ADD CONSTRAINT FK_Sadrzi_predmet_predmetID FOREIGN KEY (predmetID) REFERENCES Predmet(predmetID) ON DELETE CASCADE;
 
 
 /*
