@@ -40,8 +40,8 @@ namespace Matura_Zadatak_A7
                     }
 
                     graph.Series[0].LegendText = (DateTime.Now.Year - 3).ToString();
-                    graph.Series[0].LegendText = (DateTime.Now.Year - 2).ToString();
-                    graph.Series[0].LegendText = (DateTime.Now.Year - 1).ToString();
+                    graph.Series[1].LegendText = (DateTime.Now.Year - 2).ToString();
+                    graph.Series[2].LegendText = (DateTime.Now.Year - 1).ToString();
                 }
             }
            
@@ -63,26 +63,38 @@ namespace Matura_Zadatak_A7
                 conn.Open();
                 GV.DataSource = null;
                 GV.Refresh();
-                graph.Series.Clear();
+                graph.Series[0].Points.Clear();
+                graph.Series[1].Points.Clear();
+                graph.Series[2].Points.Clear();
                 string predmeti = "";
+                for (int i = 0; i < checkedListBoxPredmeti.CheckedItems.Count; i++) 
+                {
+                    if (i == checkedListBoxPredmeti.CheckedItems.Count - 1)
+                        predmeti += "'" + checkedListBoxPredmeti.CheckedItems[i].ToString() + "'";
+                    else
+                        predmeti += "'" + checkedListBoxPredmeti.CheckedItems[i].ToString() + "',";
+                }
                 SqlCommand comm = new SqlCommand(@"
                                                 SELECT predmet,
-                                                (SELECT COUNT(studentID) 
+                                                (SELECT COUNT(studentID)
                                                 FROM  Izabrani_Predmet AS IZP JOIN Predmet AS P 
                                                 ON IZP.predmetID = P.predmetID 
-                                                WHERE godina_slusanja = '2019' AND P.predmet IN (@predmet)) AS '2019',
-                                                (SELECT COUNT(studentID) FROM  
-                                                Izabrani_Predmet AS IZP JOIN Predmet AS P 
+                                                WHERE P.predmet = Pr.predmet AND godina_slusanja=@godina1) AS @godina1,
+                                                (SELECT COUNT(studentID)
+                                                FROM  Izabrani_Predmet AS IZP JOIN Predmet AS P 
                                                 ON IZP.predmetID = P.predmetID 
-                                                WHERE godina_slusanja = '2018' AND P.predmet IN (@predmet)) AS '2018',
-                                                (SELECT COUNT(studentID) FROM  
-                                                Izabrani_Predmet AS IZP JOIN Predmet AS P 
-                                                ON IZP.predmetID = P.predmetID  
-                                                WHERE godina_slusanja = '2017' AND P.predmet IN (@predmet)) AS '2017'
-                                                FROM Predmet
-                                                WHERE predmet IN (@predmet)
-                                                GROUP BY predmet", conn);
+                                                WHERE P.predmet = Pr.predmet AND godina_slusanja=@godina2 AS @godina2,
+                                                (SELECT COUNT(studentID)
+                                                FROM  Izabrani_Predmet AS IZP JOIN Predmet AS P 
+                                                ON IZP.predmetID = P.predmetID 
+                                                WHERE P.predmet = Pr.predmet AND godina_slusanja=@godina3) AS @godina3
+                                                FROM Predmet AS Pr
+                                                WHERE predmet IN (@predmet);", conn);
                 comm.Parameters.AddWithValue("@predmet", predmeti);
+                comm.Parameters.AddWithValue("@godina1", "'" + (DateTime.Now.Year - 3).ToString() + "'");
+                comm.Parameters.AddWithValue("@godina2", "'" + (DateTime.Now.Year - 2).ToString() + "'");
+                comm.Parameters.AddWithValue("@godina3", "'" + (DateTime.Now.Year - 1).ToString() + "'");
+
                 SqlDataAdapter adapter = new SqlDataAdapter (comm);
                 if (adapter != null) 
                 {
@@ -91,10 +103,13 @@ namespace Matura_Zadatak_A7
                     GV.DataSource = GV_tabela;
                     GV.Refresh();
 
-                    
-
+                    foreach (DataRow row in GV_tabela.Rows) 
+                    {
+                        graph.Series[0].Points.AddXY(row[0].ToString(), row[1].ToString());
+                        graph.Series[1].Points.AddXY(row[0].ToString(), row[2].ToString());
+                        graph.Series[2].Points.AddXY(row[0].ToString(), row[3].ToString());
+                    }
                 }
-                
             }
 
             catch (Exception error)
@@ -117,13 +132,9 @@ namespace Matura_Zadatak_A7
         {
             if (checkedListBoxPredmeti.CheckedItems.Count > 4) 
             {
-                /*for (int i = 0; i < checkedListBoxPredmeti.Items.Count; i++) 
-                {
-                    checkedListBoxPredmeti.SetItemChecked(i, false);
-                }*/
-                    
                 MessageBox.Show("Mozete pregledati najvise 5 predmeta po prikazu!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                e.NewValue = CheckState.Unchecked;
+            }            
         }
     }
 }
