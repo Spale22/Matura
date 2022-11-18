@@ -79,21 +79,21 @@ namespace Matura_Zadatak_A7
                                                 (SELECT COUNT(studentID)
                                                 FROM  Izabrani_Predmet AS IZP JOIN Predmet AS P 
                                                 ON IZP.predmetID = P.predmetID 
-                                                WHERE P.predmet = Pr.predmet AND godina_slusanja=@godina1) AS @godina1,
+                                                WHERE P.predmet = Pr.predmet AND godina_slusanja=@godina1) AS '"+(DateTime.Now.Year - 3).ToString()+@"',
                                                 (SELECT COUNT(studentID)
                                                 FROM  Izabrani_Predmet AS IZP JOIN Predmet AS P 
                                                 ON IZP.predmetID = P.predmetID 
-                                                WHERE P.predmet = Pr.predmet AND godina_slusanja=@godina2 AS @godina2,
+                                                WHERE P.predmet = Pr.predmet AND godina_slusanja=@godina2) AS '" + (DateTime.Now.Year - 2).ToString() + @"',
                                                 (SELECT COUNT(studentID)
                                                 FROM  Izabrani_Predmet AS IZP JOIN Predmet AS P 
                                                 ON IZP.predmetID = P.predmetID 
-                                                WHERE P.predmet = Pr.predmet AND godina_slusanja=@godina3) AS @godina3
+                                                WHERE P.predmet = Pr.predmet AND godina_slusanja=@godina3) AS '" + (DateTime.Now.Year - 1).ToString() + @"'
                                                 FROM Predmet AS Pr
-                                                WHERE predmet IN (@predmet);", conn);
-                comm.Parameters.AddWithValue("@predmet", predmeti);
-                comm.Parameters.AddWithValue("@godina1", "'" + (DateTime.Now.Year - 3).ToString() + "'");
-                comm.Parameters.AddWithValue("@godina2", "'" + (DateTime.Now.Year - 2).ToString() + "'");
-                comm.Parameters.AddWithValue("@godina3", "'" + (DateTime.Now.Year - 1).ToString() + "'");
+                                                WHERE predmet IN (" + predmeti + ");", conn);
+                
+                comm.Parameters.AddWithValue("@godina1", DateTime.Now.Year - 3);
+                comm.Parameters.AddWithValue("@godina2", DateTime.Now.Year - 2);
+                comm.Parameters.AddWithValue("@godina3", DateTime.Now.Year - 1);
 
                 SqlDataAdapter adapter = new SqlDataAdapter (comm);
                 if (adapter != null) 
@@ -110,6 +110,7 @@ namespace Matura_Zadatak_A7
                         graph.Series[2].Points.AddXY(row[0].ToString(), row[3].ToString());
                     }
                 }
+                comm.Dispose();
             }
 
             catch (Exception error)
