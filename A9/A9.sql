@@ -164,55 +164,55 @@ INSERT INTO Stadion VALUES
 
 INSERT INTO Klub VALUES
 	('Klub1',1,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub2',2,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub3',13,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub4',7,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub5',14,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
+	('Klub2',2,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image2.jpg'),
+	('Klub3',13,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image3.jpg'),
+	('Klub4',7,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image4.jpg'),
+	('Klub5',14,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image5.jpg'),
 	('Klub6',19,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub7',5,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub8',11,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub9',10,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub10',14,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
+	('Klub7',5,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image2.jpg'),
+	('Klub8',11,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image3.jpg'),
+	('Klub9',10,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image4.jpg'),
+	('Klub10',14,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image5.jpg'),
 	('Klub11',11,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub12',15,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub13',5,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub14',8,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub15',11,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
+	('Klub12',15,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image2.jpg'),
+	('Klub13',5,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image3.jpg'),
+	('Klub14',8,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image4.jpg'),
+	('Klub15',11,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image5.jpg'),
 	('Klub16',14,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub17',4,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub18',12,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub19',18,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub20',1,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
+	('Klub17',4,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image2.jpg'),
+	('Klub18',12,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image3.jpg'),
+	('Klub19',18,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image4.jpg'),
+	('Klub20',1,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image5.jpg'),
 	('Klub21',8,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub22',15,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub23',17,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub24',10,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub25',19,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
+	('Klub22',15,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image2.jpg'),
+	('Klub23',17,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image3.jpg'),
+	('Klub24',10,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image4.jpg'),
+	('Klub25',19,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image5.jpg'),
 	('Klub26',16,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub27',20,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub28',4,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub29',10,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub30',1,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
+	('Klub27',20,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image2.jpg'),
+	('Klub28',4,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image3.jpg'),
+	('Klub29',10,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image4.jpg'),
+	('Klub30',1,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image5.jpg'),
 	('Klub31',1,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub32',9,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub33',7,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub34',8,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub35',5,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
+	('Klub32',9,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image2.jpg'),
+	('Klub33',7,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image3.jpg'),
+	('Klub34',8,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image4.jpg'),
+	('Klub35',5,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image5.jpg'),
 	('Klub36',18,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub37',3,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub38',8,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub39',15,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub40',16,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
+	('Klub37',3,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image2.jpg'),
+	('Klub38',8,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image3.jpg'),
+	('Klub39',15,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image4.jpg'),
+	('Klub40',16,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image5.jpg'),
 	('Klub41',15,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub42',6,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub43',6,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub44',2,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub45',8,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
+	('Klub42',6,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image2.jpg'),
+	('Klub43',6,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image3.jpg'),
+	('Klub44',2,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image4.jpg'),
+	('Klub45',8,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image5.jpg'),
 	('Klub46',16,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub47',15,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub48',9,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub49',9,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg'),
-	('Klub50',3,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image1.jpg');
+	('Klub47',15,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image2.jpg'),
+	('Klub48',9,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image3.jpg'),
+	('Klub49',9,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image4.jpg'),
+	('Klub50',3,'klub@gmail.com','www.klub.com','156456789952','C:\Users\Velja\Desktop\Matura\A9\Matura\A9\Matura_Zadatak_A9\Matura_Zadatak_A9\Klubovi\image5.jpg');
 
 INSERT INTO Utakmica VALUES
 	('2021.3.24','21:33',7,13,14,1,0),
@@ -422,14 +422,15 @@ INSERT INTO Igra VALUES
 
 /*Foreign keys*/
 
-ALTER TABLE GRAD ADD CONSTRAINT FK_Grad_drzavaID FOREIGN KEY (drzavaID) REFERENCES Drzava(drzavaID);
-ALTER TABLE Stadion ADD CONSTRAINT FK_Stadion_gradID FOREIGN KEY (gradID) REFERENCES Grad(gradID);
-ALTER TABLE Klub ADD CONSTRAINT FK_Klub_stadionID FOREIGN KEY (stadionID) REFERENCES Stadion(stadionID);
-ALTER TABLE Utakmica ADD CONSTRAINT FK_Utakmica_domacinID FOREIGN KEY (domacinID) REFERENCES Klub(klubID);
+ALTER TABLE GRAD ADD CONSTRAINT FK_Grad_drzavaID FOREIGN KEY (drzavaID) REFERENCES Drzava(drzavaID) ON DELETE CASCADE;
+ALTER TABLE Stadion ADD CONSTRAINT FK_Stadion_gradID FOREIGN KEY (gradID) REFERENCES Grad(gradID) ON DELETE CASCADE;
+ALTER TABLE Klub ADD CONSTRAINT FK_Klub_stadionID FOREIGN KEY (stadionID) REFERENCES Stadion(stadionID) ON DELETE CASCADE;
+ALTER TABLE Utakmica ADD CONSTRAINT FK_Utakmica_domacinID FOREIGN KEY (domacinID) REFERENCES Klub(klubID) ON DELETE CASCADE;
 ALTER TABLE Utakmica ADD CONSTRAINT FK_Utakmica_gostID FOREIGN KEY (gostID) REFERENCES Klub(klubID);
-ALTER TABLE Utakmica ADD CONSTRAINT FK_Utakmica_takmicenjeID FOREIGN KEY (takmicenjeID) REFERENCES Takmicenje(takmicenjeID);
-ALTER TABLE Igra ADD CONSTRAINT FK_Igra_igracID FOREIGN KEY (igracID) REFERENCES Igrac(igracID);
-ALTER TABLE Igra ADD CONSTRAINT FK_Igra_klubID FOREIGN KEY (klubID) REFERENCES Klub(klubID);
+ALTER TABLE Utakmica ADD CONSTRAINT FK_Utakmica_takmicenjeID FOREIGN KEY (takmicenjeID) REFERENCES Takmicenje(takmicenjeID) ON DELETE CASCADE;
+ALTER TABLE Igra ADD CONSTRAINT FK_Igra_igracID FOREIGN KEY (igracID) REFERENCES Igrac(igracID) ON DELETE CASCADE;
+ALTER TABLE Igra ADD CONSTRAINT FK_Igra_klubID FOREIGN KEY (klubID) REFERENCES Klub(klubID) ON DELETE CASCADE;
+
 
 /*
 	USE master;
