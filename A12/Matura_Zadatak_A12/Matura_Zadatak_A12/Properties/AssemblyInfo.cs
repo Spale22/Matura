@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Matura_zadatak_A1")]
+[assembly: AssemblyTitle("Matura_Zadatak_A12")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Matura_zadatak_A1")]
+[assembly: AssemblyProduct("Matura_Zadatak_A12")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b09d9a76-fa90-4988-84e3-68cac4e3d77e")]
+[assembly: Guid("f28339e1-9fca-4299-b6c2-00ee00d0e0cd")]
 
 // Version information for an assembly consists of the following four values:
 //
