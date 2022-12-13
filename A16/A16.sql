@@ -262,16 +262,16 @@ INSERT INTO Kategorija VALUES
 	('Kategorija10');
 
 INSERT INTO Izlozba VALUES
-	('Mesto1','2021.3.27'),
-	('Mesto2','2021.6.27'),
-	('Mesto3','2021.8.13'),
-	('Mesto4','2021.5.4'),
-	('Mesto5','2021.7.13'),
-	('Mesto6','2021.8.5'),
-	('Mesto7','2021.3.19'),
-	('Mesto8','2021.8.19'),
-	('Mesto9','2021.7.15'),
-	('Mesto10','2021.8.13');
+	('Mesto1','2022.12.27'),
+	('Mesto2','2022.12.27'),
+	('Mesto3','2022.12.13'),
+	('Mesto4','2022.12.4'),
+	('Mesto5','2022.12.13'),
+	('Mesto6','2022.12.20'),
+	('Mesto7','2022.12.13'),
+	('Mesto8','2022.12.14'),
+	('Mesto9','2022.12.18'),
+	('Mesto10','2022.12.15');
 
 INSERT INTO Rezultat VALUES
 	(10,2,70,'rezultat','napomena'),
