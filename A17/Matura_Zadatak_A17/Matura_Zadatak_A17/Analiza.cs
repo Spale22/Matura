@@ -21,6 +21,9 @@ namespace Matura_Zadatak_A17
         public Analiza()
         {
             InitializeComponent();
+            graph.ChartAreas[0].Area3DStyle.Enable3D = true;
+            graph.ChartAreas[0].Area3DStyle.Inclination = 75;
+            
         }
 
         private void Analiza_Load(object sender, EventArgs e)
@@ -57,8 +60,6 @@ namespace Matura_Zadatak_A17
                 try
                 {
                     graph.Series[0].Points.Clear();
-                    GV.DataSource = null;
-                    GV.Refresh();
                     conn.Open();
                     SqlCommand comm = new SqlCommand(@"SELECT godina_proizvodnje AS 'Godina proizvodnje', 
                                                             (SELECT AVG(cena) FROM Vozilo 
