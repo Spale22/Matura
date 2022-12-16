@@ -1,6 +1,6 @@
 ﻿namespace Matura_Zadatak_A19
 {
-    partial class Form1
+    partial class Sektori
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sektori));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAnaliza = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonExit = new System.Windows.Forms.ToolStripButton();
@@ -117,6 +117,7 @@
             // 
             // listViewRukovodioci
             // 
+            this.listViewRukovodioci.AccessibleName = "";
             this.listViewRukovodioci.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -171,7 +172,7 @@
             this.rtbOpis.TabIndex = 7;
             this.rtbOpis.Text = "";
             // 
-            // Form1
+            // Sektori
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -183,7 +184,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "Form1";
+            this.Name = "Sektori";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStrip1.ResumeLayout(false);

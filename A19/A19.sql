@@ -328,6 +328,24 @@ ALTER TABLE Kancelarija ADD CONSTRAINT PK_Kancelarija PRIMARY KEY (kancelarijaID
 ALTER TABLE Kancelarija ADD CONSTRAINT FK_Kancelarija_lokacijaID FOREIGN KEY (lokacijaID) REFERENCES Lokacija(lokacijaID) ON DELETE CASCADE;
 ALTER TABLE Kancelarija ADD CONSTRAINT FK_Kancelarija_sektorID FOREIGN KEY (sektorID) REFERENCES Sektor(sektorID) ON DELETE CASCADE;
 
+CREATE TABLE Rukovodi_Sektorom_NEW(
+	sektorID int not null,
+	radnikID int not null,
+	datum_postavljanja date not null,
+	datum_razresenja date
+);
+
+ALTER TABLE Rukovodi_Sektorom_NEW ADD CONSTRAINT PK_Rukovodi_Sektorom_NEW PRIMARY KEY (radnikID,sektorID,datum_postavljanja);
+ALTER TABLE Rukovodi_Sektorom_NEW ADD CONSTRAINT mandat CHECK(datum_postavljanja<ISNULL(datum_razresenja,GETDATE()));
+
+ALTER TABLE Rukovodi_Sektorom_NEW ADD CONSTRAINT FK_Rukovodi_Sektorom_NEW_radnikID FOREIGN KEY (radnikID) REFERENCES Radnik(radnikID) ON DELETE CASCADE;
+ALTER TABLE Rukovodi_Sektorom_NEW ADD CONSTRAINT FK_Rukovodi_Sektorom_NEW_sektorID FOREIGN KEY (sektorID) REFERENCES Sektor(sektorID);
+
+INSERT INTO Rukovodi_Sektorom_NEW (sektorID,radnikID,datum_postavljanja,datum_razresenja)
+	(SELECT sektorID,radnikID,datum_postavljanja,datum_razresenja FROM Rukovodi_Sektorom);
+
+DROP TABLE Rukovodi_Sektorom;
+
 /*
 	USE master;
 	DROP DATABASE A19;

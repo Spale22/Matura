@@ -12,15 +12,18 @@ using System.Data.SqlClient;
 
 namespace Matura_Zadatak_A19
 {
-    public partial class Form1 : Form
+    public partial class Sektori : Form
     {
 
         SqlConnection conn = new SqlConnection(@"Data Source=192.168.0.20;Initial Catalog=A19;User ID=SA;Password=sp@sic123.");
 
-        public Form1()
+        public static string sektor = "";
+
+        public Sektori()
         {
             InitializeComponent();
             btnRukovodilacIzmena.Enabled = false;
+            toolStripButtonAnaliza.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -50,47 +53,77 @@ namespace Matura_Zadatak_A19
             }
         }
 
+       private void ListViewRefresh() 
+        { 
+            try
+            {
+                if (!string.IsNullOrEmpty(sektor))
+                {
+                    listViewRukovodioci.Items.Clear();
+                    if(conn.State != ConnectionState.Open)
+                        conn.Open();
+                    SqlCommand comm = new SqlCommand(@"SELECT R.radnikID,R.ime,R.prezime,RS.datum_postavljanja,ISNULL(RS.datum_razresenja,GETDATE()) 
+                                                    FROM Rukovodi_Sektorom AS RS JOIN Radnik AS R 
+                                                    ON RS.radnikID=R.radnikID
+                                                    WHERE RS.sektorID=(SELECT sektorID FROM Sektor WHERE naziv=@sektor) 
+                                                    ORDER BY ISNULL(RS.datum_razresenja,GETDATE()),RS.datum_razresenja;", conn);
+                    comm.Parameters.AddWithValue("@sektor", sektor);
+                    SqlDataReader reader = comm.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        ListViewItem row = new ListViewItem(reader[0].ToString());
+                        row.SubItems.Add(reader[1].ToString());
+                        row.SubItems.Add(reader[2].ToString());
+                        row.SubItems.Add(Convert.ToDateTime(reader[3].ToString()).ToShortDateString());
+                        row.SubItems.Add(Convert.ToDateTime(reader[4].ToString()).ToShortDateString() == DateTime.Now.ToShortDateString() ? "Do danas" : Convert.ToDateTime(reader[4].ToString()).ToShortDateString());
+                        listViewRukovodioci.Items.Add(row);
+                    }
+                    reader.Dispose();
+                    comm.Dispose();
+                }
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         private void btnRukovodilacIzmena_Click(object sender, EventArgs e)
         {
-         
-            
+            NoviRukovodioc f = new NoviRukovodioc();
+            if (f == null)
+                f.Parent = this;
+            f.Show();
         }
 
         private void toolStripButtonAnaliza_Click(object sender, EventArgs e)
         {
-
+            Analiza f = new Analiza();
+            if (f == null)
+                f.Parent = this;
+            f.Show();
+            this.Hide();
         }
 
         private void toolStripButtonExit_Click(object sender, EventArgs e)
         {
-
+            Application.Exit();
         }
 
         private void cbSektor_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
+                sektor = cbSektor.Text;
                 btnRukovodilacIzmena.Enabled = true;
-                listViewRukovodioci.Items.Clear();
+                toolStripButtonAnaliza.Enabled = true;
                 conn.Open();
-                SqlCommand comm = new SqlCommand(@"SELECT R.radnikID,R.ime,R.prezime,RS.datum_postavljanja,ISNULL(RS.datum_razresenja,GETDATE()) 
-                                                    FROM Rukovodi_Sektorom AS RS JOIN Radnik AS R 
-                                                    ON RS.radnikID=R.radnikID
-                                                    WHERE RS.sektorID=(SELECT sektorID FROM Sektor WHERE naziv=@sektor) 
-                                                    ORDER BY ISNULL(RS.datum_razresenja,GETDATE()),RS.datum_razresenja;", conn);
-                comm.Parameters.AddWithValue("@sektor", cbSektor.SelectedItem.ToString());
-                SqlDataReader reader = comm.ExecuteReader();
-                while (reader.Read())
-                {
-                    ListViewItem row = new ListViewItem(reader[0].ToString());
-                    row.SubItems.Add(reader[1].ToString());
-                    row.SubItems.Add(reader[2].ToString());
-                    row.SubItems.Add(Convert.ToDateTime(reader[3].ToString()).ToShortDateString());
-                    row.SubItems.Add(Convert.ToDateTime(reader[4].ToString()).ToShortDateString() == DateTime.Now.ToShortDateString() ? "Do danas" : Convert.ToDateTime(reader[4].ToString()).ToShortDateString());
-                    listViewRukovodioci.Items.Add(row);
-                }
-                reader.Dispose();
-                comm.Dispose();
                 SqlCommand opis = new SqlCommand(@"SELECT 
                                                     (SELECT ime FROM Radnik WHERE radnikID=RS.radnikID) + ' ' +
                                                     (SELECT prezime FROM Radnik WHERE radnikID=RS.radnikID),
@@ -116,6 +149,7 @@ namespace Matura_Zadatak_A19
             finally
             {
                 conn.Close();
+                ListViewRefresh();
             }
         }
 
