@@ -59,20 +59,7 @@ CREATE TABLE Antikvitet(
 	vreme_pronalaska time
 );
 
-CREATE TABLE Muzej(
-	muzejID int IDENTITY(1,1) not null,
-	naziv varchar(70),
-	sajt varchar(100),
-	mail varchar(100),
-	adresa text,
-	telefon varchar(20),
-	gradID int
-);
 
-CREATE TABLE Antikvitet_prikazan(
-	antikvitetID int not null,
-	muzejID int not null
-);
 
 
 /*Primary keys*/
@@ -83,8 +70,6 @@ ALTER TABLE Tip_Antikviteta ADD CONSTRAINT PK_Tip_Antikviteta PRIMARY KEY (tip_a
 ALTER TABLE Arheolog ADD CONSTRAINT PK_Arherolog PRIMARY KEY (arheologID);
 ALTER TABLE Lokalitet ADD CONSTRAINT PK_Lokalitet PRIMARY KEY (lokalitetID);
 ALTER TABLE Antikvitet ADD CONSTRAINT PK_Antikvitet PRIMARY KEY (antikvitetID);
-ALTER TABLE Muzej ADD CONSTRAINT PK_Muzej PRIMARY KEY (muzejID);
-ALTER TABLE Antikvitet_prikazan ADD CONSTRAINT PK_Antikvitet_prikazan PRIMARY KEY (muzejID,antikvitetID);
 
 INSERT INTO Drzava VALUES
 	('Drzava1','123456',674000),
@@ -495,210 +480,6 @@ INSERT INTO Antikvitet VALUES
 	(2,4,149,1,'1997.10.29','23:20'),
 	(9,5,150,17,'1998.8.24','11:14');
 
-INSERT INTO Muzej VALUES
-	('Muzej1','www.muzej.com','muzej@gmail.com','Adresa','1234567',43),
-	('Muzej2','www.muzej.com','muzej@gmail.com','Adresa','1234567',12),
-	('Muzej3','www.muzej.com','muzej@gmail.com','Adresa','1234567',36),
-	('Muzej4','www.muzej.com','muzej@gmail.com','Adresa','1234567',20),
-	('Muzej5','www.muzej.com','muzej@gmail.com','Adresa','1234567',39),
-	('Muzej6','www.muzej.com','muzej@gmail.com','Adresa','1234567',50),
-	('Muzej7','www.muzej.com','muzej@gmail.com','Adresa','1234567',18),
-	('Muzej8','www.muzej.com','muzej@gmail.com','Adresa','1234567',24),
-	('Muzej9','www.muzej.com','muzej@gmail.com','Adresa','1234567',26),
-	('Muzej10','www.muzej.com','muzej@gmail.com','Adresa','1234567',13),
-	('Muzej11','www.muzej.com','muzej@gmail.com','Adresa','1234567',34),
-	('Muzej12','www.muzej.com','muzej@gmail.com','Adresa','1234567',10),
-	('Muzej13','www.muzej.com','muzej@gmail.com','Adresa','1234567',15),
-	('Muzej14','www.muzej.com','muzej@gmail.com','Adresa','1234567',12),
-	('Muzej15','www.muzej.com','muzej@gmail.com','Adresa','1234567',27),
-	('Muzej16','www.muzej.com','muzej@gmail.com','Adresa','1234567',39),
-	('Muzej17','www.muzej.com','muzej@gmail.com','Adresa','1234567',12),
-	('Muzej18','www.muzej.com','muzej@gmail.com','Adresa','1234567',49),
-	('Muzej19','www.muzej.com','muzej@gmail.com','Adresa','1234567',34),
-	('Muzej20','www.muzej.com','muzej@gmail.com','Adresa','1234567',30),
-	('Muzej21','www.muzej.com','muzej@gmail.com','Adresa','1234567',12),
-	('Muzej22','www.muzej.com','muzej@gmail.com','Adresa','1234567',30),
-	('Muzej23','www.muzej.com','muzej@gmail.com','Adresa','1234567',12),
-	('Muzej24','www.muzej.com','muzej@gmail.com','Adresa','1234567',5),
-	('Muzej25','www.muzej.com','muzej@gmail.com','Adresa','1234567',41),
-	('Muzej26','www.muzej.com','muzej@gmail.com','Adresa','1234567',23),
-	('Muzej27','www.muzej.com','muzej@gmail.com','Adresa','1234567',23),
-	('Muzej28','www.muzej.com','muzej@gmail.com','Adresa','1234567',43),
-	('Muzej29','www.muzej.com','muzej@gmail.com','Adresa','1234567',22),
-	('Muzej30','www.muzej.com','muzej@gmail.com','Adresa','1234567',47),
-	('Muzej31','www.muzej.com','muzej@gmail.com','Adresa','1234567',48),
-	('Muzej32','www.muzej.com','muzej@gmail.com','Adresa','1234567',3),
-	('Muzej33','www.muzej.com','muzej@gmail.com','Adresa','1234567',47),
-	('Muzej34','www.muzej.com','muzej@gmail.com','Adresa','1234567',13),
-	('Muzej35','www.muzej.com','muzej@gmail.com','Adresa','1234567',26),
-	('Muzej36','www.muzej.com','muzej@gmail.com','Adresa','1234567',19),
-	('Muzej37','www.muzej.com','muzej@gmail.com','Adresa','1234567',35),
-	('Muzej38','www.muzej.com','muzej@gmail.com','Adresa','1234567',23),
-	('Muzej39','www.muzej.com','muzej@gmail.com','Adresa','1234567',18),
-	('Muzej40','www.muzej.com','muzej@gmail.com','Adresa','1234567',28),
-	('Muzej41','www.muzej.com','muzej@gmail.com','Adresa','1234567',34),
-	('Muzej42','www.muzej.com','muzej@gmail.com','Adresa','1234567',38),
-	('Muzej43','www.muzej.com','muzej@gmail.com','Adresa','1234567',42),
-	('Muzej44','www.muzej.com','muzej@gmail.com','Adresa','1234567',19),
-	('Muzej45','www.muzej.com','muzej@gmail.com','Adresa','1234567',14),
-	('Muzej46','www.muzej.com','muzej@gmail.com','Adresa','1234567',42),
-	('Muzej47','www.muzej.com','muzej@gmail.com','Adresa','1234567',30),
-	('Muzej48','www.muzej.com','muzej@gmail.com','Adresa','1234567',18),
-	('Muzej49','www.muzej.com','muzej@gmail.com','Adresa','1234567',15),
-	('Muzej50','www.muzej.com','muzej@gmail.com','Adresa','1234567',50);
-
-INSERT INTO Antikvitet_prikazan VALUES
-	(1,4),
-	(2,50),
-	(3,9),
-	(4,6),
-	(5,5),
-	(6,13),
-	(7,13),
-	(8,40),
-	(9,34),
-	(10,13),
-	(11,22),
-	(12,36),
-	(13,1),
-	(14,39),
-	(15,46),
-	(16,19),
-	(17,5),
-	(18,25),
-	(19,48),
-	(20,25),
-	(21,4),
-	(22,48),
-	(23,12),
-	(24,17),
-	(25,24),
-	(26,40),
-	(27,19),
-	(28,49),
-	(29,17),
-	(30,43),
-	(31,6),
-	(32,45),
-	(33,46),
-	(34,8),
-	(35,26),
-	(36,45),
-	(37,40),
-	(38,6),
-	(39,2),
-	(40,10),
-	(41,47),
-	(42,10),
-	(43,34),
-	(44,2),
-	(45,41),
-	(46,49),
-	(47,30),
-	(48,19),
-	(49,43),
-	(50,12),
-	(51,20),
-	(52,33),
-	(53,36),
-	(54,27),
-	(55,46),
-	(56,7),
-	(57,38),
-	(58,42),
-	(59,33),
-	(60,16),
-	(61,45),
-	(62,15),
-	(63,24),
-	(64,42),
-	(65,8),
-	(66,27),
-	(67,40),
-	(68,44),
-	(69,13),
-	(70,2),
-	(71,30),
-	(72,50),
-	(73,24),
-	(74,38),
-	(75,28),
-	(76,45),
-	(77,15),
-	(78,11),
-	(79,27),
-	(80,25),
-	(81,10),
-	(82,50),
-	(83,7),
-	(84,6),
-	(85,24),
-	(86,24),
-	(87,10),
-	(88,20),
-	(89,12),
-	(90,20),
-	(91,7),
-	(92,48),
-	(93,24),
-	(94,37),
-	(95,15),
-	(96,33),
-	(97,36),
-	(98,43),
-	(99,45),
-	(100,14),
-	(101,10),
-	(102,37),
-	(103,7),
-	(104,41),
-	(105,33),
-	(106,20),
-	(107,9),
-	(108,48),
-	(109,49),
-	(110,1),
-	(111,43),
-	(112,28),
-	(113,16),
-	(114,8),
-	(115,7),
-	(116,46),
-	(117,8),
-	(118,19),
-	(119,18),
-	(120,35),
-	(121,18),
-	(122,21),
-	(123,32),
-	(124,44),
-	(125,46),
-	(126,32),
-	(127,27),
-	(128,37),
-	(129,24),
-	(130,46),
-	(131,9),
-	(132,22),
-	(133,16),
-	(134,13),
-	(135,16),
-	(136,23),
-	(137,43),
-	(138,16),
-	(139,23),
-	(140,4),
-	(141,15),
-	(142,13),
-	(143,21),
-	(144,12),
-	(145,28),
-	(146,29),
-	(147,32),
-	(148,17),
-	(149,31),
-	(150,19);
-
 /*Foreign keys*/
 ALTER TABLE Grad ADD CONSTRAINT FK_Grad_drzavaID FOREIGN KEY (drzavaID) REFERENCES Drzava(drzavaID) ON DELETE CASCADE;
 ALTER TABLE Lokalitet ADD CONSTRAINT FK_Lokalitet_gradID FOREIGN KEY (gradID) REFERENCES Grad(gradID) ON DELETE CASCADE;
@@ -706,9 +487,29 @@ ALTER TABLE Antikvitet ADD CONSTRAINT FK_Antikvitet_lokalitetID FOREIGN KEY (lok
 ALTER TABLE Antikvitet ADD CONSTRAINT FK_Antikvitet_periodID FOREIGN KEY (periodID) REFERENCES Period(periodID) ON DELETE CASCADE;
 ALTER TABLE Antikvitet ADD CONSTRAINT FK_Antikvitet_tip_antikvitetaID FOREIGN KEY (tip_antikvitetaID) REFERENCES Tip_Antikviteta(tip_antikvitetaID) ON DELETE CASCADE;
 ALTER TABLE Antikvitet ADD CONSTRAINT FK_Antikvitet_arheologID FOREIGN KEY (arheologID) REFERENCES Arheolog(arheologID) ON DELETE CASCADE;
+
+/*Dopuna*/
+CREATE TABLE Muzej(
+	muzejID int IDENTITY(1,1) not null,
+	naziv varchar(70),
+	sajt varchar(100),
+	mail varchar(100),
+	adresa text,
+	telefon varchar(20),
+	gradID int
+);
+
+CREATE TABLE Antikvitet_prikazan(
+	antikvitetID int not null,
+	muzejID int not null
+);
+
+ALTER TABLE Muzej ADD CONSTRAINT PK_Muzej PRIMARY KEY (muzejID);
+ALTER TABLE Antikvitet_prikazan ADD CONSTRAINT PK_Antikvitet_prikazan PRIMARY KEY (muzejID,antikvitetID);
+
+
 ALTER TABLE Antikvitet_prikazan ADD CONSTRAINT FK_Antikvitet_prikazan_antikvitetID FOREIGN KEY (antikvitetID) REFERENCES Antikvitet(antikvitetID) ON DELETE CASCADE;
 ALTER TABLE Antikvitet_prikazan ADD CONSTRAINT FK_Antikvitet_prikazan_muzejID FOREIGN KEY (muzejID) REFERENCES Muzej(muzejID) ON DELETE CASCADE;
-
 
 /*
 	USE master;
