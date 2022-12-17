@@ -1,8 +1,8 @@
-CREATE DATABASE A2;
+/*
+	CREATE DATABASE A2;
+	USE A2;
+*/
 
-USE A2;
-
-/*Table creation*/
 CREATE TABLE Citalac(
 	citalacID int not null,
 	maticniBroj varchar(20),
@@ -10,8 +10,7 @@ CREATE TABLE Citalac(
 	prezime varchar(35),
 	mesto varchar(30),
 	adresa varchar(40),
-	telefon varchar(15),
-	datum_uplate_clanarine date 
+	telefon varchar(15)
 );
 
 CREATE TABLE Knjiga(
@@ -52,13 +51,6 @@ CREATE TABLE Na_Citanju(
 	datum_vracanja date
 );
 
-CREATE TABLE Primerak(
-	primerakID int not null,
-	knjigaID int not null,
-	format_primerka varchar(50)
-);
-
-
 /*Primary keys*/
 ALTER TABLE Citalac ADD CONSTRAINT PK_Citalac PRIMARY KEY (citalacID);
 ALTER TABLE Knjiga ADD CONSTRAINT PK_Knjiga PRIMARY KEY (knjigaID);
@@ -67,10 +59,8 @@ ALTER TABLE Autor ADD CONSTRAINT PK_Autor PRIMARY KEY (autorID);
 ALTER TABLE Izdali ADD CONSTRAINT PK_Izdali PRIMARY KEY (izdavacID, knjigaID);
 ALTER TABLE Na_Citanju ADD CONSTRAINT PK_Na_Citanju PRIMARY KEY (knjigaID, citalacID, datum_uzimanja);
 ALTER TABLE Napisali ADD CONSTRAINT PK_Napisali PRIMARY KEY (autorID, knjigaID);
-ALTER TABLE Primerak ADD CONSTRAINT PK_Primerak PRIMARY KEY (primerakID,knjigaID);
 
 /*Constraints*/
-ALTER TABLE Citalac ADD CONSTRAINT Citalac_datum_uplate_clanarine CHECK(datum_uplate_clanarine<= GETDATE());
 
 
 INSERT INTO Citalac VALUES
@@ -332,82 +322,37 @@ INSERT INTO Izdali VALUES
 	(5,7,2007),
 	(2,8,2008);
 
-INSERT INTO Primerak VALUES
-	(1,1,'format1'),
-	(2,1,'format2'),
-	(3,1,'format3'),
-	(4,1,'format4'),
-	(5,1,'format5'),
-	(6,1,'format6'),
-	(7,1,'format7'),
-	(8,1,'format8'),
-	(9,2,'format1'),
-	(10,2,'format2'),
-	(11,2,'format3'),
-	(12,2,'format4'),
-	(13,2,'format5'),
-	(14,2,'format6'),
-	(15,2,'format7'),
-	(16,2,'format8'),
-	(17,3,'format1'),
-	(18,3,'format2'),
-	(19,3,'format3'),
-	(20,3,'format4'),
-	(21,3,'format5'),
-	(22,3,'format6'),
-	(23,3,'format7'),
-	(24,3,'format8'),
-	(25,4,'format1'),
-	(26,4,'format2'),
-	(27,4,'format3'),
-	(28,4,'format4'),
-	(29,4,'format5'),
-	(30,4,'format6'),
-	(31,4,'format7'),
-	(32,4,'format8'),
-	(33,5,'format1'),
-	(34,5,'format2'),
-	(35,5,'format3'),
-	(36,5,'format4'),
-	(37,5,'format5'),
-	(38,5,'format6'),
-	(39,5,'format7'),
-	(40,5,'format8'),
-	(41,6,'format1'),
-	(42,6,'format2'),
-	(43,6,'format3'),
-	(44,6,'format4'),
-	(45,6,'format5'),
-	(46,6,'format6'),
-	(47,6,'format7'),
-	(48,6,'format8'),
-	(49,7,'format1'),
-	(50,7,'format2'),
-	(51,7,'format3'),
-	(52,7,'format4'),
-	(53,7,'format5'),
-	(54,7,'format6'),
-	(55,7,'format7'),
-	(56,7,'format8'),
-	(57,8,'format1'),
-	(58,8,'format2'),
-	(59,8,'format3'),
-	(60,8,'format4'),
-	(61,8,'format5'),
-	(62,8,'format6'),
-	(63,8,'format7'),
-	(64,8,'format8');
-
-
 /*Foreign keys*/
+
 ALTER TABLE Na_Citanju ADD CONSTRAINT FK_CitalacID_Na_Citanju FOREIGN KEY (citalacID) REFERENCES Citalac(citalacID);
 ALTER TABLE Na_Citanju ADD CONSTRAINT FK_KnjigaID_Na_Citanju FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID);
 ALTER TABLE Napisali ADD CONSTRAINT FK_AutorID_Napisali FOREIGN KEY (autorID) REFERENCES Autor(autorID);
 ALTER TABLE Napisali ADD CONSTRAINT FK_KnjigaID_Napisali FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID);
 ALTER TABLE Izdali ADD CONSTRAINT FK_IzdavacID_Izdali FOREIGN KEY (izdavacID) REFERENCES Izdavac(izdavacID);
 ALTER TABLE Izdali ADD CONSTRAINT FK_KnjigaID_Izdali FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID);
-ALTER TABLE Primerak ADD CONSTRAINT FK_KnjigaID_Primerak FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID); 
 
-USE master;
-DROP DATABASE A2;
+/*Dopuna*/
 
+CREATE TABLE Primerak(
+	primerakID int not null,
+	knjigaID int not null,
+	format_primerkaID int
+);
+
+CREATE TABLE Format_Knjige(
+	formatID int not null,
+	naziv varchar(50)
+);
+
+ALTER TABLE Primerak ADD CONSTRAINT PK_Primerak PRIMARY KEY (primerakID,knjigaID);
+ALter TABLE Format_Knjige ADD CONSTRAINT PK_Format_Knjige PRIMARY KEY (formatID);
+ALTER TABLE Primerak ADD CONSTRAINT FK_Primerak_knjigaID FOREIGN KEY (knjigaID) REFERENCES Knjiga(knjigaID); 
+ALTER TABLE Primerak ADD CONSTRAINT FK_Primerak_formatID FOREIGN KEY (formatID) REFERENCES Format_Knjige(formatID); 
+
+ALTER TABLE Citalac ADD datum_uplate_clanarine date ;
+ALTER TABLE Citalac ADD CONSTRAINT Citalac_datum_uplate_clanarine CHECK(datum_uplate_clanarine<= GETDATE());
+
+/*
+	USE master;
+	DROP DATABASE A2;
+*/
