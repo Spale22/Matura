@@ -1,6 +1,6 @@
 /*
-CREATE DATABASE A7
-USE  A7
+	CREATE DATABASE A7
+	USE  A7
 */
 
 CREATE TABLE Tip(
@@ -53,22 +53,6 @@ CREATE TABLE Kontakt_Informacije(
 	detalji text
 );
 
-CREATE TABLE Smer(
-	smerID int not null,
-	naziv varchar(50),
-	datum_akreditacije date not null
-);
-
-CREATE TABLE Studira(
-	studentID int not null,
-	smerID int not null
-);
-
-CREATE TABLE Sadrzi_predmet(
-	smerID int not null,
-	predmetID int not null
-);
-
 /*Primary keys*/
 ALTER TABLE Tip ADD CONSTRAINT PK_Tip PRIMARY KEY (tipID);
 ALTER TABLE Profesor ADD CONSTRAINT PK_Profesor PRIMARY KEY (profesorID);
@@ -76,13 +60,6 @@ ALTER TABLE Predmet ADD CONSTRAINT PK_Predmet PRIMARY KEY (predmetID);
 ALTER TABLE Izabrani_Predmet ADD CONSTRAINT PK_Izabrani_Predmet PRIMARY KEY (studentID,predmetID,godina_slusanja);
 ALTER TABLE Student ADD CONSTRAINT PK_Student PRIMARY KEY (studentID);
 ALTER TABLE Kontakt_Informacije ADD CONSTRAINT PK_Kontakt_Informacije PRIMARY KEY (kontaktID);
-ALTER TABLE Smer ADD CONSTRAINT PK_Smer PRIMARY KEY (smerID);
-ALTER TABLE Studira ADD CONSTRAINT PK_Studira PRIMARY KEY (studentID,smerID);
-ALTER TABLE Sadrzi_predmet ADD CONSTRAINT PK_Sadrzi_predmet PRIMARY KEY (smerID,predmetID);
-
-/*Constraints*/
-ALTER TABLE Izabrani_Predmet ADD CONSTRAINT odslusao CHECK (odslusao IN ('TRUE','FALSE'));
-ALTER TABLE Smer ADD CONSTRAINT akreditacija CHECK (YEAR(datum_akreditacije)>YEAR(GETDATE())-7);
 
 INSERT INTO Tip VALUES
 	(1,'Naziv1','opis'),
@@ -1291,355 +1268,37 @@ INSERT INTO Kontakt_Informacije VALUES
 (175,213,7,'2016.7.14',5,'detalji'),
 (176,151,4,'2016.10.22',2,'detalji');
 
-INSERT INTO Smer VALUES
-	(1,'Smer1','2016.6.14'),
-	(2,'Smer2','2017.12.16'),
-	(3,'Smer3','2019.7.19'),
-	(4,'Smer4','2019.12.15'),
-	(5,'Smer5','2020.9.7'),
-	(6,'Smer6','2020.4.18'),
-	(7,'Smer7','2017.3.9'),
-	(8,'Smer8','2016.6.16'),
-	(9,'Smer9','2017.4.8'),
-	(10,'Smer10','2020.5.3');
-
-INSERT INTO Studira VALUES
-	(1,4),
-	(2,3),
-	(3,10),
-	(4,6),
-	(5,7),
-	(6,2),
-	(7,2),
-	(8,7),
-	(9,2),
-	(10,9),
-	(11,4),
-	(12,9),
-	(13,3),
-	(14,1),
-	(15,1),
-	(16,4),
-	(17,9),
-	(18,5),
-	(19,1),
-	(20,10),
-	(21,6),
-	(22,9),
-	(23,7),
-	(24,9),
-	(25,10),
-	(26,10),
-	(27,8),
-	(28,3),
-	(29,9),
-	(30,10),
-	(31,4),
-	(32,6),
-	(33,7),
-	(34,10),
-	(35,9),
-	(36,2),
-	(37,9),
-	(38,9),
-	(39,6),
-	(40,7),
-	(41,4),
-	(42,4),
-	(43,5),
-	(44,5),
-	(45,9),
-	(46,6),
-	(47,7),
-	(48,3),
-	(49,6),
-	(50,10),
-	(51,3),
-	(52,10),
-	(53,3),
-	(54,4),
-	(55,2),
-	(56,6),
-	(57,7),
-	(58,2),
-	(59,6),
-	(60,7),
-	(61,4),
-	(62,9),
-	(63,9),
-	(64,3),
-	(65,5),
-	(66,8),
-	(67,2),
-	(68,3),
-	(69,2),
-	(70,9),
-	(71,6),
-	(72,1),
-	(73,10),
-	(74,5),
-	(75,6),
-	(76,3),
-	(77,4),
-	(78,2),
-	(79,1),
-	(80,5),
-	(81,4),
-	(82,5),
-	(83,8),
-	(84,9),
-	(85,8),
-	(86,5),
-	(87,4),
-	(88,4),
-	(89,9),
-	(90,4),
-	(91,5),
-	(92,8),
-	(93,3),
-	(94,9),
-	(95,3),
-	(96,6),
-	(97,6),
-	(98,3),
-	(99,1),
-	(100,1),
-	(101,4),
-	(102,4),
-	(103,2),
-	(104,7),
-	(105,4),
-	(106,3),
-	(107,1),
-	(108,9),
-	(109,8),
-	(110,9),
-	(111,3),
-	(112,6),
-	(113,2),
-	(114,2),
-	(115,4),
-	(116,10),
-	(117,2),
-	(118,10),
-	(119,6),
-	(120,10),
-	(121,5),
-	(122,8),
-	(123,5),
-	(124,8),
-	(125,4),
-	(126,9),
-	(127,8),
-	(128,1),
-	(129,2),
-	(130,1),
-	(131,8),
-	(132,1),
-	(133,1),
-	(134,10),
-	(135,1),
-	(136,10),
-	(137,4),
-	(138,1),
-	(139,5),
-	(140,5),
-	(141,4),
-	(142,6),
-	(143,7),
-	(144,10),
-	(145,2),
-	(146,10),
-	(147,6),
-	(148,1),
-	(149,5),
-	(150,4),
-	(151,4),
-	(152,6),
-	(153,8),
-	(154,1),
-	(155,7),
-	(156,6),
-	(157,10),
-	(158,4),
-	(159,4),
-	(160,6),
-	(161,5),
-	(162,10),
-	(163,7),
-	(164,8),
-	(165,2),
-	(166,2),
-	(167,5),
-	(168,3),
-	(169,2),
-	(170,5),
-	(171,7),
-	(172,1),
-	(173,5),
-	(174,1),
-	(175,7),
-	(176,9),
-	(177,2),
-	(178,6),
-	(179,7),
-	(180,5),
-	(181,3),
-	(182,8),
-	(183,6),
-	(184,9),
-	(185,7),
-	(186,2),
-	(187,3),
-	(188,1),
-	(189,3),
-	(190,5),
-	(191,10),
-	(192,1),
-	(193,8),
-	(194,10),
-	(195,1),
-	(196,4),
-	(197,9),
-	(198,9),
-	(199,8),
-	(200,10),
-	(201,6),
-	(202,4),
-	(203,10),
-	(204,1),
-	(205,7),
-	(206,3),
-	(207,2),
-	(208,8),
-	(209,5),
-	(210,9),
-	(211,5),
-	(212,5),
-	(213,7),
-	(214,10),
-	(215,3),
-	(216,8),
-	(217,5),
-	(218,9),
-	(219,1),
-	(220,1),
-	(221,9),
-	(222,4),
-	(223,1),
-	(224,8),
-	(225,5),
-	(226,7),
-	(227,4),
-	(228,5),
-	(229,1),
-	(230,3),
-	(231,1),
-	(232,4),
-	(233,8),
-	(234,7),
-	(235,9),
-	(236,10),
-	(237,9),
-	(238,6),
-	(239,2),
-	(240,4),
-	(241,10),
-	(242,6),
-	(243,7),
-	(244,4),
-	(245,1),
-	(246,6),
-	(247,4),
-	(248,9),
-	(249,7),
-	(250,3);
-
-INSERT INTO Sadrzi_predmet VALUES
-	(1,15),
-	(1,14),
-	(1,4),
-	(1,5),
-	(1,6),
-	(1,1),
-	(1,8),
-	(1,9),
-	(2,15),
-	(2,11),
-	(2,6),
-	(2,8),
-	(2,7),
-	(2,4),
-	(2,1),
-	(2,3),
-	(3,8),
-	(3,7),
-	(3,2),
-	(3,6),
-	(3,5),
-	(3,11),
-	(4,13),
-	(4,6),
-	(4,12),
-	(4,1),
-	(4,3),
-	(4,2),
-	(4,8),
-	(4,5),
-	(5,7),
-	(5,5),
-	(5,12),
-	(5,15),
-	(5,3),
-	(5,8),
-	(5,2),
-	(5,6),
-	(5,13),
-	(6,1),
-	(6,12),
-	(6,13),
-	(6,11),
-	(6,10),
-	(6,9),
-	(6,7),
-	(6,14),
-	(7,2),
-	(7,10),
-	(7,13),
-	(7,12),
-	(7,14),
-	(7,5),
-	(7,3),
-	(7,9),
-	(7,7),
-	(8,1),
-	(8,11),
-	(8,12),
-	(8,6),
-	(8,3),
-	(8,4),
-	(9,14),
-	(9,5),
-	(9,15),
-	(9,9),
-	(9,1),
-	(9,4),
-	(9,11),
-	(9,12),
-	(10,9),
-	(10,6),
-	(10,10),
-	(10,7),
-	(10,8),
-	(10,15),
-	(10,1);
-
 /*Foreign key*/
 ALTER TABLE Kontakt_Informacije ADD CONSTRAINT FK_Kontakt_Informacije_studentID FOREIGN KEY (studentID) REFERENCES Student(studentID) ON DELETE CASCADE;
 ALTER TABLE Kontakt_Informacije ADD CONSTRAINT FK_Kontakt_Informacije_tipID FOREIGN KEY (tipID) REFERENCES Tip(tipID) ON DELETE CASCADE;
 ALTER TABLE Kontakt_Informacije ADD CONSTRAINT FK_Kontakt_Informacije_profesorID FOREIGN KEY (profesorID) REFERENCES Profesor(profesorID) ON DELETE CASCADE;
 ALTER TABLE Izabrani_Predmet ADD CONSTRAINT FK_Izabrani_Predmet_studentID FOREIGN KEY (studentID) REFERENCES Student(studentID) ON DELETE CASCADE;
 ALTER TABLE Izabrani_Predmet ADD CONSTRAINT FK_Izabrani_Predmet_predmetID FOREIGN KEY (predmetID) REFERENCES Predmet(predmetID) ON DELETE CASCADE;
+
+/*Dopuna*/
+CREATE TABLE Smer(
+	smerID int not null,
+	naziv varchar(50),
+	datum_akreditacije date not null
+);
+
+CREATE TABLE Studira(
+	studentID int not null,
+	smerID int not null
+);
+
+CREATE TABLE Sadrzi_predmet(
+	smerID int not null,
+	predmetID int not null
+);
+
+ALTER TABLE Smer ADD CONSTRAINT PK_Smer PRIMARY KEY (smerID);
+ALTER TABLE Studira ADD CONSTRAINT PK_Studira PRIMARY KEY (studentID,smerID);
+ALTER TABLE Sadrzi_predmet ADD CONSTRAINT PK_Sadrzi_predmet PRIMARY KEY (smerID,predmetID);
+
+ALTER TABLE Izabrani_Predmet ADD CONSTRAINT odslusao CHECK (odslusao IN ('TRUE','FALSE'));
+ALTER TABLE Smer ADD CONSTRAINT akreditacija CHECK (YEAR(datum_akreditacije)>YEAR(GETDATE())-7);
+
 ALTER TABLE Studira ADD CONSTRAINT FK_Studira_studentID FOREIGN KEY (studentID) REFERENCES Student(studentID) ON DELETE CASCADE;
 ALTER TABLE Studira ADD CONSTRAINT FK_Studira_smerID FOREIGN KEY (smerID) REFERENCES Smer(smerID) ON DELETE CASCADE;
 ALTER TABLE Sadrzi_predmet ADD CONSTRAINT FK_Sadrzi_predmet_smerID FOREIGN KEY (smerID) REFERENCES Smer(smerID) ON DELETE CASCADE;
@@ -1647,6 +1306,6 @@ ALTER TABLE Sadrzi_predmet ADD CONSTRAINT FK_Sadrzi_predmet_predmetID FOREIGN KE
 
 
 /*
-USE master;
-DROP DATABASE A7;
+	USE master;
+	DROP DATABASE A7;
 */
