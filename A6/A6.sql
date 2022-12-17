@@ -28,24 +28,15 @@ CREATE TABLE Model(
 
 CREATE TABLE Vozilo(
 	voziloID int not null,
-	vlasnikID int,
-	prvi_vlasnik varchar(5),
 	registracija varchar(5),
 	godina_proizvodnje int,
 	predjenoKM int,
-	cena int,
 	modelID int,
 	bojaID int,
 	gorivoID int
 );
 
-CREATE TABLE Vlasnik(
-	vlasnikID int not null,
-	ime varchar(30),
-	prezime varchar(50),
-	telefon varchar(15),
-	adresa varchar(50)
-);
+
 
 /*Primary keys*/
 ALTER TABLE Proizvodjac ADD CONSTRAINT PK_Proizvodjac PRIMARY KEY (proizvodjacID);
@@ -53,12 +44,8 @@ ALTER TABLE Gorivo ADD CONSTRAINT PK_Gorivo PRIMARY KEY (gorivoID);
 ALTER TABLE Boja ADD CONSTRAINT PK_Boja PRIMARY KEY (bojaID);
 ALTER TABLE Model ADD CONSTRAINT PK_Model PRIMARY KEY (modelID);
 ALTER TABLE Vozilo ADD CONSTRAINT PK_Vozilo PRIMARY KEY (voziloID);
-ALTER TABLE Vlasnik ADD CONSTRAINT PK_Vlasnik PRIMARY KEY (vlasnikID);
 
 /*Constraints*/
-ALTER TABLE Vozilo ADD CONSTRAINT cena CHECK(cena>0);
-ALTER TABLE Vozilo ADD CONSTRAINT prvi_vlasnik CHECK(prvi_vlasnik IN('TRUE','FALSE'));
-ALTER TABLE Vozilo ADD CONSTRAINT registracija CHECK(registracija IN('TRUE','FALSE'));
 
 INSERT INTO Proizvodjac	VALUES
 	(1,'Prozivodjac1'),
@@ -176,23 +163,6 @@ INSERT INTO Model VALUES
 	(64,'Model1',14),
 	(65,'Model1',15),
 	(66,'Model2',15);
-
-INSERT INTO Vlasnik VALUES
-	(1,'Vlasnik1','Vlasnik1','0621231237','Adresa'),
-	(2,'Vlasnik2','Vlasnik2','0621231237','Adresa'),
-	(3,'Vlasnik3','Vlasnik3','0621231237','Adresa'),
-	(4,'Vlasnik4','Vlasnik4','0621231237','Adresa'),
-	(5,'Vlasnik5','Vlasnik5','0621231237','Adresa'),
-	(6,'Vlasnik6','Vlasnik6','0621231237','Adresa'),
-	(7,'Vlasnik7','Vlasnik7','0621231237','Adresa'),
-	(8,'Vlasnik8','Vlasnik8','0621231237','Adresa'),
-	(9,'Vlasnik9','Vlasnik9','0621231237','Adresa'),
-	(10,'Vlasnik10','Vlasnik10','0621231237','Adresa'),
-	(11,'Vlasnik11','Vlasnik11','0621231237','Adresa'),
-	(12,'Vlasnik12','Vlasnik12','0621231237','Adresa'),
-	(13,'Vlasnik13','Vlasnik13','0621231237','Adresa'),
-	(14,'Vlasnik14','Vlasnik14','0621231237','Adresa'),
-	(15,'Vlasnik15','Vlasnik15','0621231237','Adresa');
 
 INSERT INTO Vozilo VALUES 
 	(1,4,'FALSE','FALSE',2007,75000,9000,2,15,2),
@@ -497,13 +467,28 @@ INSERT INTO Vozilo VALUES
 	(300,11,'TRUE','FALSE',2008,120000,13000,57,17,1);
 
 /*Foreign keys*/
-ALTER TABLE Vozilo ADD CONSTRAINT FK_Vozilo_vlasnikID FOREIGN KEY (vlasnikID) REFERENCES Vlasnik(vlasnikID) ON DELETE CASCADE;
 ALTER TABLE Vozilo ADD CONSTRAINT FK_Vozilo_modelID FOREIGN KEY (modelID) REFERENCES Model(modelID) ON DELETE CASCADE;
 ALTER TABLE Vozilo ADD CONSTRAINT FK_Vozilo_bojaID FOREIGN KEY (bojaID) REFERENCES Boja(bojaID) ON DELETE CASCADE;
 ALTER TABLE Vozilo ADD CONSTRAINT FK_Vozilo_gorivoID FOREIGN KEY (gorivoID) REFERENCES Gorivo(gorivoID) ON DELETE CASCADE;
 ALTER TABLE Model ADD CONSTRAINT FK_Model_proizvodjacID FOREIGN KEY (proizvodjacID) REFERENCES Proizvodjac(proizvodjacID) ON DELETE CASCADE;
 
+/*Dopuna*/
+CREATE TABLE Vlasnik(
+	vlasnikID int not null,
+	ime varchar(30),
+	prezime varchar(50),
+	telefon varchar(15),
+	adresa varchar(50)
+);
 
+ALTER TABLE Vozilo ADD vlasnikID int;
+ALTER TABLE Vozilo ADD prvi_vlasnik varchar(5);
+ALTER TABLE Vozilo ADD cena int;
+ALTER TABLE Vozilo ADD CONSTRAINT cena CHECK(cena>0);
+ALTER TABLE Vozilo ADD CONSTRAINT prvi_vlasnik CHECK(prvi_vlasnik IN('TRUE','FALSE'));
+ALTER TABLE Vozilo ADD CONSTRAINT registracija CHECK(registracija IN('TRUE','FALSE'));
+ALTER TABLE Vlasnik ADD CONSTRAINT PK_Vlasnik PRIMARY KEY (vlasnikID);
+ALTER TABLE Vozilo ADD CONSTRAINT FK_Vozilo_vlasnikID FOREIGN KEY (vlasnikID) REFERENCES Vlasnik(vlasnikID) ON DELETE CASCADE;
 
 /*
 	USE master;
