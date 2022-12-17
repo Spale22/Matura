@@ -1,6 +1,6 @@
 /*
-CREATE DATABASE A5;
-USE A5;
+	CREATE DATABASE A5;
+	USE A5;
 */
 
 CREATE TABLE Pol(
@@ -50,20 +50,6 @@ CREATE TABLE Aktivnosti(
 	zavrsetak time
 );
 
-CREATE TABLE Koordinira(
-	aktivnostID int not null,
-	koordinatorID int not null
-);
-
-CREATE TABLE Koordinator(
-	koordinatorID int not null,
-	ime varchar(30),
-	prezime varchar(50),
-	zvanje text,
-	adresa varchar(50),
-	mobilni_telefon varchar(20)
-);
-
 /*Primary keys*/
 ALTER TABLE Pol ADD CONSTRAINT PK_Pol PRIMARY KEY (polID);
 ALTER TABLE Svojstvo_Roditelja ADD CONSTRAINT PK_Svojstvo_Roditelja PRIMARY KEY (svojstvoID);
@@ -71,13 +57,9 @@ ALTER TABLE Roditelj ADD CONSTRAINT PK_Roditelj PRIMARY KEY (roditeljID);
 ALTER TABLE Dete ADD CONSTRAINT PK_Dete PRIMARY KEY (deteID);
 ALTER TABLE Registar_Aktivnosti ADD CONSTRAINT PK_Registar_Aktivnosti PRIMARY KEY (aktivnostID,deteID,datum);
 ALTER TABLE Aktivnosti ADD CONSTRAINT PK_Aktivnosti PRIMARY KEY (aktivnostID);
-ALTER TABLE Koordinator ADD CONSTRAINT PK_Koordinator PRIMARY KEY (koordinatorID );
-ALTER TABLE Koordinira ADD CONSTRAINT PK_Koordinira PRIMARY KEY (aktivnostID,koordinatorID);
 
 /*Constraints*/
 ALTER TABLE Registar_Aktivnosti ADD CONSTRAINT prisustvo CHECK (prisustvo IN ('TRUE','FALSE'));
-ALTER TABLE Aktivnosti ADD CONSTRAINT vreme CHECK (pocetak<zavrsetak);
-ALTER TABLE Dete ADD CONSTRAINT prijem CHECK (datum_prijema>datum_rodjenja);
 
 INSERT INTO Pol VALUES 
 	(1,'Musko'),
@@ -592,33 +574,6 @@ INSERT INTO Dete VALUES
 	(249,2,'Detej249','Dete249','2006.8.17','2008.8.17','beleska',90),
 	(250,2,'Detej250','Dete250','2005.9.15','2007.9.15','beleska',228);
 
-INSERT INTO Koordinator VALUES
-	(1,'Koordinator1','Koordinator1','Zvanje','Adresa','0621231237'),
-	(2,'Koordinator2','Koordinator2','Zvanje','Adresa','0621231237'),
-	(3,'Koordinator3','Koordinator3','Zvanje','Adresa','0621231237'),
-	(4,'Koordinator4','Koordinator4','Zvanje','Adresa','0621231237'),
-	(5,'Koordinator5','Koordinator5','Zvanje','Adresa','0621231237'),
-	(6,'Koordinator6','Koordinator6','Zvanje','Adresa','0621231237'),
-	(7,'Koordinator7','Koordinator7','Zvanje','Adresa','0621231237'),
-	(8,'Koordinator8','Koordinator8','Zvanje','Adresa','0621231237'),
-	(9,'Koordinator9','Koordinator9','Zvanje','Adresa','0621231237'),
-	(10,'Koordinator10','Koordinator10','Zvanje','Adresa','0621231237'),
-	(11,'Koordinator11','Koordinator11','Zvanje','Adresa','0621231237'),
-	(12,'Koordinator12','Koordinator12','Zvanje','Adresa','0621231237'),
-	(13,'Koordinator13','Koordinator13','Zvanje','Adresa','0621231237'),
-	(14,'Koordinator14','Koordinator14','Zvanje','Adresa','0621231237'),
-	(15,'Koordinator15','Koordinator15','Zvanje','Adresa','0621231237'),
-	(16,'Koordinator16','Koordinator16','Zvanje','Adresa','0621231237'),
-	(17,'Koordinator17','Koordinator17','Zvanje','Adresa','0621231237'),
-	(18,'Koordinator18','Koordinator18','Zvanje','Adresa','0621231237'),
-	(19,'Koordinator19','Koordinator19','Zvanje','Adresa','0621231237'),
-	(20,'Koordinator20','Koordinator20','Zvanje','Adresa','0621231237'),
-	(21,'Koordinator21','Koordinator21','Zvanje','Adresa','0621231237'),
-	(22,'Koordinator22','Koordinator22','Zvanje','Adresa','0621231237'),
-	(23,'Koordinator23','Koordinator23','Zvanje','Adresa','0621231237'),
-	(24,'Koordinator24','Koordinator24','Zvanje','Adresa','0621231237'),
-	(25,'Koordinator25','Koordinator25','Zvanje','Adresa','0621231237');
-
 INSERT INTO Aktivnosti VALUES
 	(1,'Naziv','Petak','12:00','13:30'),
 	(2,'Naziv','Utorak','13:00','14:30'),
@@ -670,106 +625,6 @@ INSERT INTO Aktivnosti VALUES
 	(48,'Naziv','Petak','11:00','12:30'),
 	(49,'Naziv','Cetvrtak','11:00','12:30'),
 	(50,'Naziv','Cetvrtak','16:00','17:30');
-
-INSERT INTO Koordinira VALUES
-	(34,16),
-	(33,2),
-	(3,7),
-	(31,19),
-	(21,22),
-	(15,11),
-	(30,18),
-	(26,3),
-	(23,1),
-	(44,16),
-	(47,12),
-	(40,13),
-	(1,15),
-	(22,4),
-	(38,22),
-	(22,19),
-	(49,22),
-	(21,12),
-	(41,4),
-	(8,18),
-	(26,24),
-	(34,13),
-	(13,18),
-	(29,2),
-	(15,24),
-	(38,12),
-	(15,20),
-	(23,5),
-	(42,4),
-	(3,12),
-	(41,13),
-	(50,15),
-	(21,15),
-	(23,19),
-	(14,2),
-	(14,8),
-	(44,5),
-	(7,25),
-	(40,8),
-	(13,8),
-	(2,10),
-	(42,21),
-	(5,25),
-	(22,5),
-	(21,6),
-	(31,17),
-	(5,18),
-	(45,1),
-	(48,3),
-	(4,18),
-	(13,21),
-	(39,6),
-	(34,11),
-	(31,4),
-	(34,12),
-	(21,14),
-	(45,19),
-	(22,11),
-	(34,5),
-	(24,12),
-	(7,7),
-	(18,2),
-	(23,16),
-	(12,5),
-	(14,4),
-	(3,18),
-	(11,15),
-	(4,6),
-	(32,15),
-	(7,17),
-	(19,8),
-	(40,9),
-	(14,12),
-	(18,20),
-	(32,16),
-	(28,25),
-	(24,18),
-	(40,2),
-	(11,11),
-	(43,14),
-	(20,18),
-	(17,9),
-	(34,6),
-	(3,21),
-	(5,21),
-	(38,10),
-	(14,10),
-	(42,22),
-	(46,21),
-	(39,8),
-	(4,15),
-	(1,3),
-	(38,24),
-	(41,2),
-	(23,24),
-	(23,25),
-	(29,3);
-
 
 INSERT INTO Registar_Aktivnosti VALUES
 	(34,125,'2015.7.8','TRUE','beleska'),
@@ -1273,19 +1128,37 @@ INSERT INTO Registar_Aktivnosti VALUES
 	(11,94,'2014.11.25','TRUE','beleska'),
 	(19,194,'2012.7.28','TRUE','beleska');
 
-
 /*Foregin keys*/
 ALTER TABLE Registar_Aktivnosti ADD CONSTRAINT FK_Registar_Aktivnosti_aktivnostID FOREIGN KEY (aktivnostID) REFERENCES Aktivnosti(aktivnostID) ON DELETE CASCADE;
 ALTER TABLE Registar_Aktivnosti ADD CONSTRAINT FK_Registar_Aktivnosti_deteID FOREIGN KEY (deteID) REFERENCES Dete(deteID) ON DELETE CASCADE;
 ALTER TABLE Dete ADD CONSTRAINT FK_Dete_polID FOREIGN KEY (polID) REFERENCES Pol(polID) ON DELETE CASCADE; 
 ALTER TABLE Dete ADD CONSTRAINT FK_Dete_roditeljID FOREIGN KEY (roditeljID) REFERENCES Roditelj(roditeljID) ON DELETE CASCADE;
 ALTER TABLE Roditelj ADD CONSTRAINT FK_Roditelj_svojstvoID FOREIGN KEY (svojstvoID) REFERENCES Svojstvo_Roditelja(svojstvoID) ON DELETE CASCADE;
+
+/*Dopuna*/
+CREATE TABLE Koordinira(
+	aktivnostID int not null,
+	koordinatorID int not null
+);
+
+CREATE TABLE Koordinator(
+	koordinatorID int not null,
+	ime varchar(30),
+	prezime varchar(50),
+	zvanje text,
+	adresa varchar(50),
+	mobilni_telefon varchar(20)
+);
+
+ALTER TABLE Koordinator ADD CONSTRAINT PK_Koordinator PRIMARY KEY (koordinatorID );
+ALTER TABLE Koordinira ADD CONSTRAINT PK_Koordinira PRIMARY KEY (aktivnostID,koordinatorID);
+ALTER TABLE Aktivnosti ADD CONSTRAINT vreme CHECK (pocetak<zavrsetak);
+ALTER TABLE Dete ADD CONSTRAINT prijem CHECK (datum_prijema>datum_rodjenja);
 ALTER TABLE Koordinira ADD CONSTRAINT FK_Koordinira_koordinatorID FOREIGN KEY (koordinatorID) REFERENCES Koordinator(koordinatorID) ON DELETE CASCADE;
 ALTER TABLE Koordinira ADD CONSTRAINT FK_Koordinira_aktivnostID FOREIGN KEY (aktivnostID) REFERENCES Aktivnosti(aktivnostID) ON DELETE CASCADE;
 
 
-
 /*
-USE master;
-DROP DATABASE A5;
+	USE master;
+	DROP DATABASE A5;
 */
