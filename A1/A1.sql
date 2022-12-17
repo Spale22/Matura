@@ -1,8 +1,8 @@
-CREATE DATABASE A1;
+/*
+	CREATE DATABASE A1;
+	USE A1;
+*/
 
-USE A1;
-
-/*Table creation*/
 CREATE TABLE Citalac(
 	CitalacID int not null,
 	MaticniBroj varchar(20),
@@ -51,37 +51,14 @@ CREATE TABLE Na_Citanju(
 	DatumVracanja date
 );
 
-CREATE TABLE Primerak(
-	KnjigaID int not null,
-	PrimerakID int not null,
-	SkolaID int not null,
-	Datum_nabavke date 
-);
-
-CREATE TABLE Skola(
-	SkolaID int not null,
-	Naziv varchar(70),
-	Adresa varchar(40),
-	Datum_osnivanja_grane date
-);
-
-
-
 /*Primary keys*/
 ALTER TABLE Citalac ADD CONSTRAINT PK_Citalac PRIMARY KEY (CitalacID);
 ALTER TABLE Knjiga ADD CONSTRAINT PK_Knjiga PRIMARY KEY (KnjigaID);
 ALTER TABLE Izdavac ADD CONSTRAINT PK_Izdavac PRIMARY KEY (IzdavacID);
 ALTER TABLE Autor ADD CONSTRAINT PK_Autor PRIMARY KEY (AutorID);
 ALTER TABLE Izdali ADD CONSTRAINT PK_Izdali PRIMARY KEY (IzdavacID, KnjigaID);
-ALTER TABLE Primerak ADD CONSTRAINT PK_Primerak PRIMARY KEY (KnjigaID, PrimerakID);
 ALTER TABLE Na_Citanju ADD CONSTRAINT PK_Na_Citanju PRIMARY KEY (KnjigaID, CitalacID, DatumUzimanja);
 ALTER TABLE Napisali ADD CONSTRAINT PK_Napisali PRIMARY KEY (AutorID, KnjigaID);
-ALTER TABLE Skola ADD CONSTRAINT PK_Skola PRIMARY KEY (SkolaID);
-
-/*Constraints*/
-ALTER TABLE Primerak ADD CONSTRAINT Primerak_datum_nabavke CHECK(Datum_nabavke>= '2000.01.01');
-ALTER TABLE Skola ADD CONSTRAINT Skola_datum_osnivanja_grane CHECK (Datum_osnivanja_grane>='2000.01.01');
-
 
 INSERT INTO Citalac VALUES
 	(1,'1605997740011','Citalac1','Citalac1','Adresa1'),
@@ -120,13 +97,6 @@ INSERT INTO Knjiga VALUES
 	(6,3,'123 45 6789 101 1','Knjiga6'),
 	(7,2,'123 45 6789 101 1','Knjiga7'),
 	(8,1,'123 45 6789 101 1','Knjiga8');
-
-INSERT INTO Skola VALUES 
-	(1,'Naziv1','Adresa1','2002.05.11'),
-	(2,'Naziv2','Adresa2','2001.04.12'),
-	(3,'Naziv3','Adresa3','2004.03.13'),
-	(4,'Naziv4','Adresa4','2003.02.14'),
-	(5,'Naziv5','Adresa5','2005.01.15');
 
 INSERT INTO Na_Citanju VALUES
 	(1,1,'2010.04.01',null),
@@ -245,47 +215,6 @@ INSERT INTO Izdali VALUES
 	(5,7,2007),
 	(2,8,2008);
 
-INSERT INTO Primerak VALUES
-	(1,1,1,'2002.05.11'),
-	(2,2,1,'2002.05.11'),
-	(3,3,1,'2002.05.11'),
-	(4,4,1,'2002.05.11'),
-	(5,5,1,'2002.05.11'),
-	(6,6,1,'2002.05.11'),
-	(7,7,1,'2002.05.11'),
-	(8,8,1,'2002.05.11'),
-	(1,9,2,'2001.04.12'),
-	(2,10,2,'2001.04.12'),
-	(3,11,2,'2001.04.12'),
-	(4,12,2,'2001.04.12'),
-	(5,13,2,'2001.04.12'),
-	(6,14,2,'2001.04.12'),
-	(7,15,2,'2001.04.12'),
-	(8,26,2,'2001.04.12'),
-	(1,27,3,'2004.03.13'),
-	(2,28,3,'2004.03.13'),
-	(3,29,3,'2004.03.13'),
-	(4,30,3,'2004.03.13'),
-	(5,31,3,'2004.03.13'),
-	(6,32,3,'2004.03.13'),
-	(7,33,3,'2004.03.13'),
-	(8,34,3,'2004.03.13'),
-	(1,35,4,'2003.02.14'),
-	(2,36,4,'2003.02.14'),
-	(3,37,4,'2003.02.14'),
-	(4,38,4,'2003.02.14'),
-	(5,39,4,'2003.02.14'),
-	(6,40,4,'2003.02.14'),
-	(7,41,4,'2003.02.14'),
-	(8,42,4,'2003.02.14'),
-	(1,43,5,'2005.01.15'),
-	(2,44,5,'2005.01.15'),
-	(3,45,5,'2005.01.15'),
-	(4,46,5,'2005.01.15'),
-	(5,47,5,'2005.01.15'),
-	(6,48,5,'2005.01.15'),
-	(7,49,5,'2005.01.15'),
-	(8,50,5,'2005.01.15');
 
 /*Foreign keys*/
 ALTER TABLE Na_Citanju ADD CONSTRAINT FK_CitalacID_Na_Citanju FOREIGN KEY (CitalacID) REFERENCES Citalac(CitalacID);
@@ -295,9 +224,31 @@ ALTER TABLE Napisali ADD CONSTRAINT FK_AutorID_Napisali FOREIGN KEY (AutorID) RE
 ALTER TABLE Napisali ADD CONSTRAINT FK_KnjigaID_Napisali FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
 ALTER TABLE Izdali ADD CONSTRAINT FK_IzdavacID_Izdali FOREIGN KEY (IzdavacID) REFERENCES Izdavac(IzdavacID);
 ALTER TABLE Izdali ADD CONSTRAINT FK_KnjigaID_Izdali FOREIGN KEY (KnjigaID) REFERENCES Knjiga(KnjigaID);
+
+/*Dopuna*/
+	
+CREATE TABLE Primerak(
+	KnjigaID int not null,
+	PrimerakID int not null,
+	SkolaID int not null,
+	Datum_nabavke date 
+);
+
+CREATE TABLE Skola(
+	SkolaID int not null,
+	Naziv varchar(70),
+	Adresa varchar(40),
+	Datum_osnivanja_grane date
+);
+
+ALTER TABLE Skola ADD CONSTRAINT PK_Skola PRIMARY KEY (SkolaID);
+ALTER TABLE Primerak ADD CONSTRAINT PK_Primerak PRIMARY KEY (KnjigaID, PrimerakID);
+ALTER TABLE Primerak ADD CONSTRAINT Primerak_datum_nabavke CHECK(Datum_nabavke>= '2000.01.01');
+ALTER TABLE Skola ADD CONSTRAINT Skola_datum_osnivanja_grane CHECK (Datum_osnivanja_grane>='2000.01.01');
 ALTER TABLE Primerak ADD CONSTRAINT FK_Primerak_Skola FOREIGN KEY (SkolaID) REFERENCES Skola(SkolaiD);
 
 
-USE master;
-DROP DATABASE A1;
-
+/*
+	USE master;	
+	DROP DATABASE A1;
+*/
