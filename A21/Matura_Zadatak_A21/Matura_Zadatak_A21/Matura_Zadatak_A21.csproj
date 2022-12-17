@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{847E2379-71F0-4C93-8F67-1EE99EB420E1}</ProjectGuid>
+    <ProjectGuid>{B4631141-31F3-4E98-9386-83A3EC1435FC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Matura_Zadatak_A2</RootNamespace>
-    <AssemblyName>Matura_Zadatak_A2</AssemblyName>
+    <RootNamespace>Matura_Zadatak_A21</RootNamespace>
+    <AssemblyName>Matura_Zadatak_A21</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,19 +51,28 @@
     <Compile Include="Analiza.Designer.cs">
       <DependentUpon>Analiza.cs</DependentUpon>
     </Compile>
-    <Compile Include="Autor.cs">
+    <Compile Include="Ekskurzija.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Autor.Designer.cs">
-      <DependentUpon>Autor.cs</DependentUpon>
+    <Compile Include="Ekskurzija.Designer.cs">
+      <DependentUpon>Ekskurzija.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Putovanja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Putovanja.Designer.cs">
+      <DependentUpon>Putovanja.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Analiza.resx">
       <DependentUpon>Analiza.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Autor.resx">
-      <DependentUpon>Autor.cs</DependentUpon>
+    <EmbeddedResource Include="Ekskurzija.resx">
+      <DependentUpon>Ekskurzija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Putovanja.resx">
+      <DependentUpon>Putovanja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
