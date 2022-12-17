@@ -1,5 +1,7 @@
-/*CREATE DATABASE A4;
-USE A4;*/
+/*
+	CREATE DATABASE A4;
+	USE A4;
+*/
 
 CREATE TABLE Klijent(
 	klijentID int not null,
@@ -60,19 +62,6 @@ CREATE TABLE Rezervacija(
 	kraj_rezervacije time
 );
 
-CREATE TABLE Usluga(
-	uslugaID int not null,
-	naziv varchar(50),
-	opis text
-);
-
-CREATE TABLE Poseduje_usluge(
-	kucicaID int not null,
-	uslugaID int not null,
-	cena_od float,
-	cena_do float
-);
-
 /*Primary keys*/
 ALTER TABLE Rezervacija ADD CONSTRAINT PK_Rezervacija PRIMARY KEY (Rbr,kucicaID,klijentID);
 ALTER TABLE Region ADD CONSTRAINT PK_Region PRIMARY KEY(regionID);
@@ -81,11 +70,9 @@ ALTER TABLE Grad ADD CONSTRAINT PK_Grad PRIMARY KEY (gradID);
 ALTER TABLE Klijent ADD CONSTRAINT PK_Klijent PRIMARY KEY (KlijentID);
 ALTER TABLE Kucica ADD CONSTRAINT PK_Kucica PRIMARY KEY (kucicaID);
 ALTER TABLE Kategorija ADD CONSTRAINT PK_Kategorija PRIMARY KEY (kategorijaID);
-ALTER TABLE Usluga ADD CONSTRAINT PK_Usluga PRIMARY KEY (uslugaID);
-ALTER TABLE Poseduje_usluge ADD CONSTRAINT PK_Poseduje_usluge PRIMARY KEY (kucicaID,uslugaID);
+
 
 /*Constraints*/
-ALTER TABLE Poseduje_usluge ADD CONSTRAINT Cena CHECK (cena_od<cena_do);
 ALTER TABLE Klijent ADD CONSTRAINT Aktivan CHECK (aktivan_klijent IN ('TRUE','FALSE'));
 
 INSERT INTO Region VALUES
@@ -120,13 +107,6 @@ INSERT INTO Selo VALUES
 	(18,'Selo18',5),
 	(19,'Selo19',5),
 	(20,'Selo20',5);
-
-INSERT INTO Usluga VALUES
-	(1,'Usluga1','opis'),
-	(2,'Usluga2','opis'),
-	(3,'Usluga3','opis'),
-	(4,'Usluga4','opis'),
-	(5,'Usluga5','opis');
 
 INSERT INTO Kategorija VALUES
 	(1,'Kategorija1','opis'),
@@ -255,58 +235,6 @@ INSERT INTO Kucica VALUES
 	(119,1,'Kucica119',4,'Adresa119',19,'Smernice'),
 	(120,3,'Kucica120',8,'Adresa120',7,'Smernice');
 
-
-INSERT INTO Poseduje_usluge VALUES
-	(4,5,250,1000),
-	(8,1,250,1000),
-	(40,5,250,1000),
-	(4,1,250,1000),
-	(43,4,250,1000),
-	(109,2,250,1000),
-	(79,1,250,1000),
-	(22,3,250,1000),
-	(72,2,250,1000),
-	(86,2,250,1000),
-	(95,1,250,1000),
-	(25,1,250,1000),
-	(24,5,250,1000),
-	(34,2,250,1000),
-	(59,5,250,1000),
-	(8,4,250,1000),
-	(32,3,250,1000),
-	(39,4,250,1000),
-	(106,5,250,1000),
-	(103,2,250,1000),
-	(120,5,250,1000),
-	(10,1,250,1000),
-	(39,2,250,1000),
-	(67,1,250,1000),
-	(51,3,250,1000),
-	(5,3,250,1000),
-	(69,1,250,1000),
-	(85,1,250,1000),
-	(107,2,250,1000),
-	(82,4,250,1000),
-	(67,3,250,1000),
-	(68,2,250,1000),
-	(13,1,250,1000),
-	(105,2,250,1000),
-	(91,3,250,1000),
-	(44,4,250,1000),
-	(61,3,250,1000),
-	(4,2,250,1000),
-	(118,1,250,1000),
-	(74,5,250,1000),
-	(84,2,250,1000),
-	(55,3,250,1000),
-	(70,4,250,1000),
-	(115,2,250,1000),
-	(12,4,250,1000),
-	(17,3,250,1000),
-	(31,1,250,1000),
-	(100,3,250,1000),
-	(38,4,250,1000);
-
 INSERT INTO Klijent VALUES 
 	(1,'Klijent1','Klijent1','Adresa1',4,'0658923541','email1@gmail.com','FALSE'),
 	(2,'Klijent2','Klijent2','Adresa2',2,'0658923541','email2@gmail.com','TRUE'),
@@ -358,7 +286,6 @@ INSERT INTO Klijent VALUES
 	(48,'Klijent48','Klijent48','Adresa48',3,'0658923541','email48@gmail.com','TRUE'),
 	(49,'Klijent49','Klijent49','Adresa49',5,'0658923541','email49@gmail.com','FALSE'),
 	(50,'Klijent50','Klijent50','Adresa50',4,'0658923541','email50@gmail.com','FALSE');
-
 
 INSERT INTO Rezervacija VALUES
 	(1,99,17,'2014.6.15','20:00','20:00','21:00'),
@@ -612,11 +539,6 @@ INSERT INTO Rezervacija VALUES
 	(249,39,3,'2021.8.15','10:00','10:00','11:00'),
 	(250,107,37,'2020.6.15','15:00','15:00','16:00');
 
-
-
-
-
-
 /*Foreign keys*/
 ALTER TABLE Rezervacija ADD CONSTRAINT FK_Rezervacija_klijenID FOREIGN KEY (klijentID) REFERENCES Klijent(klijentID) ON DELETE CASCADE;
 ALTER TABLE Rezervacija ADD CONSTRAINT FK_Rezervacija_kucicaID FOREIGN KEY (kucicaID) REFERENCES Kucica(kucicaID) ON DELETE CASCADE;
@@ -625,9 +547,30 @@ ALTER TABLE Kucica ADD CONSTRAINT FK_Kucica_seloID FOREIGN KEY (seloID) REFERENC
 ALTER TABLE SELO ADD CONSTRAINT FK_Selo_gradID FOREIGN KEY (gradID) REFERENCES Grad(gradID) ON DELETE CASCADE;
 ALTER TABLE Klijent ADD CONSTRAINT FK_Klijent_gradID FOREIGN KEY (gradID) REFERENCES Grad(gradID);
 ALTER TABLE Grad ADD CONSTRAINT FK_Grad_regionID FOREIGN KEY (regionID) REFERENCES Region(regionID) ON DELETE CASCADE;
+
+/*Dopuna*/
+
+CREATE TABLE Usluga(
+	uslugaID int not null,
+	naziv varchar(50),
+	opis text
+);
+
+CREATE TABLE Poseduje_usluge(
+	kucicaID int not null,
+	uslugaID int not null,
+	cena_od float,
+	cena_do float
+);
+
+ALTER TABLE Usluga ADD CONSTRAINT PK_Usluga PRIMARY KEY (uslugaID);
+ALTER TABLE Poseduje_usluge ADD CONSTRAINT PK_Poseduje_usluge PRIMARY KEY (kucicaID,uslugaID);
+ALTER TABLE Poseduje_usluge ADD CONSTRAINT Cena CHECK (cena_od<cena_do);
+
 ALTER TABLE Poseduje_usluge ADD CONSTRAINT FK_Poseduje_usluge_kucicaID FOREIGN KEY (kucicaID) REFERENCES Kucica(kucicaID) ON DELETE CASCADE;
 ALTER TABLE Poseduje_usluge ADD CONSTRAINT FK_Poseduje_usluge_uslugaID FOREIGN KEY (uslugaID) REFERENCES Usluga(uslugaID) ON DELETE CASCADE;
 
-
-/*USE master;
-DROP DATABASE A4;*/
+/*
+	USE master;
+	DROP DATABASE A4;
+*/

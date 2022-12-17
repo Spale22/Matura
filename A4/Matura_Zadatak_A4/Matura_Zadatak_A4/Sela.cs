@@ -89,7 +89,7 @@ namespace Matura_Zadatak_A4
 
                 else 
                 {
-                    string location = @"C:\Users\Velja\Desktop\A4\Matura\A4\Log doks";
+                    string location = @"C:\Users\Velja\Desktop\Matura\A4\Matura\A4\Matura_Zadatak_A4\Matura_Zadatak_A4\Log doks";
                     string path = Path.Combine(location, "error.txt");
                     File.AppendAllText(path, DateTime.Now.ToShortDateString() + " Error : morate popuniti sva polja radi uspesne izmene \n");
                 }
@@ -97,7 +97,7 @@ namespace Matura_Zadatak_A4
 
             catch (Exception error)
             {
-                string location = @"C:\Users\Velja\Desktop\A4\Matura\A4\Log doks";
+                string location = @"C:\Users\Velja\Desktop\Matura\A4\Matura\A4\Matura_Zadatak_A4\Matura_Zadatak_A4\Log doks";
                 string path = Path.Combine(location, "error.txt");
                 File.AppendAllText(path, DateTime.Now.ToShortDateString() + " Error : " + error.Message + "\n");
             }
