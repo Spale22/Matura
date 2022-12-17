@@ -49,36 +49,16 @@ CREATE TABLE Radno_mesto(
 	najvisa_plata int	
 );
 
-CREATE TABLE Podizvodjac(
-	podizvodjacID int not null,
-	naziv varchar(30),
-	telefon varchar(35),
-	broj_radnika int
-);
-
-CREATE TABLE Angazman_podizvodjaca(
-	podizvodjacID int not null,
-	projekatID int not null,
-	datum_angazovanja date not null,  
-	datum_kraja_angazovanja date 
-);
-
-
 
 /*Primary keys*/
 ALTER TABLE Kvalifikacija ADD CONSTRAINT PK_Kvalifikacija PRIMARY KEY (kvalifikacijaID);
 ALTER TABLE Radnik ADD CONSTRAINT PK_Radnik PRIMARY KEY (radnikID);
-ALTER TABLE Podizvodjac ADD CONSTRAINT PK_Proizvodjac PRIMARY KEY (podizvodjacID);
 ALTER TABLE Angazman ADD CONSTRAINT PK_Angazman PRIMARY KEY (radnikID, projekatID, datum_angazovanja);
 ALTER TABLE Projekat ADD CONSTRAINT PK_Projekat PRIMARY KEY (projekatID);
 ALTER TABLE Istorija_rm_radnika ADD CONSTRAINT PK_Istorija_rm_radnika PRIMARY KEY (radnikID, radno_mestoID, datum_pocetka);
 ALTER TABLE Radno_mesto ADD CONSTRAINT PK_Radno_mesto PRIMARY KEY (radno_mestoID);
-ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT PK_Angazman_podizvodjaca PRIMARY KEY (podizvodjacID,projekatID,datum_angazovanja);
 
 /*Constraints*/
-ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT Angazman_podizvodjaca_datum_angazovanja CHECK(datum_angazovanja<datum_kraja_angazovanja);
-ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT Angazman_podizvodjaca_datum_angazovanja_defautl DEFAULT GETDATE()  FOR datum_angazovanja;
-ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT Angazman_podizvodjaca_datum_kraja_angazovanja_defautl DEFAULT DATEFROMPARTS(YEAR(GETDATE()), 12, 31) FOR datum_kraja_angazovanja;
 
 
 INSERT INTO Kvalifikacija VALUES
@@ -113,13 +93,6 @@ INSERT INTO Radnik VALUES
 	(24,'Radnik24','Radnik24','1994.12.05','2012.03.13',3,'0611231234'),
 	(25,'Radnik25','Radnik25','1995.06.11','2013.04.14',2,'0611231235');
 
-INSERT INTO Podizvodjac VALUES
-	(1,'Podizvodjac1','0611231231',5),
-	(2,'Podizvodjac2','0611231232',6),
-	(3,'Podizvodjac3','0611231233',3),
-	(4,'Podizvodjac4','0611231234',8),
-	(5,'Podizvodjac5','0611231235',12);
-
 INSERT INTO Radno_mesto VALUES
 	(1,'Radno Mesto 1','Opis Radno mesto ',50000,150000),
 	(2,'Radno Mesto 2','Opis Radno mesto ',70000,250000),
@@ -151,7 +124,6 @@ INSERT INTO Projekat VALUES
 	(23,'Projekat23','2016.11.15',1150000,'TRUE','Opis projekta'),
 	(24,'Projekat24','2017.11.15',11110000,'TRUE','Opis projekta'),
 	(25,'Projekat25','2020.11.15',11110000,'TRUE','Opis projekta');
-
 
 INSERT INTO Angazman VALUES 
 	(1,1,'12.15.2007 ',110,'Opis'),
@@ -321,22 +293,6 @@ INSERT INTO Angazman VALUES
 	(25,13,'12.15.2012 ',230,'Opis'),
 	(25,25,'12.15.2018 ',350,'Opis');
 
-
-INSERT INTO Angazman_podizvodjaca VALUES
-	(1,1,'2007.12.15','2010.12.11'),
-	(2,2,'2008.12.15','2010.09.11'),
-	(3,3,'2009.12.15','2011.12.11'),
-	(2,7,'2018.12.15','2020.12.11'),
-	(3,8,'2019.12.15','2021.12.11'),
-	(4,9,'2021.12.15','2022.04.11'),
-	(5,19,'2007.12.15','2010.12.11'),
-	(1,20,'2008.12.15','2010.09.11'),
-	(2,21,'2009.12.15','2011.12.11'),
-	(5,15,'2017.12.15','2018.12.11'),
-	(1,16,'2018.12.15','2020.12.11'),
-	(2,17,'2019.12.15','2021.12.11'),
-	(3,18,'2021.12.15','2022.04.11');
-
 INSERT INTO Istorija_rm_radnika VALUES
 	(1,1,'2009.05.05',NULL),
 	(2,3,'2010.01.11','2015.01.11'),
@@ -350,11 +306,35 @@ ALTER TABLE Angazman ADD CONSTRAINT FK_Angazman_radnikID FOREIGN KEY (radnikID) 
 ALTER TABLE Istorija_rm_radnika ADD CONSTRAINT FK_Istorija_rm_radnika_radnikID FOREIGN KEY (radnikID) REFERENCES Radnik(radnikID) ON DELETE CASCADE;
 ALTER TABLE Angazman ADD CONSTRAINT FK_Angazman_projekaID FOREIGN KEY (projekatID) REFERENCES Projekat(projekatID) ON DELETE CASCADE;
 ALTER TABLE Istorija_rm_radnika ADD CONSTRAINT FK_Istorija_rm_radnika_radno_mestoID FOREIGN KEY (radno_mestoID) REFERENCES Radno_mesto(radno_mestoID) ON DELETE CASCADE;
+
+/*Dopuna*/
+
+CREATE TABLE Podizvodjac(
+	podizvodjacID int not null,
+	naziv varchar(30),
+	telefon varchar(35),
+	broj_radnika int
+);
+
+CREATE TABLE Angazman_podizvodjaca(
+	podizvodjacID int not null,
+	projekatID int not null,
+	datum_angazovanja date not null,  
+	datum_kraja_angazovanja date 
+);
+
+ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT PK_Angazman_podizvodjaca PRIMARY KEY (podizvodjacID,projekatID,datum_angazovanja);
+ALTER TABLE Podizvodjac ADD CONSTRAINT PK_Proizvodjac PRIMARY KEY (podizvodjacID);
+
+ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT Angazman_podizvodjaca_datum_angazovanja CHECK(datum_angazovanja<datum_kraja_angazovanja);
+ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT Angazman_podizvodjaca_datum_angazovanja_defautl DEFAULT GETDATE()  FOR datum_angazovanja;
+ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT Angazman_podizvodjaca_datum_kraja_angazovanja_defautl DEFAULT DATEFROMPARTS(YEAR(GETDATE()), 12, 31) FOR datum_kraja_angazovanja;
 ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT FK_Angazman_podizvodjaca_projekatID FOREIGN KEY (projekatID) REFERENCES Projekat(projekatID) ON DELETE CASCADE;
 ALTER TABLE Angazman_podizvodjaca ADD CONSTRAINT FK_Angazman_podizvodjaca_podizvodjacID FOREIGN KEY (podizvodjacID) REFERENCES Podizvodjac(podizvodjacID) ON DELETE CASCADE;
 
 
-
-/*USE master;
-DROP DATABASE A3;*/
+/*
+	USE master;
+	DROP DATABASE A3;
+*/
 
