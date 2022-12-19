@@ -794,6 +794,23 @@ ALTER TABLE Partija ADD CONSTRAINT FK_Partija_drugi_igracID FOREIGN KEY (drugi_i
 
 /*Dopuna*/
 
+CREATE TABLE Sudija(
+	sudijaID int IDENTITY(1,1),
+	ime varchar(50),
+	prezime varchar(70),
+	datum_sticanja_licence date,
+	gradID int
+);
+
+ALTER TABLE Sudija ADD CONSTRAINT PK_Sudija PRIMARY KEY (sudijaID);
+ALTER TABLE Sudija ADD CONSTRAINT FK_Sudija_gradID FOREIGN KEY (gradID) REFERENCES Grad(gradID);
+
+ALTER TABLE Partija ADD glavni_sudijaID int;
+ALTER TABLE Partija ADD vremenski_uslovi text;
+
+ALTER TABLE Partija ADD CONSTRAINT FK_Partija_glavni_sudijaID FOREIGN KEY (glavni_sudijaID) REFERENCES Sudija(sudijaID) ON DELETE CASCADE;
+
+
 /*
 	USE master;
 	DROP DATABASE A22;

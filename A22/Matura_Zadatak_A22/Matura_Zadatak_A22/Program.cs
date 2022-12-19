@@ -16,7 +16,7 @@ namespace Matura_Zadatak_A22
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Golf_turnir());
         }
     }
 }
