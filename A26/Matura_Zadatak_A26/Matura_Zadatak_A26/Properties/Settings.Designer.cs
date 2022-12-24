@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Matura_zadatak_A1.Properties
+namespace Matura_Zadatak_A26.Properties
 {
 
 
