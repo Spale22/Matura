@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Matura_Zadatak_A27
 {
@@ -53,16 +54,15 @@ namespace Matura_Zadatak_A27
         {
             try
             {
-                if(conn.State != ConnectionState.Open)
+                if (conn.State != ConnectionState.Open)
                     conn.Open();
                 GV.Rows.Clear();
-                string errorImg = @"C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\noImg.jpg";
                 SqlCommand comm = new SqlCommand(@"SELECT naziv,slika FROM Model WHERE proizvodjacID=(SELECT proizvodjacID FROM Proizvodjac WHERE naziv = @proizvodjac);", conn);
                 comm.Parameters.AddWithValue("@proizvodjac", proizvodjac);
                 SqlDataReader reader = comm.ExecuteReader();
                 while (reader.Read())
                 {
-                    GV.Rows.Add(reader[0].ToString(), Image.FromFile(!string.IsNullOrEmpty(reader[1].ToString()) ? reader[1].ToString() : errorImg));
+                    GV.Rows.Add(reader[0].ToString(), Image.FromStream(new MemoryStream(reader[1] as byte[])));
                 }
                 reader.Dispose();
             }
@@ -94,16 +94,22 @@ namespace Matura_Zadatak_A27
                     conn.Open();
                     OpenFileDialog f = new OpenFileDialog();
                     f.ShowDialog();
-                    string[] pom = f.FileName.Split('\\');
-                    lblImgFileName.Text = pom[pom.Length - 1];
+                    lblImgFileName.Text = GV.SelectedRows[0].Cells[0].Value.ToString()+".jpg";
                     pictureBoxModel.Image = Image.FromFile(f.FileName);
+
+                    int length = Convert.ToInt32(new FileInfo(f.FileName).Length);
+                    BinaryReader r = new BinaryReader(f.OpenFile());
+
                     SqlCommand comm = new SqlCommand(@"UPDATE Model SET slika=@slika WHERE naziv=@naziv 
                                                         AND 
                                                         proizvodjacID=(SELECT proizvodjacID FROM Proizvodjac WHERE naziv = @proizvodjac);", conn);
                     comm.Parameters.AddWithValue("@proizvodjac", cbProizvodjac.Text);
                     comm.Parameters.AddWithValue("@naziv", GV.SelectedRows[0].Cells[0].Value.ToString());
-                    comm.Parameters.AddWithValue("@slika", f.FileName);
+                    comm.Parameters.AddWithValue("@slika",r.ReadBytes(length));
                     comm.ExecuteNonQuery();
+
+                    r.Close();
+
                     GV_Referesh(cbProizvodjac.Text);
                 }
             }
@@ -126,16 +132,22 @@ namespace Matura_Zadatak_A27
                 if (GV.SelectedRows.Count > 0)
                 {
                     conn.Open();
-                    string errorImg = @"C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\noImg.jpg";
                     lblImgFileName.Text = "noImg.jpg";
-                    pictureBoxModel.Image = Image.FromFile(errorImg);
+
+
+                    pictureBoxModel.Image = Image.FromFile("Images/noImg.jpg");
+
+                    byte[] b = File.ReadAllBytes("Images/noImg.jpg");
+
                     SqlCommand comm = new SqlCommand(@"UPDATE Model SET slika=@slika WHERE naziv=@naziv 
                                                         AND 
                                                         proizvodjacID=(SELECT proizvodjacID FROM Proizvodjac WHERE naziv = @proizvodjac);", conn);
                     comm.Parameters.AddWithValue("@proizvodjac", cbProizvodjac.Text);
                     comm.Parameters.AddWithValue("@naziv", GV.SelectedRows[0].Cells[0].Value.ToString());
-                    comm.Parameters.AddWithValue("@slika", errorImg);
+                    comm.Parameters.AddWithValue("@slika", b);
                     comm.ExecuteNonQuery();
+
+
                     GV_Referesh(cbProizvodjac.Text);
                 }
             }

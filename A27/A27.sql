@@ -31,7 +31,7 @@ CREATE TABLE Model(
 	naziv varchar(100),
 	proizvodjacID int,
 	naziv_fajla text,
-	slika text,
+	slika varbinary(max),
 	kubikaza int
 );
 
@@ -194,37 +194,67 @@ INSERT INTO Proizvodjac VALUES
 	('Proizvodjac9'),
 	('Proizvodjac10');
 
-INSERT INTO Model VALUES
-	('Model1',1,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model1.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model5.jpg',2268),
-	('Model2',1,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model2.txt','',2654),
-	('Model3',1,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model3.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model2.jpg',1435),
-	('Model4',2,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model4.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model2.jpg',1330),
-	('Model5',2,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model5.txt','',822),
-	('Model6',2,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model6.txt','',1258),
-	('Model7',3,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model7.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model3.jpg',2316),
-	('Model8',3,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model8.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model3.jpg',1894),
-	('Model9',3,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model9.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model1.jpg',2069),
-	('Model10',4,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model10.txt','',2477),
-	('Model11',4,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model11.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model2.jpg',1040),
-	('Model12',4,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model12.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model5.jpg',2334),
-	('Model13',5,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model13.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model2.jpg',1743),
-	('Model14',5,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model14.txt','',2236),
-	('Model15',5,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model15.txt','',2910),
-	('Model16',6,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model16.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model3.jpg',2856),
-	('Model17',6,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model17.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model2.jpg',2004),
-	('Model18',6,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model18.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model4.jpg',974),
-	('Model19',7,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model19.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model2.jpg',1523),
-	('Model20',7,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model20.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model2.jpg',2501),
-	('Model21',7,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model21.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model2.jpg',835),
-	('Model22',8,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model22.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model1.jpg',1631),
-	('Model23',8,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model23.txt','',1526),
-	('Model24',8,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model24.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model1.jpg',2324),
-	('Model25',9,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model25.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model3.jpg',824),
-	('Model26',9,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model26.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model3.jpg',1900),
-	('Model27',9,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model27.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model3.jpg',2193),
-	('Model28',10,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model28.txt','',2806),
-	('Model29',10,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model29.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model1.jpg',1285),
-	('Model30',10,'C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Files\Model30.txt','C:\Users\Velja\Desktop\Matura\A27\Matura\A27\Matura_Zadatak_A27\Matura_Zadatak_A27\Model Files\Images\Model5.jpg',2875);
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model1',1,'Model4.jpg',1751,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model4.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model2',1,'Model3.jpg',1143,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model3.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model3',1,'Model3.jpg',1229,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model3.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model4',2,'Model5.jpg',1068,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model5.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model5',2,'Model5.jpg',2718,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model5.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model6',2,'Model2.jpg',2544,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model2.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model7',3,'Model2.jpg',1595,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model2.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model8',3,'Model4.jpg',2024,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model4.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model9',3,'Model2.jpg',2987,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model2.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model10',4,'Model2.jpg',873,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model2.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model11',4,'Model5.jpg',2936,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model5.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model12',4,'Model1.jpg',2539,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model1.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model13',5,'Model5.jpg',1181,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model5.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model14',5,'Model3.jpg',2271,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model3.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model15',5,'Model5.jpg',2285,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model5.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model16',6,'Model2.jpg',1992,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model2.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model17',6,'Model4.jpg',2382,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model4.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model18',6,'Model1.jpg',2474,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model1.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model19',7,'Model4.jpg',1575,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model4.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model20',7,'Model3.jpg',2297,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model3.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model21',7,'Model3.jpg',1549,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model3.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model22',8,'Model5.jpg',2726,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model5.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model23',8,'Model1.jpg',1988,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model1.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model24',8,'Model5.jpg',973,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model5.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model25',9,'Model5.jpg',1661,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model5.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model26',9,'Model3.jpg',963,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model3.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model27',9,'Model5.jpg',1203,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model5.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model28',10,'Model4.jpg',1082,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model4.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model29',10,'Model1.jpg',2944,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model1.jpg',SINGLE_BLOB) m
+INSERT INTO Model (naziv,proizvodjacID,naziv_fajla,kubikaza,slika) 
+	                                    SELECT 'Model30',10,'Model2.jpg',1693,* FROM OPENROWSET(BULK N'/mediaserver/sambashare/SQL/Model2.jpg',SINGLE_BLOB) m
+
 
 INSERT INTO Polisa VALUES
 	('2021.11.9','2022.11.9',194000.00),
