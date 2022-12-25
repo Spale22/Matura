@@ -62,7 +62,7 @@ namespace Matura_Zadatak_A27
                 SqlDataReader reader = comm.ExecuteReader();
                 while (reader.Read())
                 {
-                    GV.Rows.Add(reader[0].ToString(), Image.FromStream(new MemoryStream(reader[1] as byte[])));
+                    GV.Rows.Add(reader[0].ToString(), (reader[1] as byte[]) == null ? Image.FromFile("Images/noImg.jpg") : Image.FromStream(new MemoryStream(reader[1] as byte[])));
                 }
                 reader.Dispose();
             }
