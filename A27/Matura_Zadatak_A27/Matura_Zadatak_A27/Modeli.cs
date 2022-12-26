@@ -50,10 +50,13 @@ namespace Matura_Zadatak_A27
             }
         }
 
+        bool load = false;
+
         private void GV_Referesh(string proizvodjac) 
         {
             try
             {
+                load = true;
                 if (conn.State != ConnectionState.Open)
                     conn.Open();
                 GV.Rows.Clear();
@@ -75,6 +78,7 @@ namespace Matura_Zadatak_A27
             finally
             {
                 conn.Close();
+                load = false;
             }
         }
 
@@ -177,11 +181,38 @@ namespace Matura_Zadatak_A27
 
         private void GV_SelectionChanged(object sender, EventArgs e)
         {
-            if (GV.SelectedRows.Count > 0)
-            {
-                pictureBoxModel.Image = (Image)GV.SelectedRows[0].Cells[1].Value;
-                lblImgFileName.Text = GV.SelectedRows[0].Cells[0].Value.ToString() + ".jpg";
-            }
+            if (!load)
+                if (GV.SelectedRows.Count > 0)
+                {
+                    try
+                    {
+                        if (conn.State != ConnectionState.Open)
+                            conn.Open();
+                        SqlCommand c = new SqlCommand(@"SELECT naziv_fajla,slika FROM Model 
+                                                        WHERE proizvodjacID = (SELECT proizvodjacID FROM Proizvodjac WHERE naziv=@proizvodjac)
+                                                        AND
+                                                        naziv = @model", conn);
+                        c.Parameters.AddWithValue("@proizvodjac", cbProizvodjac.Text);
+                        c.Parameters.AddWithValue("@model", GV.SelectedRows[0].Cells[0].Value.ToString());
+                        SqlDataReader rd = c.ExecuteReader();
+                        while (rd.Read())
+                        {
+                            lblImgFileName.Text = rd[0].ToString();
+                            pictureBoxModel.Image = (rd[1] as byte[]) == null ? Image.FromFile("Images/noImg.jpg") : Image.FromStream(new MemoryStream(rd[1] as byte[]));
+                        }
+                        rd.Dispose();
+                    }
+
+                    catch (Exception error)
+                    {
+                        MessageBox.Show(error.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
         }
     }
 }
